@@ -17,3 +17,12 @@
     - No: `2016280002`
     
 Team name: `MU.` Stands for `M`ert and  `U`luğbey.
+
+## UML Diagrams
+### Class Structure
+`Empty for now.`
+
+### Database Structure for Modeling
+- Using MVC Design Pattern with SQLite- version number will be specified later.
+
+![image](./images/database-structure.jpeg)
