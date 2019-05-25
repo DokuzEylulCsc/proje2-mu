@@ -1,0 +1,49 @@
+Table hotels {
+  id autoincrement [pk]
+  name text
+  stars integer
+}
+
+Table room_type {
+  type_name text
+  hotel_id integer
+  id autoincrement [pk]
+  price integer [not null]
+  sea_view boolean
+  double_bed integer [not null]
+  single_bed integer [not null]
+  safe boolean [not null]
+  air_conditioner_count integer [not null]
+  minibar_count integer [not null]
+  television_count integer [not null]
+  extra_services text
+}
+
+Table rooms {
+  id autoincrement [pk]
+  hotel_id integer [not null,unique]
+  room_number integer [not null]
+  room_type_id integer [not null]
+}
+
+Table reservation {
+  id autoincrement [pk]
+  account_id integer [not null]
+  room_id integer [not null]
+  start_date text [not null]
+  end_date text [not null]
+}
+
+Table accounts {
+  id autoincrement [pk]
+  email text [not null]
+  password_hash text [not null]
+  name text [not null]
+  admin boolean [not null]
+}
+
+ref: hotels.id < rooms.hotel_id
+ref: hotels.id < room_type.hotel_id
+ref: rooms.room_type_id > room_type.id
+ref: reservation.account_id > accounts.id
+ref: reservation.room_id > rooms.id
