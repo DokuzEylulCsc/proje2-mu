@@ -1,4 +1,4 @@
-## Project 2
+﻿## Project 2
 
 - Using [`Java and JDK 11.`](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html)
 - Description
@@ -25,4 +25,4 @@ Team name: `MU.` Stands for `M`ert and  `U`luğbey.
 ### Database Structure for Modeling
 - Using MVC Design Pattern with SQLite- version number will be specified later.
 
-![image](./images/database-structure.jpeg)
+![image](./images/database-structure.jpg)
