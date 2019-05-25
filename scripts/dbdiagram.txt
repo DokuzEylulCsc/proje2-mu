@@ -1,0 +1,13 @@
+Table hotels {
+  id autoincrement [pk]
+  name text
+  stars integer
+}
+
+
+Table room_type {
+  id autoincrement [pk]
+  hotel_id integer
+}
+
+Ref: room_type.hotel_id > hotels.id
