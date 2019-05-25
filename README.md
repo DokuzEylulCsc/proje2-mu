@@ -4,6 +4,7 @@
 - Description
 	- [PDF](./DESCRIPTION.pdf)
 	- [MarkDown](./DESCRIPTION.md)
+- References: [MarkDown](./REFERENCES.md)
 
 
 ### Contributors / Students
@@ -18,11 +19,12 @@
     
 Team name: `MU.` Stands for `M`ert and  `U`luğbey.
 
+
 ## UML Diagrams
 ### Class Structure
 `Empty for now.`
 
 ### Database Structure for Modeling
-- Using MVC Design Pattern with SQLite- version number will be specified later.
+- Using MVC Design Pattern with SQLite3.
 
 ![image](./images/database-structure.jpg)
