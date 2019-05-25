@@ -21,9 +21,10 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
+asdfsa
+asdfsa
 *.ear
 *.zip
 *.tar.gz
