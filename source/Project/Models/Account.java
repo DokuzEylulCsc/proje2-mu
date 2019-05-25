@@ -1,5 +1,5 @@
 package Project.Models;
 
-public abstract class Account implements Model {
+class Account implements Model {
 
 }
