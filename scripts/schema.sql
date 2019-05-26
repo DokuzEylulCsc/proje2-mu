@@ -45,6 +45,7 @@ CREATE TABLE reservations (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     room_id INTEGER NOT NULL,
     account_id INTEGER NOT NULL,
+    person_count INTEGER DEFAULT 1 NOT NULL CHECK( person_count > 0 ),
 
     -- format is ISO8601, ex. '2019-06-06', thus length should be 10
     start_date TEXT NOT NULL CHECK( length(start_date) ==  10 ),

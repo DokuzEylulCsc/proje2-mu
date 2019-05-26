@@ -30,6 +30,7 @@ Table reservation {
   id autoincrement [pk]
   account_id integer [not null]
   room_id integer [not null]
+  person_count integer [not null]
   start_date text [not null]
   end_date text [not null]
 }
