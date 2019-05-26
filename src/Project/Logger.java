@@ -1,5 +1,7 @@
 package Project;
 
+import com.sun.jdi.InvalidTypeException;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,10 +43,13 @@ public class Logger {
             Exception e = (Exception) val;
             return String.format("%s: %s\n%s",
                     getISO8601().format(key), e.getMessage(), e.getStackTrace());
+        } else {
+            Logger.getInstance().addLog(new InvalidTypeException("Invalid type at Logger.logToString!"));
+            return null;
         }
     }
 
-    public Logger getInstance() { return ourInstance; }
+    public static Logger getInstance() { return ourInstance; }
 
     public DateFormat getISO8601() {
         return ISO8601;
