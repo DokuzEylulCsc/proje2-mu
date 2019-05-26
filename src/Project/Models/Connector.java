@@ -74,7 +74,7 @@ public class Connector {
         this.connection = c;
     }
 
-    private Connection getConnection() {
+    Connection getConnection() {
         return this.connection;
     }
 }
