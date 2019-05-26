@@ -1,7 +1,7 @@
 ## References
 
 ##### UML 2
-- [IBM](https://www.ibm.com/developerworks/rational/library/content/RationalEdge/sep04/bell/indzex.html)
+- [IBM](https://www.ibm.com/developerworks/rational/library/content/RationalEdge/sep04/bell/index.html)
 
 ##### JDBC
 - GitHub: [xerial/sqlite-jdbc](https://github.com/xerial/sqlite-jdbc)
