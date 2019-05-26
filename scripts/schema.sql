@@ -4,7 +4,6 @@ CREATE TABLE hotels (
     stars INTEGER NOT NULL CHECK( stars >= 0 )
 );
 
-
 CREATE TABLE room_type (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     hotel_id INTEGER NOT NULL ,
@@ -25,7 +24,6 @@ CREATE TABLE room_type (
         ON DELETE CASCADE
         ON UPDATE NO ACTION,
     UNIQUE(hotel_id, type_name)
-
 );
 
 CREATE TABLE rooms (
@@ -60,7 +58,6 @@ CREATE TABLE reservations (
         ON DELETE CASCADE
         ON UPDATE NO ACTION
 );
-
 
 CREATE TABLE accounts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
