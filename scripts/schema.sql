@@ -7,11 +7,10 @@ CREATE TABLE hotels (
 
 CREATE TABLE room_type (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-
     hotel_id INTEGER NOT NULL ,
     type_name TEXT NOT NULL,
-    UNIQUE(hotel_id, type_name),
 
+    -- description of service
     price INTEGER NOT NULL CHECK( price > 0 ),
     sea_view INTEGER DEFAULT 0 NOT NULL CHECK( sea_view IN (0, 1) ),
     double_bed INTEGER DEFAULT 0 NOT NULL CHECK( double_bed >= 0 ),
@@ -24,9 +23,10 @@ CREATE TABLE room_type (
 
     FOREIGN KEY (hotel_id) REFERENCES hotels (id)
         ON DELETE CASCADE
-        ON UPDATE NO ACTION
-);
+        ON UPDATE NO ACTION,
+    UNIQUE(hotel_id, type_name)
 
+);
 
 CREATE TABLE rooms (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
