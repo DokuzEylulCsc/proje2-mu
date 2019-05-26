@@ -7,10 +7,11 @@ import java.util.LinkedHashMap;
 
 
 public class Logger {
-    private LinkedHashMap<Date, Object> Logs;
+    private static Logger ourInstance = new Logger();
     private static final DateFormat ISO8601 = new SimpleDateFormat("yyyy-mm-dd hh:mm");
+    private LinkedHashMap<Date, Object> Logs;
 
-    public Logger() {
+    private Logger() {
         setLogs(new LinkedHashMap<>());
     }
 
@@ -42,6 +43,8 @@ public class Logger {
                     getISO8601().format(key), e.getMessage(), e.getStackTrace());
         }
     }
+
+    public Logger getInstance() { return ourInstance; }
 
     public DateFormat getISO8601() {
         return ISO8601;
