@@ -10,4 +10,7 @@ public class Room implements  Model{
     public void delete() {
         throw new NotImplementedException();
     }
+
+    public static class RoomType {
+    }
 }
