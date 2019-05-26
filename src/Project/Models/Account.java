@@ -82,7 +82,7 @@ class Account implements Model {
      * @return if exists Account else null
      * @see Account
      */
-    private static Account getAccount(String email) {
+    public static Account getAccount(String email) {
 
         try (Statement stmt = Connector.getInstance().getConnection().createStatement()){
             String query = String.format("SELECT * FROM accounts WHERE email=%s", email);
