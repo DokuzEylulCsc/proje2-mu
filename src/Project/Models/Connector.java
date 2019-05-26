@@ -22,7 +22,7 @@ public class Connector {
      *
      * TODO: Create default schema from scripts/schema.sql
      */
-    public void connect() {
+    private void connect() {
         try {
             setConnection(DriverManager.getConnection("jdbc:sqlite:Project.db"));
         } catch (SQLException e) {

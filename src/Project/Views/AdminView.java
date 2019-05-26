@@ -1,4 +1,10 @@
 package Project.Views;
 
-public class AdminView implements View {
+import Project.Controllers.Controller;
+
+public class AdminView extends View {
+
+    public AdminView(Controller c) {
+        super(c);
+    }
 }

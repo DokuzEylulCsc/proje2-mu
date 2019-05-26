@@ -1,4 +1,10 @@
 package Project.Views;
 
-public class CustomerView implements View {
+import Project.Controllers.Controller;
+
+public class CustomerView extends View {
+
+    public CustomerView(Controller c) {
+        super(c);
+    }
 }
