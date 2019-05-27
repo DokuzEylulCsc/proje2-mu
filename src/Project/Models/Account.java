@@ -70,6 +70,41 @@ class Account implements Model {
 
     }
 
+    /**
+     * Find account in database by email and return it as Model object.
+     *
+     * @param email String
+     * @return if exists Account else null
+     * @see Account
+     */
+    static Account getAccount(String email) {
+
+        try (Statement stmt = Connector.getInstance().getConnection().createStatement()){
+            String query = String.format("SELECT * FROM accounts WHERE email=%s", email);
+            ResultSet rs = stmt.executeQuery(query);
+
+            rs.last();
+            if (rs.getRow() == 1) {
+                return (
+                        new Account(
+                                rs.getString("email"),
+                                rs.getString("password_hash"),
+                                rs.getString("name"),
+                                rs.getInt("admin")
+                        )
+                );
+
+            } else if (rs.getRow() != 0) {
+                Logger.getInstance().addLog("Warning: Project.Models.Account.getAccount found more" +
+                        " than 1 row with same email: " + email);
+            }
+
+        } catch (SQLException e) {
+            Logger.getInstance().addLog(e);
+        }
+
+        return null;
+    }
 
     /**
      * Find account in table, if not exists create new.
@@ -103,42 +138,6 @@ class Account implements Model {
     }
 
     /**
-     * Find account in database by email and return it as Model object.
-     *
-     * @param email String
-     * @return if exists Account else null
-     * @see Account
-     */
-     static Account getAccount(String email) {
-
-        try (Statement stmt = Connector.getInstance().getConnection().createStatement()){
-            String query = String.format("SELECT * FROM accounts WHERE email=%s", email);
-            ResultSet rs = stmt.executeQuery(query);
-
-            rs.last();
-            if (rs.getRow() == 1) {
-                return (
-                        new Account(
-                                rs.getString("email"),
-                                rs.getString("password_hash"),
-                                rs.getString("name"),
-                                rs.getInt("admin")
-                        )
-                );
-
-            } else if (rs.getRow() != 0) {
-                Logger.getInstance().addLog("Warning: Project.Models.Account.getAccount found more" +
-                        " than 1 row with same email: " + email);
-            }
-
-        } catch (SQLException e) {
-            Logger.getInstance().addLog(e);
-        }
-
-        return null;
-    }
-
-    /**
      * Return all records in accounts.
      */
     public static List<Account> queryAll() {
@@ -167,7 +166,7 @@ class Account implements Model {
 
     /**
      * Update object in database.
-     * If not in database, create and assign an id.
+     * TODO: Insert if not exists.
      */
     public void save() {
 
