@@ -3,7 +3,9 @@ package Project.Views;
 import Project.Controllers.Controller;
 
 public abstract class View {
-    final Controller controller;
+    Controller controller;
+
+    public View() {}
 
     public View(Controller _controller) {
         controller = _controller;
