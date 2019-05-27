@@ -20,12 +20,16 @@
 Team name: `MU.` Stands for `M`ert and  `U`luğbey.
 
 
-## UML Diagrams
+## Diagrams
+
+### *Structure Diagram* of Classes
+- Using UML 2 notation.
+
+![class-diagram](./images/class-diagram.jpg)
+
 ### Database Structure for Modeling
 - Using MVC Design Pattern with SQLite3.
 
 ![database-diagram](./images/database-structure.jpg)
 
-### Class Structure with UML 2
-![class-diagram](./images/class-diagram.jpg)
 
