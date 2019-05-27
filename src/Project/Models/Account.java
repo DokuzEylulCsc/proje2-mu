@@ -1,5 +1,6 @@
 package Project.Models;
 
+import Project.Connector;
 import Project.Logger;
 
 import java.sql.PreparedStatement;

@@ -1,4 +1,4 @@
-package Project.Models;
+package Project;
 
 import java.io.*;
 import java.sql.*;
@@ -75,7 +75,7 @@ public class Connector {
         this.connection = c;
     }
 
-    Connection getConnection() {
+    public Connection getConnection() {
         return this.connection;
     }
 }
