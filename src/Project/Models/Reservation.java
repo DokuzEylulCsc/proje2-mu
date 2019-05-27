@@ -2,7 +2,7 @@ package Project.Models;
 
 import Project.NotImplementedException;
 
-public class Reservationgit implements Model {
+public class Reservation implements Model {
     private Integer dbid;
     private Integer dbroomid;
     private Integer dbaccountid;
