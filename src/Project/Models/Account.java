@@ -11,7 +11,6 @@ import java.util.List;
 
 
 class Account implements Model {
-    private final Integer id;
     private String email;
     private String password_hash;
     private String name;
@@ -22,27 +21,55 @@ class Account implements Model {
 
     private static String updateQuery = "UPDATE accounts " +
             "SET email = ?, password_hash = ?,  name = ? " +
-            "WHERE id = ? ";
+            "WHERE email = ? ";
 
     private static String deleteQuery = "DELETE FROM accounts " +
-            "WHERE id = ?";
+            "WHERE email = ?";
 
     /**
-     * Boolean represented by 0 or 1.
+     * Create Account object, do not save to database till save method is called.
      *
-     * @param id Integer
      * @param email String
      * @param password_hash String
      * @param name String
-     * @param admin Integer
+     * @param admin Integer, 0 or 1
+     * @throws if email already exists in database
      */
-    private Account(Integer id, String email, String password_hash, String name, Integer admin) {
-        this.id = id;
+    public Account(String email, String password_hash, String name, Integer admin) {
+
+        if (admin != 0 && admin != 1) {
+            throw new UnsupportedOperationException("Admin can be only 0 or 1!");
+        } else if (getAccount(email) != null) {
+            throw new UnsupportedOperationException(
+                    String.format("Account email %s already exists in database! Call constructor with email.", email)
+            );
+        }
+
         this.email = email;
         this.password_hash = password_hash;
         this.name = name;
         this.admin = admin;
     }
+
+    /**
+     * Create an Account object from database by email.
+     *
+     * @param email String
+     */
+    public Account(String email) {
+
+        Account thisAccount = getAccount(email);
+        if (thisAccount == null) {
+            throw new UnsupportedOperationException("No account exists with email:" + email + " in database!");
+        }
+
+        this.email = thisAccount.getEmail();
+        this.name = thisAccount.getName();
+        this.password_hash = thisAccount.getPassword_hash();
+        this.admin = (thisAccount.isAdmin()) ? 1 : 0;
+
+    }
+
 
     /**
      * Find account in table, if not exists create new.
@@ -82,7 +109,7 @@ class Account implements Model {
      * @return if exists Account else null
      * @see Account
      */
-    public static Account getAccount(String email) {
+     static Account getAccount(String email) {
 
         try (Statement stmt = Connector.getInstance().getConnection().createStatement()){
             String query = String.format("SELECT * FROM accounts WHERE email=%s", email);
@@ -92,7 +119,6 @@ class Account implements Model {
             if (rs.getRow() == 1) {
                 return (
                         new Account(
-                                rs.getInt("id"),
                                 rs.getString("email"),
                                 rs.getString("password_hash"),
                                 rs.getString("name"),
@@ -125,7 +151,6 @@ class Account implements Model {
             while (rs.next()) {
                 result.add(
                         new Account(
-                                rs.getInt("id"),
                                 rs.getString("email"),
                                 rs.getString("password_hash"),
                                 rs.getString("name"),
@@ -142,14 +167,15 @@ class Account implements Model {
 
     /**
      * Update object in database.
+     * If not in database, create and assign an id.
      */
     public void save() {
-        try (PreparedStatement pstmt = Connector.getInstance().getConnection().prepareStatement(updateQuery)){
 
-            pstmt.setString(1, email);
-            pstmt.setString(2, password_hash);
-            pstmt.setString(3, name);
-            pstmt.setInt(4, id);
+        try (PreparedStatement pstmt = Connector.getInstance().getConnection().prepareStatement(updateQuery)) {
+            pstmt.setString(1, getEmail());
+            pstmt.setString(2, getPassword_hash());
+            pstmt.setString(3, getName());
+            pstmt.setString(4, getEmail());
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -162,7 +188,7 @@ class Account implements Model {
      */
     public void delete() {
         try (PreparedStatement pstmt = Connector.getInstance().getConnection().prepareStatement(deleteQuery)) {
-            pstmt.setInt(1, id);
+            pstmt.setString(1, getEmail());
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -174,4 +200,20 @@ class Account implements Model {
         return admin == 1;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    private String getPassword_hash() {
+        return password_hash;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("name: %s\nemail: %s\nadmin: %d", email, name, admin);
+    }
 }

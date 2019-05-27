@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
 
-
+// TODO: Add writeToFile
 public class Logger {
     private static Logger ourInstance = new Logger();
     private static final DateFormat ISO8601 = new SimpleDateFormat("yyyy-mm-dd hh:mm");

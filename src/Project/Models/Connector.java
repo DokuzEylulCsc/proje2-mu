@@ -15,9 +15,10 @@ public class Connector {
     private Connection          connection;
 
     private Connector() { connect(); }
+
     /**
      * Connect SQLite database at ./Project.db.
-     * If not exists, create default schema.d
+     * If not exists, create default schema.
      */
     private void connect() {
         try {
