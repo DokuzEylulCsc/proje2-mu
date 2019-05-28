@@ -2,7 +2,9 @@ package Project.Views;
 
 import Project.Controllers.Controller;
 
-public abstract class View {
+import javax.swing.*;
+
+public abstract class View extends JFrame {
     Controller controller;
 
     public View() {}
