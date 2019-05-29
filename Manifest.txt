@@ -1,3 +1,2 @@
 Main-Class: Project.Main
-Class-Path: lib/*.jar
-
+Class-Path: ../lib/sqlite-jdbc-3.27.2.1.jar

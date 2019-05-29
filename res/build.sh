@@ -3,22 +3,20 @@
 # Create executable jar including libraries:
 #   Compiles all packages in src
 #   Uses manifest file at Manifest.txt
-#   Uses libraries at lib
-#   Writes jar file to bin
+#   Writes jar files to bin
 #
 # Note: This script meant to be in $project_dir/res, invoke from anywhere.
-jarname="Project.jar"
 
-dir=$(dirname $0)
-cd $dir # $project_dir/res
+jarname="Project.jar"
+dir=$(dirname $0) # $project_dir/res
+cd $dir/..
 
 echo "*** Compiling source code..."
-javac -d ../bin -verbose  ../src/*/*.java ../src/*/*/*.java
+javac -d bin -verbose  src/*/*.java src/*/*/*.java
 
 echo "*** Creating jarfile..."
-cd ../bin
-jar cfmv $jarname ../Manifest.txt ./*
-cd ../lib
-jar ufv ../bin/$jarname *
+jar cfmv bin/$jarname Manifest.txt -C bin */
+rm -rf bin/*/
 
-echo "*** Success, written jarfile at bin/$jarname "
+echo "*** Success, written jarfile at bin/$jarname"
+
