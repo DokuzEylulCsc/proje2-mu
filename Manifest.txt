@@ -1,0 +1,4 @@
+Main-Class: Project.Main
+Class-Path: lib/*.jar
+Sealed: true
+
