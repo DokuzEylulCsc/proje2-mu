@@ -1,12 +1,14 @@
 package Project;
 
+import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
 
-// TODO: Add writeToFile
+
 public class Logger {
+    private final static String defaultFileName = "Project.log";
     private static Logger ourInstance = new Logger();
     private static final DateFormat ISO8601 = new SimpleDateFormat("yyyy-mm-dd hh:mm");
     private LinkedHashMap<Date, Object> Logs;
@@ -44,6 +46,29 @@ public class Logger {
         } else {
             Logger.getInstance().addLog(new TypeException("Invalid type at Logger.logToString!"));
             return null;
+        }
+    }
+
+    /**
+     * Write log file to ./defaultFileName using writeToFile(File obj).
+     */
+    public void writeToFile() {
+        writeToFile(new File(defaultFileName));
+    }
+
+    /**
+     * Write logs to specified file using logToString.
+     *
+     * @param file File object
+     */
+    public void writeToFile(File file) {
+
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
+            for (Date key : getLogs().keySet()) {
+                bufferedWriter.write(String.format("%s%n", logToString(key, getLogs().get(key))));
+            }
+        } catch (IOException e) {
+            Logger.getInstance().addLog(e);
         }
     }
 
