@@ -37,10 +37,23 @@ public class LoginView extends View implements ActionListener {
 
         add(outerPanel, BorderLayout.CENTER);
         loginButton.addActionListener(this);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setSize(300,200);
+        setSize(350,200);
+        setResizable(false);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                sendSignalToController();
+            }
+        });
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         setVisible(true);
+    }
+
+    private void sendSignalToController() {
+        ((LoginController) getController()).receiveSignalFromView();
     }
 
     public void actionPerformed(ActionEvent ae) {
@@ -57,22 +70,38 @@ public class LoginView extends View implements ActionListener {
                 "Success",
                 JOptionPane.PLAIN_MESSAGE
         );
-
+        dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 
-    public void showNoSuchAccountAlert() {
+    public void showNewAccountNotice() {
         JOptionPane.showMessageDialog(this,
-                "No such account is registered with this email, new account created",
+                "No such account is registered with this email, new account created.",
                 "New account notice",
                 JOptionPane.PLAIN_MESSAGE
         );
-
+        dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 
-    public void showInvalidPasswordAlert() {
+    public void showWrongPasswordAlert() {
         JOptionPane.showMessageDialog(this,
-                "Invalid password!",
-                "Failed",
+                "Wrong password!",
+                "Login failed",
+                JOptionPane.WARNING_MESSAGE
+        );
+    }
+
+    public void showEmptyPasswordAlert() {
+        JOptionPane.showMessageDialog(this,
+                "Please use a password.",
+                "Empty password",
+                JOptionPane.WARNING_MESSAGE
+        );
+    }
+
+    public void showInvalidEmailAlert() {
+        JOptionPane.showMessageDialog(this,
+                "Please type an email adress.",
+                "Invalid email format",
                 JOptionPane.WARNING_MESSAGE
         );
     }

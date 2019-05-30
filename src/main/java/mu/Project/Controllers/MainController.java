@@ -1,26 +1,58 @@
 package mu.Project.Controllers;
 
-
-// TODO: get Account from LoginController
-// TODO: invoke Admin or Customer Controller with with Account object
-
+import mu.Project.Logger;
 import mu.Project.Models.Account;
 
 public class MainController extends ParentController {
 
     LoginController loginController;
+    Account account;
+    AccountController accountController;
 
     public void runApp() {
-        loginController = new LoginController(this);
-        // throw new NotImplementedException();
+        setLoginController(new LoginController(this));
     }
 
     /**
      * Receive signal only from LoginController to build AccountControllers or quit.
      */
     public void receiveSignalFromChild() {
-        if (loginController.getModel() != null) {
-            System.out.println("Successful!" + loginController.getModel().toString());
+        if (getLoginController().getModel() != null) {
+            setAccount((Account) getLoginController().getModel());
+            System.out.println("Login successful!%n" + getAccount());
+
+            if (getAccount().isAdmin()) {
+                setAccountController(new AdminController(getAccount()));
+            } else {
+                setAccountController(new CustomerController(getAccount()));
+            }
+        } else {
+            // Quit
+            Logger.getInstance().writeToFile();
         }
+    }
+
+    private LoginController getLoginController() {
+        return loginController;
+    }
+
+    private void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
+    }
+
+    private Account getAccount() {
+        return account;
+    }
+
+    private void setAccount(Account account) {
+        this.account = account;
+    }
+
+    private AccountController getAccountController() {
+        return accountController;
+    }
+
+    private void setAccountController(AccountController accountController) {
+        this.accountController = accountController;
     }
 }

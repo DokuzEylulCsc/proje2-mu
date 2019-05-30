@@ -1,11 +1,13 @@
 package mu.Project.Controllers;
 
+import mu.Project.Models.Account;
 import mu.Project.Models.Model;
+import mu.Project.Views.CustomerView;
 import mu.Project.Views.View;
 
 public class CustomerController extends AccountController {
-    public CustomerController(View view, Model model) {
-        this.view = view;
-        this.model = model;
+    public CustomerController(Account model, ParentController parent) {
+        super(model, parent);
+        setView(new CustomerView(this));
     }
 }

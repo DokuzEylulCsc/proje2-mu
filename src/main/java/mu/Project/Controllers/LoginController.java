@@ -18,21 +18,35 @@ public class LoginController extends ChildController {
      * @param password String
      */
     public void loginButtonClicked(String email, String password) {
-        Account account = Account.getAccount(email);
+        if (!email.contains("@") || email.length() < 3) {
+            getView().showInvalidEmailAlert();
+            return;
+        } else if (password.isEmpty()) {
+            getView().showEmptyPasswordAlert();
+            return;
+        }
 
-        // TODO: CREATE ACCOUNT IF NOT EXISTS AND UPDATE DATABASE SCHEMA ACCORDINGLY (I.E DEFAULT VALUES)
+        Account account = Account.getAccount(email);
         if (account == null) {
-            getView().showNoSuchAccountAlert();
-        } else if (account.comparePasswordHash(getPasswordHash(password))) {
+            setModel(new Account(email, password, null,0));
+            getView().showNewAccountNotice();
+            getModel().save();
+
+        } else if (account.comparePassword(password)) {
             setModel(account);
             getView().showLoginSuccessfulAlert();
             sendSignalToParent();
+
         } else {
-            getView().showInvalidPasswordAlert();
+            getView().showWrongPasswordAlert();
         }
 
         // temporary
         System.out.println(email + password + getPasswordHash(password).toString());
+    }
+
+    public void receiveSignalFromView() {
+        if (getModel() == null) sendSignalToParent();
     }
 
     private Integer getPasswordHash(String password) {
