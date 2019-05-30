@@ -1,79 +1,79 @@
 package Project.Views;
 
-import Project.Controllers.Controller;
+import Project.Controllers.LoginController;
+import Project.NotImplementedException;
+
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
 
 public class LoginView extends View implements ActionListener {
-    JPanel panel;
-    JLabel system_name;
-    JLabel email_label;
-    JLabel password_label;
-    JLabel message;
-    JTextField email_text;
-    JPasswordField password_text;
-    JButton submit;
+    private static JPanel outerPanel = new JPanel(new BorderLayout(10,10));
+    private static JPanel inputPanel = new JPanel(new GridLayout(2,2,10,10));
+    private static JLabel systemNameLabel = new JLabel("Reservation System");
+    private static JLabel emailFieldLabel = new JLabel("Email: ");
+    private static JTextField emailField = new JTextField();
+    private static JButton loginButton = new JButton("Login or Register!");
+    private static JLabel passwordFieldLabel = new JLabel("Password: ");
+    private static JPasswordField passwordField = new JPasswordField();
 
-    public void receiveUserInfo(String username, String password) {
-        System.out.println(username + password);
+    public LoginView(LoginController controller) {
+        super(controller);
+        initialize();
     }
 
     private void initialize() {
 
+        inputPanel.add(emailFieldLabel);
+        inputPanel.add(emailField);
+        inputPanel.add(passwordFieldLabel);
+        inputPanel.add(passwordField);
+        //inputPanel.setBackground(Color.RED);
 
-        system_name = new JLabel();
-        system_name.setText("EL TURISTIKO");
-        //Email
-        email_label = new JLabel();
-        email_label.setText("Email : ");
-        email_text = new JTextField();
-        //password
-        password_label = new JLabel();
-        password_label.setText("Password : ");
-        password_text = new JPasswordField();
+        outerPanel.add(systemNameLabel, BorderLayout.NORTH);
+        outerPanel.add(inputPanel, BorderLayout.CENTER);
+        outerPanel.add(loginButton, BorderLayout.SOUTH);
+        //outerPanel.setBackground(Color.BLUE);
 
-        submit = new JButton("Submit");
-
-        panel = new JPanel(new GridLayout(4,1,0,10));
-
-        panel.add(system_name);
-        panel.add(email_label);
-        panel.add(email_text);
-        panel.add(password_label);
-        panel.add(password_text);
-        panel.add(submit);
-        message = new JLabel();
-        panel.add(message, BorderLayout.SOUTH);
+        add(outerPanel, BorderLayout.CENTER);
+        loginButton.addActionListener(this);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         setLocationRelativeTo(null);
-        add(system_name, BorderLayout.CENTER);
-        add(panel, BorderLayout.CENTER);
-        setTitle("PlezLogen");
-        setSize(300,250);
+        setSize(300,200);
         setVisible(true);
-        submit.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent ae) {
-        message.setText("Action Performed");
-        String email = email_text.getText();
-        char[] pass = password_text.getPassword();
+        String email = emailField.getText();
+        char[] pass = passwordField.getPassword();
         String password = new String(pass);
-        receiveUserInfo(email, password);
+
+        ((LoginController) getController()).loginButtonClicked(email, password);
+    }
+
+    public void showLoginSuccessfulAlert() {
+        JOptionPane.showMessageDialog(this,
+                "Login successful!",
+                "Success",
+                JOptionPane.PLAIN_MESSAGE
+        );
 
     }
 
-    public LoginView()
-    {
-        controller = null;
-        initialize();
+    public void showNoSuchAccountAlert() {
+        JOptionPane.showMessageDialog(this,
+                "No such account is registered with this email, new account created",
+                "New account notice",
+                JOptionPane.PLAIN_MESSAGE
+        );
 
     }
 
-    public LoginView(Controller _controller) {
-        super(_controller);
-        initialize();
+    public void showInvalidPasswordAlert() {
+        JOptionPane.showMessageDialog(this,
+                "Invalid password!",
+                "Failed",
+                JOptionPane.WARNING_MESSAGE
+        );
     }
 }

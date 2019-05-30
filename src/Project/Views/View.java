@@ -5,15 +5,13 @@ import Project.Controllers.Controller;
 import javax.swing.*;
 
 public abstract class View extends JFrame {
-    Controller controller;
+    private final Controller controller;
 
-    public View() {}
-
-    public View(Controller _controller) {
-        controller = _controller;
+    public View(Controller controller) {
+        this.controller = controller;
     }
 
-    private Controller getController() {
+    Controller getController() {
         return controller;
     }
 }
