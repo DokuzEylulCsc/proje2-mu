@@ -1,9 +1,11 @@
 package Project.Controllers;
 
+import Project.Models.Model;
 import Project.Views.View;
 
-public class CustomerController extends Controller {
-    public CustomerController(View _view) {
-        super(_view);
+public class CustomerController extends AccountController {
+    public CustomerController(View view, Model model) {
+        this.view = view;
+        this.model = model;
     }
 }

@@ -1,15 +1,27 @@
 package Project.Controllers;
 
 import Project.Views.View;
+import Project.Models.Model;
+
 
 public abstract class Controller {
-    final View view;
+    View view;
+    Model model;
 
-    public Controller(View _view) {
-        view = _view;
+    View getView() {
+        return view;
     }
 
-    private View getView() {
-        return view;
+    void setView(View view) {
+        this.view = view;
+    }
+
+
+    Model getModel() {
+        return model;
+    }
+
+    void setModel(Model model) {
+        this.model = model;
     }
 }

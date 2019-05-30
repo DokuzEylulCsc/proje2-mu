@@ -1,28 +1,48 @@
 package Project.Controllers;
 
+import Project.Models.Account;
+import Project.Models.Model;
 import Project.NotImplementedException;
+import Project.Views.LoginView;
 import Project.Views.View;
 
-public class LoginController extends Controller {
+public class LoginController extends ChildController {
 
-    public LoginController(View _view) {
-        super(_view);
+    public LoginController(ParentController parent) {
+        setParent(parent);
+        setModel(null);
+        setView(new LoginView(this));
     }
 
     /**
      * If record doesn't exists, creates a new customer account.
      *
      * @param email String
-     * @param password Password to hash
-     * @returns Customer or Admin controller.
+     * @param password String
      */
-    public Controller loginButtonClicked(String email, String password) {
-        throw new NotImplementedException();
+    public void loginButtonClicked(String email, String password) {
+        Account account = Account.getAccount(email);
 
+        // TODO: CREATE ACCOUNT IF NOT EXISTS AND UPDATE DATABASE SCHEMA ACCORDINGLY (I.E DEFAULT VALUES)
+        if (account == null) {
+            getView().showNoSuchAccountAlert();
+        } else if (account.comparePasswordHash(getPasswordHash(password))) {
+            setModel(account);
+            getView().showLoginSuccessfulAlert();
+            sendSignalToParent();
+        } else {
+            getView().showInvalidPasswordAlert();
+        }
+
+        // temporary
+        System.out.println(email + password + getPasswordHash(password).toString());
     }
 
-    public void showInvalidPasswordAlert() {
-        throw new NotImplementedException();
+    private Integer getPasswordHash(String password) {
+        return password.hashCode();
     }
 
+    @Override LoginView getView() {
+        return (LoginView) super.getView();
+    }
 }
