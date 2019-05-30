@@ -1,4 +1,4 @@
-package Project.Controllers;
+package mu.Project.Controllers;
 
 abstract class ChildController extends Controller {
     private ParentController parent;

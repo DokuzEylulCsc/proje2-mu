@@ -1,10 +1,10 @@
-package Project.Controllers;
+package mu.Project.Controllers;
 
 
 // TODO: get Account from LoginController
 // TODO: invoke Admin or Customer Controller with with Account object
 
-import Project.Models.Account;
+import mu.Project.Models.Account;
 
 public class MainController extends ParentController {
 

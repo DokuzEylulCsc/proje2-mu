@@ -1,6 +1,6 @@
-package Project;
+package mu.Project;
 
-import Project.Controllers.MainController;
+import mu.Project.Controllers.MainController;
 
 public class Main {
     public static void main(String[] args) {

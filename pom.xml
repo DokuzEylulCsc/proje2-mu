@@ -10,7 +10,7 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <mainClass>${project.artifactId}.Main</mainClass>
+        <mainClass>${project.groupId}.${project.artifactId}.Main</mainClass>
     </properties>
 
     <url>http://maven.apache.org</url>

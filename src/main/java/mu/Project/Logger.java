@@ -1,4 +1,4 @@
-package Project;
+package mu.Project;
 
 import java.io.*;
 import java.text.DateFormat;

@@ -1,7 +1,7 @@
-package Project.Models;
+package mu.Project.Models;
 
-import Project.Connector;
-import Project.Logger;
+import mu.Project.Connector;
+import mu.Project.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,10 +40,6 @@ public class Account implements Model {
 
         if (admin != 0 && admin != 1) {
             throw new UnsupportedOperationException("Admin can be only 0 or 1!");
-        } else if (getAccount(email) != null) {
-            throw new UnsupportedOperationException(
-                    String.format("Account email %s already exists in database! Call constructor with email.", email)
-            );
         }
 
         this.email = email;
@@ -81,24 +77,18 @@ public class Account implements Model {
     public static Account getAccount(String email) {
 
         try (Statement stmt = Connector.getInstance().getConnection().createStatement()){
-            String query = String.format("SELECT * FROM accounts WHERE email=%s", email);
+            String query = String.format("SELECT * FROM accounts WHERE email='%s'", email);
             ResultSet rs = stmt.executeQuery(query);
 
-            rs.last();
-            if (rs.getRow() == 1) {
-                return (
-                        new Account(
-                                rs.getString("email"),
-                                rs.getInt("password_hash"),
-                                rs.getString("name"),
-                                rs.getInt("admin")
-                        )
-                );
-
-            } else if (rs.getRow() != 0) {
-                Logger.getInstance().addLog("Warning: Project.Models.Account.getAccount found more" +
-                        " than 1 row with same email: " + email);
-            }
+            rs.next();
+            return (
+                    new Account(
+                            rs.getString("email"),
+                            rs.getInt("password_hash"),
+                            rs.getString("name"),
+                            rs.getInt("admin")
+                    )
+            );
 
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);

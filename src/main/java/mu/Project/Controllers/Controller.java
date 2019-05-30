@@ -1,7 +1,7 @@
-package Project.Controllers;
+package mu.Project.Controllers;
 
-import Project.Views.View;
-import Project.Models.Model;
+import mu.Project.Views.View;
+import mu.Project.Models.Model;
 
 
 public abstract class Controller {

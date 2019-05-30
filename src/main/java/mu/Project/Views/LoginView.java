@@ -1,7 +1,7 @@
-package Project.Views;
+package mu.Project.Views;
 
-import Project.Controllers.LoginController;
-import Project.NotImplementedException;
+import mu.Project.Controllers.LoginController;
+import mu.Project.NotImplementedException;
 
 import java.awt.event.*;
 import java.awt.*;

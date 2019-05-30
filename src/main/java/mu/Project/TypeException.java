@@ -1,4 +1,4 @@
-package Project;
+package mu.Project;
 
 import com.sun.jdi.InvalidTypeException;
 

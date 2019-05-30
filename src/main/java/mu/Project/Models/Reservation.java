@@ -1,6 +1,6 @@
-package Project.Models;
+package mu.Project.Models;
 
-import Project.NotImplementedException;
+import mu.Project.NotImplementedException;
 
 public class Reservation implements Model {
     private Integer dbid;

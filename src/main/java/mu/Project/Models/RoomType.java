@@ -1,8 +1,8 @@
-package Project.Models;
+package mu.Project.Models;
 
-import Project.Connector;
-import Project.Logger;
-import Project.NotImplementedException;
+import mu.Project.Connector;
+import mu.Project.Logger;
+import mu.Project.NotImplementedException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

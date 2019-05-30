@@ -1,7 +1,7 @@
-package Project.Controllers;
+package mu.Project.Controllers;
 
-import Project.Models.Model;
-import Project.Views.View;
+import mu.Project.Models.Model;
+import mu.Project.Views.View;
 
 public class CustomerController extends AccountController {
     public CustomerController(View view, Model model) {

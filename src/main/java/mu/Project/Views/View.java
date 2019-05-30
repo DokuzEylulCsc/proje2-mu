@@ -1,6 +1,6 @@
-package Project.Views;
+package mu.Project.Views;
 
-import Project.Controllers.Controller;
+import mu.Project.Controllers.Controller;
 
 import javax.swing.*;
 

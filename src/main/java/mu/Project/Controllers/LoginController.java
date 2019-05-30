@@ -1,10 +1,7 @@
-package Project.Controllers;
+package mu.Project.Controllers;
 
-import Project.Models.Account;
-import Project.Models.Model;
-import Project.NotImplementedException;
-import Project.Views.LoginView;
-import Project.Views.View;
+import mu.Project.Models.Account;
+import mu.Project.Views.LoginView;
 
 public class LoginController extends ChildController {
 

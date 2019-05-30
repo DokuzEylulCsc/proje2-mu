@@ -1,4 +1,4 @@
-package Project;
+package mu.Project;
 
 import java.io.*;
 import java.sql.*;
@@ -8,7 +8,6 @@ import java.sql.*;
  * Singleton class.
  */
 public class Connector {
-    private static final File   schemaSqlFile = new File("./scripts/schema.sql");
     private static final File   dbFile = new File("./Project.db");
 
     private static Connector    ourInstance = new Connector();
@@ -27,17 +26,17 @@ public class Connector {
 
             if (dbDoesntExists) {
                 System.out.println("DB file doesn't exists. Creating new table with default schema.");
-                executeFile(schemaSqlFile);
+                executeResource(getClass().getResourceAsStream("/schema.sql"));
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
     }
+    public void executeResource(InputStream stream) {
+        assert stream != null;
 
-    public void executeFile(File sqlFile) {
-        try {
-            System.out.println("Executing statements in " + sqlFile.getName() + "...");
-            BufferedReader reader = new BufferedReader(new FileReader(sqlFile));
+        System.out.println("Starting execution of sql script...");
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
             Statement statement;
 
             StringBuilder strStatement = new StringBuilder();
@@ -66,6 +65,7 @@ public class Connector {
             System.out.println("Execution finished!");
         }
     }
+
 
     public static Connector getInstance() {
         return ourInstance;
