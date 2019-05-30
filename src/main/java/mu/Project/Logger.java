@@ -28,8 +28,11 @@ public class Logger {
         assert log instanceof Exception || log instanceof String;
 
         Date now = new Date();
-        System.out.println("Log > " + logToString(now, log));
         getLogs().put(now, log);
+
+        // Echo to console
+        System.out.println("Log > " + logToString(now, log));
+        if (log instanceof Exception) ((Exception) log).printStackTrace();
     }
 
     /**
@@ -37,12 +40,12 @@ public class Logger {
      */
     private String logToString(Date key, Object val) {
         if (val instanceof String) {
-            return String.format("%s: %s", getISO8601().format(key), val);
+            return String.format("- %s: %s", getISO8601().format(key), val);
 
         } else if (val instanceof Exception) {
             Exception e = (Exception) val;
-            return String.format("%s: %s\n%s",
-                    getISO8601().format(key), e.getMessage(), e.getStackTrace());
+            return String.format("- %s: %s",
+                    getISO8601().format(key), e.getMessage());
         } else {
             Logger.getInstance().addLog(new TypeException("Invalid type at Logger.logToString!"));
             return null;
