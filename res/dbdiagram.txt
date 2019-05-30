@@ -38,7 +38,7 @@ Table reservation {
 Table accounts {
   id autoincrement [pk]
   email text [not null]
-  password_hash text [not null]
+  password_hash integer [not null]
   name text [not null]
   admin boolean [not null]
 }

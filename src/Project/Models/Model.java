@@ -1,6 +1,6 @@
 package Project.Models;
 
-interface Model {
+public interface Model {
     void save();
     void delete();
 

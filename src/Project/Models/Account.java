@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-class Account implements Model {
+public class Account implements Model {
     private String email;
-    private String password_hash;
+    private Integer password_hash;
     private String name;
     private final Integer admin;
 
@@ -31,12 +31,12 @@ class Account implements Model {
      * Create Account object, do not save to database till save method is called.
      *
      * @param email String
-     * @param password_hash String
+     * @param password_hash Integer
      * @param name String
      * @param admin Integer, 0 or 1
      * @throws if email already exists in database
      */
-    public Account(String email, String password_hash, String name, Integer admin) {
+    public Account(String email, Integer password_hash, String name, Integer admin) {
 
         if (admin != 0 && admin != 1) {
             throw new UnsupportedOperationException("Admin can be only 0 or 1!");
@@ -78,7 +78,7 @@ class Account implements Model {
      * @return if exists Account else null
      * @see Account
      */
-    static Account getAccount(String email) {
+    public static Account getAccount(String email) {
 
         try (Statement stmt = Connector.getInstance().getConnection().createStatement()){
             String query = String.format("SELECT * FROM accounts WHERE email=%s", email);
@@ -89,7 +89,7 @@ class Account implements Model {
                 return (
                         new Account(
                                 rs.getString("email"),
-                                rs.getString("password_hash"),
+                                rs.getInt("password_hash"),
                                 rs.getString("name"),
                                 rs.getInt("admin")
                         )
@@ -112,18 +112,18 @@ class Account implements Model {
      * Do not leave id attribute empty.
      *
      * @param email String
-     * @param password_hash String
+     * @param password_hash Integer
      * @param name String
      * @param admin Integer
      * @return Account
      */
-    public static Account createAccount(String email, String password_hash, String name, Integer admin) {
+    public static Account createAccount(String email, Integer password_hash, String name, Integer admin) {
 
         Account queryResult = getAccount(email);
         if (queryResult == null) {
             try (PreparedStatement pstmt = Connector.getInstance().getConnection().prepareStatement(insertQuery)) {
                 pstmt.setString(1, email);
-                pstmt.setString(2, password_hash);
+                pstmt.setInt(2, password_hash);
                 pstmt.setString(3, name);
                 pstmt.setInt(4, admin);
                 pstmt.execute();
@@ -152,7 +152,7 @@ class Account implements Model {
                 result.add(
                         new Account(
                                 rs.getString("email"),
-                                rs.getString("password_hash"),
+                                rs.getInt("password_hash"),
                                 rs.getString("name"),
                                 rs.getInt("admin")
                         )
@@ -173,7 +173,7 @@ class Account implements Model {
 
         try (PreparedStatement pstmt = Connector.getInstance().getConnection().prepareStatement(updateQuery)) {
             pstmt.setString(1, getEmail());
-            pstmt.setString(2, getPassword_hash());
+            pstmt.setInt(2, getPassword_hash());
             pstmt.setString(3, getName());
             pstmt.setString(4, getEmail());
             pstmt.executeUpdate();
@@ -208,8 +208,12 @@ class Account implements Model {
         return name;
     }
 
-    private String getPassword_hash() {
+    private Integer getPassword_hash() {
         return password_hash;
+    }
+
+    public Boolean comparePasswordHash(Integer password_hash) {
+        return getPassword_hash().equals(password_hash);
     }
 
     @Override
