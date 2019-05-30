@@ -16,6 +16,13 @@ public class Connector {
     private Connector() { connect(); }
 
     /**
+     * Initialize singleton.
+     */
+    public void initialize() {
+        System.out.println("Database connector initialized.");
+    }
+
+    /**
      * Connect SQLite database at ./Project.db.
      * If not exists, create default schema.
      */
@@ -32,6 +39,7 @@ public class Connector {
             System.err.println(e.getMessage());
         }
     }
+
     public void executeResource(InputStream stream) {
         assert stream != null;
 
@@ -65,7 +73,6 @@ public class Connector {
             System.out.println("Execution finished!");
         }
     }
-
 
     public static Connector getInstance() {
         return ourInstance;
