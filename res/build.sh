@@ -15,8 +15,9 @@ echo "*** Compiling source code..."
 javac -d bin -verbose  src/*/*.java src/*/*/*.java
 
 echo "*** Creating jarfile..."
-jar cfmv bin/$jarname Manifest.txt -C bin */
-rm -rf bin/*/
+cd bin
+jar cfmv $jarname ../Manifest.txt */
+rm -rf */
 
 echo "*** Success, written jarfile at bin/$jarname"
 
