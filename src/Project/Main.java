@@ -1,7 +1,10 @@
 package Project;
 
+import Project.Controllers.MainController;
+
 public class Main {
     public static void main(String[] args) {
-       Connector c = Connector.getInstance();
+        MainController mainController = new MainController();
+        mainController.runApp();
     }
 }
