@@ -21,11 +21,13 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# Maven
+dependency-reduced-pom.xml
+target
+
 # Package Files #
 *.war
 *.nar
-asdfsa
-asdfsa
 *.ear
 *.zip
 *.tar.gz
