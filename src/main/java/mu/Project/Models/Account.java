@@ -232,6 +232,6 @@ public class Account implements Model {
 
     @Override
     public String toString() {
-        return String.format("name: %s\nemail: %s\nadmin: %d", email, name, admin);
+        return String.format("name: %s\nemail: %s\nadmin: %d", name, email, admin);
     }
 }

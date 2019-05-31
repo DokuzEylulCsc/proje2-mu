@@ -3,6 +3,8 @@ package mu.Project.Controllers;
 import mu.Project.Models.Account;
 import mu.Project.Views.LoginView;
 
+import java.awt.event.WindowEvent;
+
 public class LoginController extends ChildController {
 
     public LoginController(ParentController parent) {
@@ -32,10 +34,14 @@ public class LoginController extends ChildController {
             setModel(new Account(email, password, null,0));
             getModel().save();
             getView().showNewAccountNotice();
+            getView().showLoginSuccessfulAlert();
+            getView().close();
 
         } else if (account.comparePassword(password)) {
             setModel(account);
             getView().showLoginSuccessfulAlert();
+            getView().close();
+
 
         } else {
             getView().showWrongPasswordAlert();

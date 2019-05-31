@@ -8,22 +8,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+
 public class LoginView extends View implements ActionListener {
-    private JPanel panel1;
+    private JPanel outerPanel;
     private JTextField emailField;
     private JPasswordField passwordField;
     private JButton loginOrRegisterButton;
     private JLabel emailLabel;
     private JLabel passwordLabel;
+    private JPanel innerPanel;
 
     public LoginView(LoginController controller) {
         super("Login", controller);
-        setContentPane(panel1);
+        setContentPane(outerPanel);
         pack();
 
         loginOrRegisterButton.addActionListener(this);
-        setResizable(false);
-
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Send signal to controller when window is closed
@@ -35,15 +35,21 @@ public class LoginView extends View implements ActionListener {
             }
         });
 
+
+        setResizable(false);
+        centerFrame();
         setVisible(true);
     }
-
 
     /**
      * Login successful or user manually closed application.
      */
     private void sendSignalToController() {
         ((LoginController) getController()).receiveSignalFromView();
+    }
+
+    public void close() {
+        dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 
     public void actionPerformed(ActionEvent ae) {
@@ -60,17 +66,14 @@ public class LoginView extends View implements ActionListener {
                 "Success",
                 JOptionPane.PLAIN_MESSAGE
         );
-        dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 
     public void showNewAccountNotice() {
         JOptionPane.showMessageDialog(this,
-                "No such account is registered with this email, new account created." +
-                        "\nLogin successful!",
+                "No such account is registered with this email, new account created.",
                 "New account notice",
                 JOptionPane.PLAIN_MESSAGE
         );
-        dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 
     public void showWrongPasswordAlert() {

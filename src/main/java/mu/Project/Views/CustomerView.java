@@ -1,6 +1,7 @@
 package mu.Project.Views;
 
 import mu.Project.Controllers.CustomerController;
+import mu.Project.NotImplementedException;
 
 import javax.swing.*;
 
@@ -15,6 +16,11 @@ public class CustomerView extends View {
         setContentPane(panel1);
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        centerFrame();
         setVisible(true);
+    }
+
+    public void close() {
+        throw new NotImplementedException();
     }
 }
