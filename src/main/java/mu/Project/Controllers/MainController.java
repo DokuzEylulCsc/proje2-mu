@@ -22,9 +22,9 @@ public class MainController extends ParentController {
             System.out.println("Login successful!%n" + getAccount());
 
             if (getAccount().isAdmin()) {
-                setAccountController(new AdminController(getAccount()));
+                setAccountController(new AdminController(getAccount(), this));
             } else {
-                setAccountController(new CustomerController(getAccount()));
+                setAccountController(new CustomerController(getAccount(), this));
             }
         } else {
             // Quit

@@ -99,8 +99,13 @@ public class Account implements Model {
         try (Statement stmt = Connector.getInstance().getConnection().createStatement()){
             String query = String.format("SELECT * FROM accounts WHERE email='%s'", email);
             ResultSet rs = stmt.executeQuery(query);
-
             rs.next();
+
+            if (rs.isClosed()) {
+                // ResultSet is empty.
+                return null;
+            }
+
             Account result = new Account(
                     rs.getString("email"),
                     rs.getInt("password_hash"),
@@ -108,14 +113,13 @@ public class Account implements Model {
                     rs.getInt("admin")
             );
             rs.close();
-
             return result;
 
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
+            return null;
         }
 
-        return null;
     }
 
     /**
@@ -127,25 +131,18 @@ public class Account implements Model {
      * @param admin Integer
      * @return Account
      */
-    public static Account createAccount(String email, Integer password_hash, String name, Integer admin) {
+    private static void createAccount(String email, Integer password_hash, String name, Integer admin) {
 
-        Account queryResult = getAccount(email);
-        if (queryResult == null) {
-            try (PreparedStatement pstmt = Connector.getInstance().getConnection().prepareStatement(insertQuery)) {
-                pstmt.setString(1, email);
-                pstmt.setInt(2, password_hash);
-                pstmt.setString(3, (name != null) ? name : "None");
-                pstmt.setInt(4, admin);
-                pstmt.execute();
+        try (PreparedStatement pstmt = Connector.getInstance().getConnection().prepareStatement(insertQuery)) {
+            pstmt.setString(1, email);
+            pstmt.setInt(2, password_hash);
+            pstmt.setString(3, (name != null) ? name : "None");
+            pstmt.setInt(4, admin);
+            pstmt.execute();
 
-                return getAccount(email);
-
-            } catch (SQLException e) {
-                Logger.getInstance().addLog(e);
-            }
+        } catch (SQLException e) {
+            Logger.getInstance().addLog(e);
         }
-
-        return queryResult;
     }
 
     /**
@@ -176,7 +173,7 @@ public class Account implements Model {
     }
 
     /**
-     * Update object in database.
+     * Update/create an object in database.
      */
     public void save() {
 
@@ -225,7 +222,7 @@ public class Account implements Model {
         return password.hashCode();
     }
 
-    private Integer getPassword_hash() {
+    public Integer getPassword_hash() {
         return password_hash;
     }
 

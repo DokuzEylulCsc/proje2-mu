@@ -1,11 +1,11 @@
 package mu.Project.Views;
 
 import mu.Project.Controllers.LoginController;
-import mu.Project.NotImplementedException;
 
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
+
 
 public class LoginView extends View implements ActionListener {
     private static JPanel outerPanel = new JPanel(new BorderLayout(10,10));
@@ -41,9 +41,10 @@ public class LoginView extends View implements ActionListener {
         setSize(350,200);
         setResizable(false);
 
+        // Send signal to controller when window is closed
         addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent e) {
+            public void windowClosed(WindowEvent e) {
                 sendSignalToController();
             }
         });
@@ -52,6 +53,9 @@ public class LoginView extends View implements ActionListener {
         setVisible(true);
     }
 
+    /**
+     * Login successful or user manually closed application.
+     */
     private void sendSignalToController() {
         ((LoginController) getController()).receiveSignalFromView();
     }
@@ -75,7 +79,8 @@ public class LoginView extends View implements ActionListener {
 
     public void showNewAccountNotice() {
         JOptionPane.showMessageDialog(this,
-                "No such account is registered with this email, new account created.",
+                "No such account is registered with this email, new account created." +
+                        "\nLogin successful!",
                 "New account notice",
                 JOptionPane.PLAIN_MESSAGE
         );
@@ -98,7 +103,7 @@ public class LoginView extends View implements ActionListener {
         );
     }
 
-    public void showInvalidEmailAlert() {
+    public void showInvalidEmailAddressAlert() {
         JOptionPane.showMessageDialog(this,
                 "Please type an email adress.",
                 "Invalid email format",

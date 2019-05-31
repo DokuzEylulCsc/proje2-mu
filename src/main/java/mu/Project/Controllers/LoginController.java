@@ -18,8 +18,9 @@ public class LoginController extends ChildController {
      * @param password String
      */
     public void loginButtonClicked(String email, String password) {
-        if (!email.contains("@") || email.length() < 3) {
-            getView().showInvalidEmailAlert();
+        // check email address and password fields' validity
+        if (!email.contains("@") || !(email.split("@").length > 1)) {
+            getView().showInvalidEmailAddressAlert();
             return;
         } else if (password.isEmpty()) {
             getView().showEmptyPasswordAlert();
@@ -29,28 +30,24 @@ public class LoginController extends ChildController {
         Account account = Account.getAccount(email);
         if (account == null) {
             setModel(new Account(email, password, null,0));
-            getView().showNewAccountNotice();
             getModel().save();
+            getView().showNewAccountNotice();
 
         } else if (account.comparePassword(password)) {
             setModel(account);
             getView().showLoginSuccessfulAlert();
-            sendSignalToParent();
 
         } else {
             getView().showWrongPasswordAlert();
         }
-
-        // temporary
-        System.out.println(email + password + getPasswordHash(password).toString());
     }
 
+    /**
+     * Receives signal from view when window is
+     * manually closed or login successful.
+     */
     public void receiveSignalFromView() {
         if (getModel() == null) sendSignalToParent();
-    }
-
-    private Integer getPasswordHash(String password) {
-        return password.hashCode();
     }
 
     @Override LoginView getView() {
