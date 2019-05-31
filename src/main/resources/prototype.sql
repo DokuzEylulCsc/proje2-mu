@@ -2,8 +2,8 @@ INSERT INTO hotels (name, stars) VALUES  ('Hotel Hilton',5);
 INSERT INTO hotels (name, stars) VALUES  ('Hotel Swissotel',5);
 INSERT INTO hotels (name, stars) VALUES  ('Ramada Plaza',4);
 INSERT INTO hotels (name, stars) VALUES  ('Park Inn',4);
-INSERT INTO hotels (name, stars) VALUES  ('ibis Hotel',3);
-INSERT INTO hotels (name, stars) VALUES  ('Sc Inn Butik',3);
+INSERT INTO hotels (name, stars) VALUES  ('ibis Hotel',(SELECT id from hotels where name ='Ramada Plaza'));
+INSERT INTO hotels (name, stars) VALUES  ('Sc Inn Butik',(SELECT id from hotels where name ='Ramada Plaza'));
 INSERT INTO hotels (name, stars) VALUES  ('Konak Saray Agora',2);
 INSERT INTO hotels (name, stars) VALUES  ('Ege Güneş',2);
 INSERT INTO hotels (name, stars) VALUES  ('Perla Arya',1);
@@ -12,364 +12,584 @@ INSERT INTO hotels (name, stars) VALUES  ('Key Hotel',0);
 INSERT INTO hotels (name, stars) VALUES  ('Hotel Apart',0);
 
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (1,'Misafir Odası1',550,1,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),'Deniz Manzaralı King Yataklı Misafir Odası',550,1,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (1,'Misafir Odası2',500,0,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),'Kale Manzaralı King Yataklı Misafir Odası',500,0,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (1,'Misafir Odası3',550,1,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),'Deniz Manzaralı İki Yataklı Misafir Odası',550,1,0,2,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (1,'Misafir Odası4',500,0,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),'Kale Manzaralı İki Yataklı Misafir Odası',500,0,0,2,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (1,'Misafir Odası5',550,1,0,1,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),'Deniz Manzaralı Tek Yataklı Oda',475,1,0,1,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (1,'Executive Suit',2820,1,0,2,1,2,2,2,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),'Executive Suit',2820,1,0,2,1,2,2,2,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (1,'Presidential Suit',4250,1,1,0,1,3,2,2,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),'Presidential Suit',4250,1,1,0,1,(SELECT id from hotels where name ='Ramada Plaza'),2,2,null);
 
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (2,'Misafir Odası1',600,1,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),'Deniz Manzaralı King Yataklı Misafir Odası',600,1,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (2,'Misafir Odası2',520,0,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),'Kale Manzaralı King Yataklı Misafir Odası',520,0,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (2,'Misafir Odası3',590,1,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),'Deniz Manzaralı İki Yataklı Misafir Odası',590,1,0,2,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (2,'Misafir Odası4',530,0,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),'Kale Manzaralı İki Yataklı Misafir Odası',530,0,0,2,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (2,'Misafir Odası5',580,1,0,1,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),'Deniz Manzaralı Tek Yataklı Oda',580,1,0,1,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (2,'Executive Suit',2850,1,0,2,1,2,2,2,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),'Executive Suit',2850,1,0,2,1,2,2,2,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (2,'Presidential Suit',4500,1,1,0,1,3,2,2,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),'Presidential Suit',4500,1,1,0,1,(SELECT id from hotels where name ='Ramada Plaza'),2,2,null);
 
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (3,'Misafir Odası1',500,1,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),'Deniz Manzaralı King Yataklı Misafir Odası',500,1,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (3,'Misafir Odası2',450,0,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),'King Yataklı Misafir Odası',450,0,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (3,'Misafir Odası3',500,1,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),'Deniz Manzaralı İki Yataklı Misafir Odası',500,1,0,2,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (3,'Misafir Odası4',450,0,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),'İki Yataklı Misafir Odası',450,0,0,2,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (3,'Misafir Odası5',510,1,0,1,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),'Deniz Manzaralı Tek Yataklı Oda',510,1,0,1,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (3,'Junior Suit',1500,1,1,0,1,2,1,1,'irşeyler');
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),'Junior Suit',1500,1,1,0,1,2,1,1,'irşeyler');
 
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (4,'Misafir Odası1',500,1,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Park Inn'),'Deniz Manzaralı King Yataklı Misafir Odası',500,1,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (4,'Misafir Odası2',450,0,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Park Inn'),'King Yataklı Misafir Odası',450,0,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (4,'Misafir Odası3',500,1,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Park Inn'),'Deniz Manzaralı İki Yataklı Misafir Odası',500,1,0,2,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (4,'Misafir Odası4',450,0,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Park Inn'),'İki Yataklı Misafir Odası',450,0,0,2,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (4,'Misafir Odası5',510,1,0,1,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Park Inn'),'Deniz Manzaralı Tek Yataklı Oda',510,1,0,1,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (4,'Junior Suit',1500,1,1,0,1,2,1,1,'irşeyler');
+VALUES ((SELECT id from hotels where name ='Park Inn'),'Junior Suit',1500,1,1,0,1,2,1,1,'irşeyler');
 
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (5,'Standart Oda',475,1,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),'King Yataklı Oda',475,1,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (5,'Standart Oda2',425,0,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),'İki Yataklı Oda',425,0,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (5,'Standart Oda3',475,1,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),'Tek Yataklı Oda',425,1,0,2,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (5,'Standart Oda4',425,0,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),'Aile Odası',475,0,0,2,1,1,1,1,null);
 
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (6,'Standart Oda1',475,1,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),'King Yataklı Oda',475,1,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (6,'Standart Oda2',425,0,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),'İki Yataklı Oda',425,0,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (6,'Standart Oda3',475,1,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),'Tek Yataklı Oda',425,1,0,2,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (6,'Standart Oda4',425,0,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),'Aile Odası',475,0,0,2,1,1,1,1,null);
 
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (7,'Standart Oda1',435,1,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),'King Yataklı Oda',435,1,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (7,'Standart Oda2',400,0,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),'İki Yataklı Oda',425,0,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (7,'Standart Oda3',435,1,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),'Aile Odası',435,1,0,2,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (7,'Standart Oda4',400,0,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),'Tek Yataklı Oda',400,0,0,2,1,1,1,1,null);
 
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (8,'Standart Oda1',375,1,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),'Aile Odası',375,1,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (8,'Standart Oda2',350,0,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),'İki Yataklı Oda',350,0,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (8,'Standart Oda3',375,1,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),'King Yataklı Oda',375,1,0,2,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (8,'Standart Oda4',350,0,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),'Tek Yataklı Oda',350,0,0,2,1,1,1,1,null);
 
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (9,'Standart Oda1',175,1,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Perla Arya'),'Aile Odası',175,1,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (9,'Standart Oda2',150,0,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Perla Arya'),'Tek Yataklı Oda',150,0,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (9,'Standart Oda3',152,1,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Perla Arya'),'İki Yataklı Oda',152,1,0,2,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (9,'Standart Oda4',175,0,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Perla Arya'),'King Yataklı Oda',175,0,0,2,1,1,1,1,null);
 
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (10,'Standart Oda1',125,0,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Vita Park'),'Aile Odası',125,0,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (10,'Standart Oda2',100,0,1,0,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Vita Park'),'İki Yataklı Oda',100,0,1,0,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (10,'Standart Oda3',125,0,0,2,1,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Vita Park'),'King Yataklı Oda',125,0,0,2,1,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (10,'Standart Oda4',100,0,0,2,1,1,1,1,'brşeyler');
-
-INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (11,'Standart Oda1',100,0,1,0,0,1,1,1,'brşeyler');
-INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (11,'Standart Oda2',90,0,1,0,0,1,1,1,'brşeyler');
-INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (11,'Standart Oda3',100,0,0,2,0,1,1,1,'brşeyler');
-INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (11,'Standart Oda4',90,0,0,2,0,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Vita Park'),'Tek Yataklı Oda',100,0,0,2,1,1,1,1,null);
 
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (12,'Standart Oda1',90,0,1,0,0,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Key Hotel'),'Aile Odası',100,0,1,0,0,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (12,'Standart Oda2',75,0,1,0,0,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Key Hotel'),'İki Yataklı Oda',90,0,1,0,0,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (12,'Standart Oda3',90,0,0,2,0,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Key Hotel'),'King Yataklı Oda',100,0,0,2,0,1,1,1,null);
 INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES (12,'Standart Oda4',75,0,0,2,0,1,1,1,'brşeyler');
+VALUES ((SELECT id from hotels where name ='Key Hotel'),'Tek Yataklı Oda',90,0,0,2,0,1,1,1,null);
 
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,001,1);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,002,1);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,003,1);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,004,1);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,005,2);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,006,2);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,007,2);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,008,3);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,009,3);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,010,3);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,101,4);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,102,4);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,103,4);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,104,5);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,105,5);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,106,5);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,107,3);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,108,1);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,109,2);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,110,2);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,201,6);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,202,6);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,203,6);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,301,7);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (1,302,7);
+INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),'Aile Odası',90,0,1,0,0,1,1,1,null);
+INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),'İki Yataklı Oda',75,0,1,0,0,1,1,1,null);
+INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),'King Yataklı Oda',90,0,0,2,0,1,1,1,null);
+INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),'Tek Yataklı Oda',75,0,0,2,0,1,1,1,null);
 
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,001,8);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,002,8);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,003,8);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,004,8);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,005,9);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,006,9);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,007,9);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,008,10);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,009,10);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,010,10);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,101,11);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,102,11);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,103,11);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,104,12);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,105,12);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,106,12);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,107,10);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,108,8);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,109,9);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,110,9);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,201,13);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,202,13);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,203,13);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,301,14);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (2,302,14);
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),001,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),002,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),003,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),004,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),005,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),006,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),007,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),008,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),009,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),010,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),101,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),102,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),103,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),104,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),105,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),106,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),107,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+ VALUES ((SELECT id from hotels where name ='Hotel Hilton'),108,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),109,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),110,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),201,(SELECT id FROM room_type WHERE type_name='Executive Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),202,(SELECT id FROM room_type WHERE type_name='Executive Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),203,(SELECT id FROM room_type WHERE type_name='Executive Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),301,(SELECT id FROM room_type WHERE type_name='Presidential Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Hilton'),302,(SELECT id FROM room_type WHERE type_name='Presidential Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Hilton')));
 
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,001,15);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,002,15);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,003,15);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,004,15);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,005,16);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,006,16);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,007,16);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,008,17);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,009,17);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,010,17);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,101,18);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,102,18);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,103,18);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,104,19);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,105,19);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,106,19);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,107,17);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,108,15);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,109,16);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,110,16);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,201,20);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,202,20);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (3,203,20);
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),001,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),002,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),003,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),004,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),005,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),006,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),007,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),008,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),009,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),010,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),101,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),102,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),103,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),104,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),105,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),106,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),107,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),108,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),109,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),110,(SELECT id FROM room_type WHERE type_name='Kale Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),201,(SELECT id FROM room_type WHERE type_name='Executive Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),202,(SELECT id FROM room_type WHERE type_name='Executive Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),203,(SELECT id FROM room_type WHERE type_name='Executive Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),301,(SELECT id FROM room_type WHERE type_name='Presidential Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Swissotel'),302,(SELECT id FROM room_type WHERE type_name='Presidential Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Swissotel')));
 
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,001,21);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,002,21);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,003,21);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,004,21);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,005,22);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,006,22);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,007,22);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,008,23);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,009,23);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,010,23);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,101,24);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,102,24);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,103,24);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,104,25);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,105,25);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,106,25);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,107,23);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,108,21);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,109,22);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,110,22);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,201,26);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,202,26);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (4,203,26);
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),001,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),002,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),003,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),004,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),005,(SELECT id FROM room_type WHERE type_name='King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),006,(SELECT id FROM room_type WHERE type_name='King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),007,(SELECT id FROM room_type WHERE type_name='King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),008,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),009,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),010,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),101,(SELECT id FROM room_type WHERE type_name='İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),102,(SELECT id FROM room_type WHERE type_name='İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),103,(SELECT id FROM room_type WHERE type_name='İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),104,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),105,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),106,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),107,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),108,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),109,(SELECT id FROM room_type WHERE type_name='King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),110,(SELECT id FROM room_type WHERE type_name='King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),201,(SELECT id FROM room_type WHERE type_name='Junior Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),202,(SELECT id FROM room_type WHERE type_name='Junior Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ramada Plaza'),203,(SELECT id FROM room_type WHERE type_name='Junior Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Ramada Plaza')));
 
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,001,27);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,002,27);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,003,27);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,004,27);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,005,28);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,006,28);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,007,28);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,008,28);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,009,27);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,010,29);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,101,29);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,102,29);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,103,29);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,104,30);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,105,30);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,106,30);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,107,30);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,108,27);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,109,28);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (5,110,28);
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),001,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),002,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),003,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),004,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),005,(SELECT id FROM room_type WHERE type_name='King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),006,(SELECT id FROM room_type WHERE type_name='King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),007,(SELECT id FROM room_type WHERE type_name='King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),008,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),009,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),010,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),101,(SELECT id FROM room_type WHERE type_name='İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),102,(SELECT id FROM room_type WHERE type_name='İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),103,(SELECT id FROM room_type WHERE type_name='İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),104,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),105,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),106,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),107,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı İki Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),108,(SELECT id FROM room_type WHERE type_name='Deniz Manzaralı King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),109,(SELECT id FROM room_type WHERE type_name='King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),110,(SELECT id FROM room_type WHERE type_name='King Yataklı Misafir Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),201,(SELECT id FROM room_type WHERE type_name='Junior Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),202,(SELECT id FROM room_type WHERE type_name='Junior Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Park Inn'),203,(SELECT id FROM room_type WHERE type_name='Junior Suit' AND room_type.hotel_id=(SELECT id from hotels where name ='Park Inn')));
 
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,001,31);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,002,31);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,003,31);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,004,31);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,005,32);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,006,32);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,007,32);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,008,32);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,009,33);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,010,33);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,101,33);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,102,33);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,103,34);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,104,34);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,105,34);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,106,34);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,107,31);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,108,31);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,109,32);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (6,110,32);
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),001,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),002,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),003,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),004,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),005,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),006,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),007,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),008,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),009,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),010,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),101,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),102,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),103,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),104,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),105,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),106,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),107,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),108,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),109,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='ibis Hotel'),110,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='ibis Hotel')));
 
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (7,001,35);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (7,002,35);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (7,003,35);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (7,004,36);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (7,005,36);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (7,006,36);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (7,007,37);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (7,008,37);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (7,009,37);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (7,010,38);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (7,101,38);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (7,102,38);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (7,103,38);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (7,104,35);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (7,105,36);
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),001,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),002,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),003,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),004,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),005,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),006,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),007,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),008,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),009,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),010,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),101,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),102,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),103,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),104,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),105,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),106,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),107,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),108,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),109,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Sc Inn Butik'),110,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Sc Inn Butik')));
 
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (8,001,39);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (8,002,39);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (8,003,39);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (8,004,39);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (8,005,40);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (8,006,40);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (8,007,40);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (8,008,40);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (8,009,41);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (8,010,41);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (8,101,41);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (8,102,42);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (8,103,42);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (8,104,42);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (8,105,42);
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),001,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Konak Saray Agora')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),002,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Konak Saray Agora')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),003,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Konak Saray Agora')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),004,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Konak Saray Agora')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),005,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Konak Saray Agora')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),006,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Konak Saray Agora')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),007,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Konak Saray Agora')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),008,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Konak Saray Agora')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),009,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Konak Saray Agora')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),010,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Konak Saray Agora')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),101,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Konak Saray Agora')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),102,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Konak Saray Agora')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),103,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Konak Saray Agora')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),104,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Konak Saray Agora')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Konak Saray Agora'),105,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Konak Saray Agora')));
 
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (9,001,43);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (9,002,43);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (9,003,43);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (9,004,43);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (9,005,43);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (9,006,44);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (9,007,44);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (9,008,44);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (9,009,44);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (9,010,45);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (9,101,45);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (9,102,45);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (9,103,46);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (9,104,46);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (9,105,46);
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),001,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ege Güneş')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),002,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ege Güneş')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),003,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ege Güneş')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),004,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Ege Güneş')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),005,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Ege Güneş')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),006,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Ege Güneş')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),007,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Ege Güneş')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),008,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Ege Güneş')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),009,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Ege Güneş')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),010,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Ege Güneş')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),101,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Ege Güneş')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),102,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Ege Güneş')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),103,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Ege Güneş')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),104,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Ege Güneş')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Ege Güneş'),105,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Ege Güneş')));
 
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (10,001,47);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (10,002,47);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (10,003,47);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (10,004,47);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (10,005,48);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (10,006,48);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (10,007,48);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (10,008,48);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (10,009,49);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (10,010,49);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (10,101,49);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (10,102,49);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (10,103,50);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (10,104,50);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (10,105,50);
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Perla Arya'),001,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Perla Arya')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Perla Arya'),002,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Perla Arya')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Perla Arya'),003,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Perla Arya')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Perla Arya'),004,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Perla Arya')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Perla Arya'),005,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Perla Arya')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Perla Arya'),006,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Perla Arya')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Perla Arya'),007,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Perla Arya')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Perla Arya'),008,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Perla Arya')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Perla Arya'),009,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Perla Arya')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Perla Arya'),010,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Perla Arya')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Perla Arya'),101,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Perla Arya')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Perla Arya'),102,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Perla Arya')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Perla Arya'),103,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Perla Arya')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Perla Arya'),104,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Perla Arya')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Perla Arya'),105,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Perla Arya')));
 
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (11,001,51);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (11,002,51);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (11,003,51);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (11,004,52);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (11,005,52);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (11,006,52);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (11,010,52);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (11,101,53);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (11,102,53);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (11,103,53);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (11,104,54);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (11,105,54);
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Vita Park'),001,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Vita Park')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Vita Park'),002,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Vita Park')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Vita Park'),003,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Vita Park')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Vita Park'),004,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Vita Park')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Vita Park'),005,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Vita Park')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Vita Park'),006,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Vita Park')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Vita Park'),007,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Vita Park')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Vita Park'),008,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Vita Park')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Vita Park'),009,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Vita Park')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Vita Park'),010,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Vita Park')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Vita Park'),101,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Vita Park')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Vita Park'),102,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Vita Park')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Vita Park'),103,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Vita Park')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Vita Park'),104,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Vita Park')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Vita Park'),105,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Vita Park')));
 
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (12,001,55);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (12,002,55);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (12,003,55);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (12,004,56);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (12,005,56);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (12,006,56);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (12,010,56);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (12,101,57);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (12,102,57);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (12,103,57);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (12,104,58);
-INSERT INTO rooms (hotel_id, room_number, room_type_id) VALUES (12,105,58);
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Key Hotel'),001,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Key Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Key Hotel'),002,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Key Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Key Hotel'),003,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Key Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Key Hotel'),004,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Key Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Key Hotel'),005,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Key Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Key Hotel'),006,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Key Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Key Hotel'),010,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Key Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Key Hotel'),101,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Key Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Key Hotel'),102,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Key Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Key Hotel'),103,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Key Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Key Hotel'),104,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Key Hotel')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Key Hotel'),105,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Key Hotel')));
+
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),001,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Apart')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),002,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Apart')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),003,(SELECT id FROM room_type WHERE type_name='Aile Odası' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Apart')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),004,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Apart')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),005,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Apart')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),006,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Apart')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),010,(SELECT id FROM room_type WHERE type_name='İki Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Apart')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),101,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Apart')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),102,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Apart')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),103,(SELECT id FROM room_type WHERE type_name='King Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Apart')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),104,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Apart')));
+INSERT INTO rooms (hotel_id, room_number, room_type_id)
+VALUES ((SELECT id from hotels where name ='Hotel Apart'),105,(SELECT id FROM room_type WHERE type_name='Tek Yataklı Oda' AND room_type.hotel_id=(SELECT id from hotels where name ='Hotel Apart')));
 
 INSERT INTO accounts (email, password_hash, name, admin) VALUES ('egiman@catmail.com',1216985755,'Egi',0);
 INSERT INTO accounts (email, password_hash, name, admin) VALUES ('mertdede@protonmail.com',1216985755,'Mert',1);
