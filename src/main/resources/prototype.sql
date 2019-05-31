@@ -380,22 +380,22 @@ INSERT INTO accounts (email, password_hash, name, admin) VALUES ('remzi@gmail.co
 INSERT INTO accounts (email, password_hash, name, admin) VALUES ('kuzukuzu@yahoo.com',1216985755,'Tarkan',0);
 
 INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
-VALUES (1,2,1,'2019-06-04','2019-06-09');
+VALUES (1,1,1,'2019-06-04','2019-06-09');
 INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
-VALUES (1,2,2,'2019-12-04','2019-12-06');
+VALUES (1,1,2,'2019-12-04','2019-12-06');
 INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
-VALUES (1,5,2,'2019-07-15','2019-07-17');
+VALUES (1,4,2,'2019-07-15','2019-07-17');
 INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
-VALUES (1,5,1,'2019-11-02','2019-11-05');
+VALUES (1,4,1,'2019-11-02','2019-11-05');
 INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
-VALUES (24,6,1,'2020-01-12','2019-01-14');
+VALUES (24,5,1,'2020-01-12','2019-01-14');
 INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
-VALUES (25,6,1,'2020-01-12','2019-01-14');
+VALUES (25,5,1,'2020-01-12','2019-01-14');
 INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
-VALUES (29,7,1,'2019-08-12','2019-01-13');
+VALUES (29,6,1,'2019-08-12','2019-01-13');
 INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
-VALUES (28,7,1,'2020-05-12','2019-06-13');
+VALUES (28,6,1,'2020-05-12','2019-06-13');
 INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
-VALUES (29,8,1,'2019-09-21','2019-09-25');
+VALUES (29,7,1,'2019-09-21','2019-09-25');
 INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
-VALUES (28,8,1,'2020-04-27','2019-05-02');
+VALUES (28,7,1,'2020-04-27','2019-05-02');
