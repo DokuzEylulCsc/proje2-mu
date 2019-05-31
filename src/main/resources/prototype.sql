@@ -1,0 +1,4 @@
+-- TODO: Insert prototype database here accordingly
+-- Hotel -> RoomTypes -> Rooms
+-- Accounts -> Reservations(No collisions, today to future)
+-- Use default password, password. (hash = 1216985755)
