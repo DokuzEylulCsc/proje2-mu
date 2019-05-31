@@ -18,7 +18,7 @@ public class LoginView extends View implements ActionListener {
     private static JPasswordField passwordField = new JPasswordField();
 
     public LoginView(LoginController controller) {
-        super(controller);
+        super("Login", controller);
         initialize();
     }
 
@@ -41,14 +41,16 @@ public class LoginView extends View implements ActionListener {
         setSize(350,200);
         setResizable(false);
 
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
         // Send signal to controller when window is closed
         addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosed(WindowEvent e) {
+            public void windowClosing(WindowEvent e) {
+                getDefaultCloseOperation();
                 sendSignalToController();
             }
         });
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setVisible(true);
     }

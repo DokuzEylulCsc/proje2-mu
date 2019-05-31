@@ -19,7 +19,7 @@ public class MainController extends ParentController {
     public void receiveSignalFromChild() {
         if (getLoginController().getModel() != null) {
             setAccount((Account) getLoginController().getModel());
-            System.out.println("Login successful!%n" + getAccount());
+            System.out.println("Login successful!\n" + getAccount());
 
             if (getAccount().isAdmin()) {
                 setAccountController(new AdminController(getAccount(), this));

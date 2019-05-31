@@ -47,7 +47,7 @@ public class LoginController extends ChildController {
      * manually closed or login successful.
      */
     public void receiveSignalFromView() {
-        if (getModel() == null) sendSignalToParent();
+        sendSignalToParent();
     }
 
     @Override LoginView getView() {
