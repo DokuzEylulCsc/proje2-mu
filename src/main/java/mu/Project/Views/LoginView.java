@@ -2,43 +2,26 @@ package mu.Project.Views;
 
 import mu.Project.Controllers.LoginController;
 
-import java.awt.event.*;
-import java.awt.*;
 import javax.swing.*;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class LoginView extends View implements ActionListener {
-    private static JPanel outerPanel = new JPanel(new BorderLayout(10,10));
-    private static JPanel inputPanel = new JPanel(new GridLayout(2,2,10,10));
-    private static JLabel systemNameLabel = new JLabel("Reservation System");
-    private static JLabel emailFieldLabel = new JLabel("Email: ");
-    private static JTextField emailField = new JTextField();
-    private static JButton loginButton = new JButton("Login or Register!");
-    private static JLabel passwordFieldLabel = new JLabel("Password: ");
-    private static JPasswordField passwordField = new JPasswordField();
+    private JPanel panel1;
+    private JTextField emailField;
+    private JPasswordField passwordField;
+    private JButton loginOrRegisterButton;
+    private JLabel emailLabel;
+    private JLabel passwordLabel;
 
     public LoginView(LoginController controller) {
         super("Login", controller);
-        initialize();
-    }
+        setContentPane(panel1);
+        pack();
 
-    private void initialize() {
-
-        inputPanel.add(emailFieldLabel);
-        inputPanel.add(emailField);
-        inputPanel.add(passwordFieldLabel);
-        inputPanel.add(passwordField);
-        //inputPanel.setBackground(Color.RED);
-
-        outerPanel.add(systemNameLabel, BorderLayout.NORTH);
-        outerPanel.add(inputPanel, BorderLayout.CENTER);
-        outerPanel.add(loginButton, BorderLayout.SOUTH);
-        //outerPanel.setBackground(Color.BLUE);
-
-        add(outerPanel, BorderLayout.CENTER);
-        loginButton.addActionListener(this);
-        setLocationRelativeTo(null);
-        setSize(350,200);
+        loginOrRegisterButton.addActionListener(this);
         setResizable(false);
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -54,6 +37,7 @@ public class LoginView extends View implements ActionListener {
 
         setVisible(true);
     }
+
 
     /**
      * Login successful or user manually closed application.
