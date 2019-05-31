@@ -34,6 +34,7 @@ public class Connector {
             if (dbDoesntExists) {
                 System.out.println("DB file doesn't exists. Creating new table with default schema.");
                 executeResource(getClass().getResourceAsStream("/schema.sql"));
+                executeResource(getClass().getResourceAsStream("/prototype.sql"));
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
