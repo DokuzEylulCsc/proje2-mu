@@ -19,7 +19,6 @@ public class Connector {
      * Initialize singleton.
      */
     public void initialize() {
-        System.out.println("Database connector initialized.");
         Logger.getInstance().addLog("Database connector initialized.");
     }
 
@@ -33,12 +32,11 @@ public class Connector {
             setConnection(DriverManager.getConnection("jdbc:sqlite:" + dbFile.getAbsolutePath()));
 
             if (dbDoesntExists) {
-                System.out.println("DB file doesn't exists. Creating new table with default schema.");
+                Logger.getInstance().addLog("DB file doesn't exists. Creating new table with default schema.");
                 executeResource(getClass().getResourceAsStream("/schema.sql"));
                 executeResource(getClass().getResourceAsStream("/prototype.sql"));
             }
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
             Logger.getInstance().addLog(e);
         }
     }
@@ -46,8 +44,7 @@ public class Connector {
     public void executeResource(InputStream stream) {
         assert stream != null;
 
-        System.out.println("Starting execution of sql script...");
-        Logger.getInstance().addLog("Starting execution of sql script.");
+        Logger.getInstance().addLog("Starting execution of sql script...");
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
             Statement statement;
 
@@ -63,7 +60,7 @@ public class Connector {
                 strStatement.append(" ");
 
                 if (line.endsWith(";")) {
-                    System.out.println(strStatement.toString());
+                    Logger.getInstance().addLog(strStatement.toString());
 
                     statement = connection.createStatement();
                     statement.executeUpdate(strStatement.toString());
@@ -74,8 +71,7 @@ public class Connector {
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         } finally {
-            System.out.println("Execution finished!");
-            Logger.getInstance().addLog("Sql script execution finished.");
+            Logger.getInstance().addLog("Execution finished!");
         }
     }
 

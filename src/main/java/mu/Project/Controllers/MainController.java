@@ -19,8 +19,7 @@ public class MainController extends Controller {
         setModel(getLoginController().getModel());
 
         if (getModel() != null) {
-            System.out.println("Login successful!\n" + getModel());
-            Logger.getInstance().addLog(getModel().getEmail()+" Logged on successfully.");
+            Logger.getInstance().addLog("Login successful!\n" + getModel());
 
             if (getModel().isAdmin()) {
                 setAccountController(new AdminController(getModel(), this));
