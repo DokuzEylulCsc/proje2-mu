@@ -5,7 +5,7 @@ import mu.Project.NotImplementedException;
 
 import javax.swing.*;
 
-public class CustomerView extends View {
+public class CustomerView extends Frame {
     private JTabbedPane tabbedPane1;
     private JPanel panel1;
     private JPanel Account;

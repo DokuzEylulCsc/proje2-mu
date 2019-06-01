@@ -5,7 +5,7 @@ import mu.Project.Controllers.Controller;
 import javax.swing.*;
 import java.awt.*;
 
-public abstract class View extends JFrame {
+public abstract class Frame extends JFrame {
     Controller controller;
 
     public abstract void close();

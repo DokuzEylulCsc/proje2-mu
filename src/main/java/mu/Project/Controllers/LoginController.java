@@ -11,7 +11,7 @@ public class LoginController extends ChildController implements ActionListener {
     public LoginController(MainController parent) {
         setParent(parent);
         setModel(null);
-        setView(new LoginView(this));
+        setFrame(new LoginView(this));
     }
 
     public void actionPerformed(ActionEvent ae) {
@@ -19,15 +19,15 @@ public class LoginController extends ChildController implements ActionListener {
     }
 
     public void loginButtonClicked() {
-        String password = getView().getPassword();
-        String email = getView().getEmail();
+        String password = getFrame().getPassword();
+        String email = getFrame().getEmail();
 
         // check email address and password fields' validity
         if (!email.contains("@") || !(email.split("@").length > 1)) {
-            getView().showInvalidEmailAddressAlert();
+            getFrame().showInvalidEmailAddressAlert();
             return;
         } else if (password.isEmpty()) {
-            getView().showEmptyPasswordAlert();
+            getFrame().showEmptyPasswordAlert();
             return;
         }
 
@@ -35,18 +35,18 @@ public class LoginController extends ChildController implements ActionListener {
         if (account == null) {
             setModel(new Account(email, password, null,0));
             getModel().save();
-            getView().showNewAccountNotice();
-            getView().showLoginSuccessfulAlert();
-            getView().close();
+            getFrame().showNewAccountNotice();
+            getFrame().showLoginSuccessfulAlert();
+            getFrame().close();
 
         } else if (account.comparePassword(password)) {
             setModel(account);
-            getView().showLoginSuccessfulAlert();
-            getView().close();
+            getFrame().showLoginSuccessfulAlert();
+            getFrame().close();
 
 
         } else {
-            getView().showWrongPasswordAlert();
+            getFrame().showWrongPasswordAlert();
         }
     }
 
@@ -54,7 +54,7 @@ public class LoginController extends ChildController implements ActionListener {
         getParent().loginWindowClosed();
     }
 
-    @Override LoginView getView() {
-        return (LoginView) super.getView();
+    @Override LoginView getFrame() {
+        return (LoginView) super.getFrame();
     }
 }

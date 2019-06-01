@@ -1,19 +1,19 @@
 package mu.Project.Controllers;
 
-import mu.Project.Views.View;
+import mu.Project.Views.Frame;
 import mu.Project.Models.Model;
 
 
 public abstract class Controller {
-    View view;
+    Frame frame;
     Model model;
 
-    View getView() {
-        return view;
+    Frame getFrame() {
+        return frame;
     }
 
-    void setView(View view) {
-        this.view = view;
+    void setFrame(Frame frame) {
+        this.frame = frame;
     }
 
     Model getModel() {

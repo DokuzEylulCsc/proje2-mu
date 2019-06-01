@@ -7,7 +7,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 
-public class LoginView extends View {
+public class LoginView extends Frame {
     private JPanel outerPanel;
     private JTextField emailField;
     private JPasswordField passwordField;
@@ -78,7 +78,7 @@ public class LoginView extends View {
 
     public void showInvalidEmailAddressAlert() {
         JOptionPane.showMessageDialog(this,
-                "Please type an email adress.",
+                "Please type an email address.",
                 "Invalid email format",
                 JOptionPane.WARNING_MESSAGE
         );
