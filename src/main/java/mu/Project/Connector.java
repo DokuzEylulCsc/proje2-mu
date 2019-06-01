@@ -20,6 +20,7 @@ public class Connector {
      */
     public void initialize() {
         System.out.println("Database connector initialized.");
+        Logger.getInstance().addLog("Database connector initialized.");
     }
 
     /**
@@ -38,6 +39,7 @@ public class Connector {
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+            Logger.getInstance().addLog(e);
         }
     }
 
@@ -45,6 +47,7 @@ public class Connector {
         assert stream != null;
 
         System.out.println("Starting execution of sql script...");
+        Logger.getInstance().addLog("Starting execution of sql script.");
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
             Statement statement;
 
@@ -72,6 +75,7 @@ public class Connector {
             e.printStackTrace();
         } finally {
             System.out.println("Execution finished!");
+            Logger.getInstance().addLog("Sql script execution finished.");
         }
     }
 
