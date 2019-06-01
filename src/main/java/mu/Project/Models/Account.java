@@ -137,7 +137,6 @@ public class Account implements Model {
             Logger.getInstance().addLog(e);
             return false;
         }
-
     }
 
     /**

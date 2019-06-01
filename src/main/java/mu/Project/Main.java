@@ -7,5 +7,6 @@ public class Main {
         MainController mainController = new MainController();
         Connector.getInstance().initialize();
         mainController.runApp();
+        Logger.getInstance().writeToFile();
     }
 }

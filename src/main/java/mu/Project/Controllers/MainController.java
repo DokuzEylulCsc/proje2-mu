@@ -19,16 +19,13 @@ public class MainController extends Controller {
         setModel(getLoginController().getModel());
 
         if (getModel() != null) {
-            Logger.getInstance().addLog("Login successful!\n" + getModel());
+            Logger.getInstance().addLog(String.format("Login successful!%n" + getModel()));
 
             if (getModel().isAdmin()) {
                 setAccountController(new AdminController(getModel(), this));
             } else {
                 setAccountController(new CustomerController(getModel(), this));
             }
-        } else {
-            // Quit
-            Logger.getInstance().writeToFile();
         }
     }
 

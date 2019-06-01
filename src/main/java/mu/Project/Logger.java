@@ -48,7 +48,7 @@ public class Logger {
                     "%s > %s: %s",
                     getISO8601().format(key),
                     e.getClass().toString().split(" ")[1],
-                    e.getMessage() != null ? e.getMessage() : "No message specified."
+                    (e.getMessage() != null) ? e.getMessage() : "No message specified."
             );
 
         } else {
