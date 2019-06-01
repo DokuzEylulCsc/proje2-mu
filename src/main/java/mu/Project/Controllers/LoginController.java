@@ -6,16 +6,12 @@ import mu.Project.Views.LoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginController extends ChildController implements ActionListener {
+public class LoginController extends ChildController {
 
     public LoginController(MainController parent) {
         setParent(parent);
         setModel(null);
         setFrame(new LoginView(this));
-    }
-
-    public void actionPerformed(ActionEvent ae) {
-        loginButtonClicked();
     }
 
     public void loginButtonClicked() {

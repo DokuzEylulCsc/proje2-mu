@@ -3,6 +3,8 @@ package mu.Project.Views;
 import mu.Project.Controllers.LoginController;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -21,7 +23,6 @@ public class LoginView extends Frame {
         setContentPane(outerPanel);
         pack();
 
-        loginOrRegisterButton.addActionListener(getController());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Send signal to controller when window is closed
@@ -30,6 +31,13 @@ public class LoginView extends Frame {
             public void windowClosing(WindowEvent e) {
                 getDefaultCloseOperation();
                 getController().loginWindowClosed();
+            }
+        });
+
+        loginOrRegisterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getController().loginButtonClicked();
             }
         });
 
@@ -42,7 +50,6 @@ public class LoginView extends Frame {
     public void close() {
         dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
-
 
     public void showLoginSuccessfulAlert() {
         JOptionPane.showMessageDialog(this,
