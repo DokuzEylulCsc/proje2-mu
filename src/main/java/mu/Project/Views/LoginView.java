@@ -3,6 +3,7 @@ package mu.Project.Views;
 import mu.Project.Controllers.LoginController;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -19,10 +20,9 @@ public class LoginView extends Frame {
     private JPanel innerPanel;
 
     public LoginView(LoginController controller) {
-        setController(controller);
+        setupProperties();
         setContentPane(outerPanel);
-        pack();
-
+        setController(controller);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Send signal to controller when window is closed
@@ -43,6 +43,7 @@ public class LoginView extends Frame {
 
         setTitle("Login");
         setResizable(false);
+        pack();
         centerFrame();
         setVisible(true);
     }
@@ -100,7 +101,60 @@ public class LoginView extends Frame {
         return new String(password);
     }
 
-    @Override public LoginController getController() {
+    @Override
+    public LoginController getController() {
         return (LoginController) super.controller;
+    }
+
+    private void setupProperties() {
+        outerPanel = new JPanel();
+        outerPanel.setLayout(new GridBagLayout());
+        outerPanel.setPreferredSize(new Dimension(350, 200));
+        innerPanel = new JPanel();
+        innerPanel.setLayout(new GridBagLayout());
+        innerPanel.setPreferredSize(new Dimension(250, 150));
+        GridBagConstraints gbc;
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.fill = GridBagConstraints.BOTH;
+        outerPanel.add(innerPanel, gbc);
+        emailLabel = new JLabel();
+        emailLabel.setText("Email:");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.EAST;
+        innerPanel.add(emailLabel, gbc);
+        emailField = new JTextField();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        innerPanel.add(emailField, gbc);
+        passwordLabel = new JLabel();
+        passwordLabel.setText("Password:");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        innerPanel.add(passwordLabel, gbc);
+        passwordField = new JPasswordField();
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.weightx = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        innerPanel.add(passwordField, gbc);
+        loginOrRegisterButton = new JButton();
+        loginOrRegisterButton.setText("Login or Register");
+        gbc = new GridBagConstraints();
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        innerPanel.add(loginOrRegisterButton, gbc);
     }
 }
