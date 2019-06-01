@@ -1,17 +1,13 @@
 package mu.Project.Controllers;
 
 abstract class ChildController extends Controller {
-    ParentController parent;
+    MainController parent;
 
-    void sendSignalToParent() {
-        parent.receiveSignalFromChild();
-    }
-
-    void setParent(ParentController parent) {
+    void setParent(MainController parent) {
         this.parent = parent;
     }
 
-    ParentController getParent() {
+    MainController getParent() {
         return parent;
     }
 }

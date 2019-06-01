@@ -16,7 +16,6 @@ public abstract class Controller {
         this.view = view;
     }
 
-
     Model getModel() {
         return model;
     }

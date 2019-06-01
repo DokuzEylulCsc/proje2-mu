@@ -3,13 +3,11 @@ package mu.Project.Views;
 import mu.Project.Controllers.LoginController;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 
-public class LoginView extends View implements ActionListener {
+public class LoginView extends View {
     private JPanel outerPanel;
     private JTextField emailField;
     private JPasswordField passwordField;
@@ -19,11 +17,11 @@ public class LoginView extends View implements ActionListener {
     private JPanel innerPanel;
 
     public LoginView(LoginController controller) {
-        super("Login", controller);
+        setController(controller);
         setContentPane(outerPanel);
         pack();
 
-        loginOrRegisterButton.addActionListener(this);
+        loginOrRegisterButton.addActionListener(getController());
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Send signal to controller when window is closed
@@ -31,34 +29,20 @@ public class LoginView extends View implements ActionListener {
             @Override
             public void windowClosing(WindowEvent e) {
                 getDefaultCloseOperation();
-                sendSignalToController();
+                getController().loginWindowClosed();
             }
         });
 
-
+        setTitle("Login");
         setResizable(false);
         centerFrame();
         setVisible(true);
-    }
-
-    /**
-     * Login successful or user manually closed application.
-     */
-    private void sendSignalToController() {
-        ((LoginController) getController()).receiveSignalFromView();
     }
 
     public void close() {
         dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 
-    public void actionPerformed(ActionEvent ae) {
-        String email = emailField.getText();
-        char[] pass = passwordField.getPassword();
-        String password = new String(pass);
-
-        ((LoginController) getController()).loginButtonClicked(email, password);
-    }
 
     public void showLoginSuccessfulAlert() {
         JOptionPane.showMessageDialog(this,
@@ -98,5 +82,18 @@ public class LoginView extends View implements ActionListener {
                 "Invalid email format",
                 JOptionPane.WARNING_MESSAGE
         );
+    }
+
+    public String getEmail() {
+        return emailField.getText();
+    }
+
+    public String getPassword() {
+        char[] password = passwordField.getPassword();
+        return new String(password);
+    }
+
+    @Override public LoginController getController() {
+        return (LoginController) super.controller;
     }
 }

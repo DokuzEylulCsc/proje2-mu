@@ -12,7 +12,8 @@ public class CustomerView extends View {
     private JPanel Reservation;
 
     public CustomerView(CustomerController controller) {
-        super("CustomerView", controller);
+        super();
+        setController(controller);
         setContentPane(panel1);
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

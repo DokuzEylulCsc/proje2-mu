@@ -3,10 +3,9 @@ package mu.Project.Controllers;
 import mu.Project.Logger;
 import mu.Project.Models.Account;
 
-public class MainController extends ParentController {
+public class MainController extends Controller {
 
     LoginController loginController;
-    Account account;
     AccountController accountController;
 
     public void runApp() {
@@ -16,15 +15,15 @@ public class MainController extends ParentController {
     /**
      * Receive signal only from LoginController to build AccountControllers or quit.
      */
-    public void receiveSignalFromChild() {
+    public void loginWindowClosed() {
         if (getLoginController().getModel() != null) {
-            setAccount((Account) getLoginController().getModel());
-            System.out.println("Login successful!\n" + getAccount());
+            setModel(getLoginController().getModel());
+            System.out.println("Login successful!\n" + getModel());
 
-            if (getAccount().isAdmin()) {
-                setAccountController(new AdminController(getAccount(), this));
+            if (getModel().isAdmin()) {
+                setAccountController(new AdminController(getModel(), this));
             } else {
-                setAccountController(new CustomerController(getAccount(), this));
+                setAccountController(new CustomerController(getModel(), this));
             }
         } else {
             // Quit
@@ -32,20 +31,15 @@ public class MainController extends ParentController {
         }
     }
 
+    @Override Account getModel() {
+        return (Account) super.getModel();
+    }
     private LoginController getLoginController() {
         return loginController;
     }
 
     private void setLoginController(LoginController loginController) {
         this.loginController = loginController;
-    }
-
-    private Account getAccount() {
-        return account;
-    }
-
-    private void setAccount(Account account) {
-        this.account = account;
     }
 
     private AccountController getAccountController() {

@@ -3,23 +3,25 @@ package mu.Project.Controllers;
 import mu.Project.Models.Account;
 import mu.Project.Views.LoginView;
 
-import java.awt.event.WindowEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class LoginController extends ChildController {
+public class LoginController extends ChildController implements ActionListener {
 
-    public LoginController(ParentController parent) {
+    public LoginController(MainController parent) {
         setParent(parent);
         setModel(null);
         setView(new LoginView(this));
     }
 
-    /**
-     * If record doesn't exists, creates a new customer account.
-     *
-     * @param email String
-     * @param password String
-     */
-    public void loginButtonClicked(String email, String password) {
+    public void actionPerformed(ActionEvent ae) {
+        loginButtonClicked();
+    }
+
+    public void loginButtonClicked() {
+        String password = getView().getPassword();
+        String email = getView().getEmail();
+
         // check email address and password fields' validity
         if (!email.contains("@") || !(email.split("@").length > 1)) {
             getView().showInvalidEmailAddressAlert();
@@ -48,12 +50,8 @@ public class LoginController extends ChildController {
         }
     }
 
-    /**
-     * Receives signal from view when window is
-     * manually closed or login successful.
-     */
-    public void receiveSignalFromView() {
-        sendSignalToParent();
+    public void loginWindowClosed() {
+        getParent().loginWindowClosed();
     }
 
     @Override LoginView getView() {
