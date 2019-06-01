@@ -71,7 +71,7 @@ public class Logger {
      */
     public void writeToFile(File file) {
 
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file, true))) {
             for (Date key : getLogs().keySet()) {
                 bufferedWriter.write(String.format("%s%n", logToString(key, getLogs().get(key))));
             }
