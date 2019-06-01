@@ -75,10 +75,10 @@ public class LoginView extends Frame {
         );
     }
 
-    public void showEmptyPasswordAlert() {
+    public void showInvalidPasswordAlert() {
         JOptionPane.showMessageDialog(this,
-                "Please use a password.",
-                "Empty password",
+                "Please use a valid password. Password's length must be minimum of 8.",
+                "Invalid password",
                 JOptionPane.WARNING_MESSAGE
         );
     }

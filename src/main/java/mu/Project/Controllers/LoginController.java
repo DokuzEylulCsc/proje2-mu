@@ -1,10 +1,10 @@
 package mu.Project.Controllers;
 
-import mu.Project.Models.Account;
+import mu.Project.Logger;
+import mu.Project.Models.*;
 import mu.Project.Views.LoginView;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class LoginController extends ChildController {
 
@@ -15,34 +15,39 @@ public class LoginController extends ChildController {
     }
 
     public void loginButtonClicked() {
-        String password = getFrame().getPassword();
-        String email = getFrame().getEmail();
+        try {
+            setModel(
+                    new Account(
+                            getFrame().getEmail(),
+                            getFrame().getPassword()
+                    )
+            );
+            getFrame().showLoginSuccessfulAlert();
+            getFrame().close();
 
-        // check email address and password fields' validity
-        if (!email.contains("@") || !(email.split("@").length > 1)) {
+        } catch (InvalidEmailAddressException e) {
+            Logger.getInstance().addLog(e);
             getFrame().showInvalidEmailAddressAlert();
-            return;
-        } else if (password.isEmpty()) {
-            getFrame().showEmptyPasswordAlert();
-            return;
-        }
 
-        Account account = Account.getAccount(email);
-        if (account == null) {
-            setModel(new Account(email, password, null,0));
-            getModel().save();
+        } catch (InvalidPasswordException e) {
+            Logger.getInstance().addLog(e);
+            getFrame().showInvalidPasswordAlert();
+
+        } catch (NoSuchAccountException e) {
+            // Account checks email and password formats first, then this exception is thrown.
+            // Thus createAccount will not create and account with invalid fields.
+
+            Logger.getInstance().addLog(e);
+            Account.createAccount(getFrame().getEmail(), getFrame().getPassword());
             getFrame().showNewAccountNotice();
-            getFrame().showLoginSuccessfulAlert();
-            getFrame().close();
+            loginButtonClicked();   // log in
 
-        } else if (account.comparePassword(password)) {
-            setModel(account);
-            getFrame().showLoginSuccessfulAlert();
-            getFrame().close();
-
-
-        } else {
+        }  catch (WrongPasswordException e) {
+            Logger.getInstance().addLog(e);
             getFrame().showWrongPasswordAlert();
+
+        } catch (SQLException e) {
+            Logger.getInstance().addLog(e);
         }
     }
 

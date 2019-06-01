@@ -16,8 +16,9 @@ public class MainController extends Controller {
      * Receive signal only from LoginController to build AccountControllers or quit.
      */
     public void loginWindowClosed() {
-        if (getLoginController().getModel() != null) {
-            setModel(getLoginController().getModel());
+        setModel(getLoginController().getModel());
+
+        if (getModel() != null) {
             System.out.println("Login successful!\n" + getModel());
             Logger.getInstance().addLog(getModel().getEmail()+" Logged on successfully.");
 

@@ -32,7 +32,6 @@ public class Logger {
 
         // Echo to console
         System.out.println("Log > " + logToString(now, log));
-        if (log instanceof Exception) ((Exception) log).printStackTrace();
     }
 
     /**
@@ -40,12 +39,18 @@ public class Logger {
      */
     private String logToString(Date key, Object val) {
         if (val instanceof String) {
-            return String.format("- %s: %s", getISO8601().format(key), val);
+            return String.format("%s > %s", getISO8601().format(key), val);
 
         } else if (val instanceof Exception) {
             Exception e = (Exception) val;
-            return String.format("- %s: %s",
-                    getISO8601().format(key), e.getMessage());
+
+            return String.format(
+                    "%s > %s: %s",
+                    getISO8601().format(key),
+                    e.getClass().toString().split(" ")[1],
+                    e.getMessage() != null ? e.getMessage() : "No message specified."
+            );
+
         } else {
             Logger.getInstance().addLog(new TypeException("Invalid type at Logger.logToString!"));
             return null;
