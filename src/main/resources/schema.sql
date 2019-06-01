@@ -62,9 +62,9 @@ CREATE TABLE reservations (
 
 CREATE TABLE accounts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email TEXT NOT NULL,
+    email TEXT NOT NULL CHECK( email like '%_%@%_%.%_%' ),
     password_hash INTEGER NOT NULL,
-    name TEXT NOT NULL,
+    name TEXT,
     admin INTEGER DEFAULT 0 NOT NULL CHECK( admin IN (0, 1) )
 );
 
