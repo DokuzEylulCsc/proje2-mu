@@ -22,11 +22,6 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.27.2.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>17.0.0</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -53,19 +48,6 @@
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>se.eris</groupId>
-                <artifactId>notnull-instrumenter-maven-plugin</artifactId>
-                <version>0.6.9-beta</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>instrument</goal>
-                            <goal>tests-instrument</goal>
                         </goals>
                     </execution>
                 </executions>
