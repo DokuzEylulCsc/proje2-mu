@@ -34,6 +34,7 @@ public class Account implements Model {
             "WHERE email = ?";
 
     /**
+     * Successful initialization of Account from public means login successful.
      *
      * @param email
      * @param password
@@ -45,7 +46,7 @@ public class Account implements Model {
             WrongPasswordException, InvalidPasswordException, SQLException {
 
         if (! emailPattern.matcher(email).matches()) {
-            throw new InvalidEmailAddressException();
+            throw new InvalidEmailAddressException(email);
         } else if (password.length() < 8) {
             throw new InvalidPasswordException();
         }
@@ -56,7 +57,7 @@ public class Account implements Model {
         rs.next();
 
         if (rs.isClosed()) {
-            throw new NoSuchAccountException();
+            throw new NoSuchAccountException(email);
         } else if (rs.getInt(2) != hashPassword(password)) {
             throw new WrongPasswordException();
         }
@@ -96,7 +97,7 @@ public class Account implements Model {
     }
 
     /**
-     *
+     * Create new account.
      *
      * @param email String
      * @param password_hash Integer
@@ -112,6 +113,7 @@ public class Account implements Model {
             preparedStatement.setInt(4, admin);
             preparedStatement.execute();
 
+            Logger.getInstance().addLog(String.format("New account created: %s", email));
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
         }
@@ -168,9 +170,24 @@ public class Account implements Model {
         return result;
     }
 
+    /**
+     * Update/create an object in database.
+     */
+    public void save() {
+
+        if (isExists(getEmail())) try {
+            update();
+        } catch (NoSuchAccountException e) {
+            Logger.getInstance().addLog(e);
+        } else {
+            // low level account creation
+            createAccount(getEmail(), getPassword_hash(), getName(), (isAdmin() ? 1 : 0));
+        }
+    }
+
     public void update() throws NoSuchAccountException {
         if (!isExists(getEmail())) {
-            throw new NoSuchAccountException();
+            throw new NoSuchAccountException(getEmail());
         }
 
         try (PreparedStatement preparedStatement = Connector.getInstance().getConnection().prepareStatement(updateQuery)) {
@@ -182,19 +199,6 @@ public class Account implements Model {
 
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
-        }
-    }
-    /**
-     * Update/create an object in database.
-     */
-    public void save() {
-
-        if (isExists(getEmail())) try {
-            update();
-        } catch (NoSuchAccountException e) {
-            Logger.getInstance().addLog(e);
-        } else {
-            createAccount(getEmail(), getPassword_hash(), getName(), (isAdmin() ? 1 : 0));
         }
     }
 
@@ -237,6 +241,6 @@ public class Account implements Model {
 
     @Override
     public String toString() {
-        return String.format("name: %s\nemail: %s\nadmin: %d", name, email, admin);
+        return String.format("Name: %s | Email: %s | Admin: %s", name, email, (admin == 1) ? "yes" : "no");
     }
 }

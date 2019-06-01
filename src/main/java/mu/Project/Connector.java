@@ -16,13 +16,6 @@ public class Connector {
     private Connector() { connect(); }
 
     /**
-     * Initialize singleton.
-     */
-    public void initialize() {
-        Logger.getInstance().addLog("Database connector initialized.");
-    }
-
-    /**
      * Connect SQLite database at ./Project.db.
      * If not exists, create default schema.
      */

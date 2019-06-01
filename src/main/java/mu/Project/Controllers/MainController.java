@@ -12,20 +12,20 @@ public class MainController extends Controller {
         setLoginController(new LoginController(this));
     }
 
-    /**
-     * Receive signal only from LoginController to build AccountControllers or quit.
-     */
     public void loginWindowClosed() {
         setModel(getLoginController().getModel());
 
         if (getModel() != null) {
-            Logger.getInstance().addLog(String.format("Login successful!%n" + getModel()));
+            Logger.getInstance().addLog("Login successful: " + getModel().getEmail());
 
             if (getModel().isAdmin()) {
                 setAccountController(new AdminController(getModel(), this));
             } else {
                 setAccountController(new CustomerController(getModel(), this));
             }
+        } else {
+            // Quit application
+            Logger.getInstance().writeToFile();
         }
     }
 
