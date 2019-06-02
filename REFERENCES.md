@@ -26,3 +26,8 @@
 
 ##### Database Diagram
 - [dbdiagram.io](https://dbdiagram.io)
+
+##### Other Java related
+- [mkyong.com](https://www.mkyong.com)
+- [Stackoverflow](https://stackoverflow.com)
+- [howtodoinjava.com](https://howtodoinjava.com/)
