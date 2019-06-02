@@ -19,7 +19,10 @@ public class Logger {
 
     public void addLog(String log) { addLogObject(log); }
 
-    public void addLog(Exception log) { addLogObject(log); }
+    public void addLog(Exception log) {
+        addLogObject(log);
+        log.printStackTrace();
+    }
 
     /**
      * @param log instance of String or Exception
