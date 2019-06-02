@@ -13,9 +13,9 @@ import java.util.regex.Pattern;
 
 
 public class Account implements Model {
-    private String email;
     private static String RFC5322 = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
     private static Pattern emailPattern = Pattern.compile(RFC5322);
+    private final String email;
     private Integer password_hash;
     private String name;
     private final Integer admin;
@@ -36,11 +36,11 @@ public class Account implements Model {
     /**
      * Successful initialization of Account from public means login successful.
      *
-     * @param email
-     * @param password
-     * @throws InvalidEmailAddressException
-     * @throws NoSuchAccountException
-     * @throws WrongPasswordException
+     * @param email String
+     * @param password String
+     * @throws InvalidEmailAddressException Not an email
+     * @throws NoSuchAccountException No account exists with the email in database
+     * @throws WrongPasswordException Hash doesn't match to password's in database
      */
     public Account(String email, String password) throws InvalidEmailAddressException, NoSuchAccountException,
             WrongPasswordException, InvalidPasswordException, SQLException {

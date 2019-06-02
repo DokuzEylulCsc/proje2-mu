@@ -35,7 +35,7 @@ public class LoginController extends ChildController {
 
         } catch (NoSuchAccountException e) {
             // Account checks email and password formats first, then this exception is thrown.
-            // Thus createAccount will not create and account with invalid fields.
+            // Thus createAccount will not create an account with invalid fields.
 
             Logger.getInstance().addLog(e);
             Account.createAccount(getFrame().getEmail(), getFrame().getPassword());
