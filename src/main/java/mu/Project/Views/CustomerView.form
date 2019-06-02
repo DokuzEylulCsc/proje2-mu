@@ -6,14 +6,14 @@
       <xy x="20" y="20" width="1004" height="754"/>
     </constraints>
     <properties>
-      <preferredSize width="1004" height="754"/>
+      <preferredSize width="750" height="400"/>
     </properties>
     <border type="none"/>
     <children>
       <tabbedpane id="1dd7b" binding="tabbedPane">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="1000" height="750"/>
+            <preferred-size width="746" height="396"/>
           </grid>
         </constraints>
         <properties/>
@@ -32,7 +32,7 @@
                   <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
-                  <preferredSize width="300" height="76"/>
+                  <preferredSize width="300" height="150"/>
                 </properties>
                 <border type="none"/>
                 <children>
@@ -105,7 +105,7 @@
                       <gridbag weightx="0.9" weighty="0.0"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="None"/>
                     </properties>
                   </component>
                 </children>
@@ -132,35 +132,69 @@
             <properties/>
             <border type="none"/>
             <children>
-              <splitpane id="73845">
+              <grid id="8c167" layout-manager="GridBagLayout">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="200" height="200"/>
-                  </grid>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties>
-                  <resizeWeight value="0.0"/>
-                  <visible value="true"/>
-                </properties>
+                <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="4900c" class="javax.swing.JTable" binding="table1" default-binding="true">
+                  <component id="8a9a4" class="javax.swing.JLabel">
                     <constraints>
-                      <splitpane position="right"/>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="201ad" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+                    <constraints>
+                      <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                      <gridbag weightx="0.0" weighty="0.0"/>
                     </constraints>
                     <properties/>
                   </component>
-                  <grid id="152b8" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                    <margin top="0" left="0" bottom="0" right="0"/>
+                  <component id="c307" class="javax.swing.JLabel">
                     <constraints>
-                      <splitpane position="left"/>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="1893d" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+                    <constraints>
+                      <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                        <preferred-size width="150" height="-1"/>
+                      </grid>
+                      <gridbag weightx="0.0" weighty="0.0"/>
                     </constraints>
                     <properties/>
-                    <border type="none"/>
-                    <children/>
-                  </grid>
+                  </component>
+                  <component id="c45ec" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="Label"/>
+                    </properties>
+                  </component>
+                  <component id="d60fc" class="javax.swing.JCheckBox" binding="checkBox1" default-binding="true">
+                    <constraints>
+                      <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                      <gridbag weightx="0.0" weighty="0.0"/>
+                    </constraints>
+                    <properties>
+                      <text value="CheckBox"/>
+                    </properties>
+                  </component>
                 </children>
-              </splitpane>
+              </grid>
             </children>
           </grid>
           <grid id="d9ada" binding="reservedTab" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
