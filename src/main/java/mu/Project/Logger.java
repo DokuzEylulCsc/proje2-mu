@@ -1,5 +1,8 @@
 package mu.Project;
 
+import jdk.jfr.StackTrace;
+import org.sqlite.date.ExceptionUtils;
+
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -10,7 +13,7 @@ import java.util.LinkedHashMap;
 public class Logger {
     private final static String defaultFileName = "Project.log";
     private static Logger ourInstance = new Logger();
-    private static final DateFormat ISO8601 = new SimpleDateFormat("yyyy-mm-dd hh:mm");
+    private static final DateFormat ISO8601 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private LinkedHashMap<Date, Object> Logs;
 
     private Logger() {
@@ -47,11 +50,15 @@ public class Logger {
         } else if (val instanceof Exception) {
             Exception e = (Exception) val;
 
+            // get stackTrace as String
+            StringWriter stackTrace = new StringWriter();
+            PrintWriter printWriter = new PrintWriter(stackTrace);
+            ((Exception) val).printStackTrace(printWriter);
+
             return String.format(
-                    "%s > %s: %s",
+                    "%s > %s",
                     getISO8601().format(key),
-                    e.getClass().toString().split(" ")[1],
-                    (e.getMessage() != null) ? e.getMessage() : "No message specified."
+                    stackTrace.toString()
             );
 
         } else {
