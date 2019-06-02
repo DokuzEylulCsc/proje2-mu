@@ -1,6 +1,7 @@
 CREATE TABLE hotels (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
+    city TEXT NOT NULL,
     stars INTEGER NOT NULL CHECK( stars >= 0 )
 );
 
