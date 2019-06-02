@@ -598,6 +598,9 @@ INSERT INTO accounts (email, password_hash, name, admin) VALUES ('kestos@catmail
 INSERT INTO accounts (email, password_hash, name, admin) VALUES ('cumali@hotmail.com', 1216985755, 'Cumali', 0);
 INSERT INTO accounts (email, password_hash, name, admin) VALUES ('remzi@gmail.com', 1216985755, 'Remziye', 0);
 INSERT INTO accounts (email, password_hash, name, admin) VALUES ('kuzukuzu@yahoo.com', 1216985755, 'Tarkan', 0);
+-- default tester accounts below
+INSERT INTO accounts (email, password_hash, name, admin) VALUES ('customer@tester.com', 1216985755, 'TestUser', 0);
+INSERT INTO accounts (email, password_hash, name, admin) VALUES ('admin@tester.com', 1216985755, 'TestUser', 1);
 
 INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
 VALUES (1, (SELECT id FROM accounts WHERE email='egiman@catmail.com'), 1, '2019-06-04', '2019-06-09');
