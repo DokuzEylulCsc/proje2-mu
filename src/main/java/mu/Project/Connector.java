@@ -13,13 +13,13 @@ public class Connector {
     private static Connector    ourInstance = new Connector();
     private Connection          connection;
 
-    private Connector() { connect(); }
+    private Connector() { }
 
     /**
      * Connect SQLite database at ./Project.db.
      * If not exists, create default schema.
      */
-    private void connect() {
+    void connect() {
         try {
             boolean dbDoesntExists = !dbFile.exists();
             setConnection(DriverManager.getConnection("jdbc:sqlite:" + dbFile.getAbsolutePath()));
@@ -29,6 +29,8 @@ public class Connector {
                 executeResource(getClass().getResourceAsStream("/schema.sql"));
                 executeResource(getClass().getResourceAsStream("/prototype.sql"));
             }
+
+            Logger.getInstance().addLog("Connected to database!");
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
         }
@@ -62,7 +64,7 @@ public class Connector {
             }
 
         } catch (IOException | SQLException e) {
-            e.printStackTrace();
+            Logger.getInstance().addLog(e);
         } finally {
             Logger.getInstance().addLog("Execution finished!");
         }
