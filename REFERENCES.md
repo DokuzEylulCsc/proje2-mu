@@ -1,5 +1,7 @@
 ## References
 
+##### Hotels
+- [Trivago](https://trivago.com)
 ##### Maven
 - [Apache](https://maven.apache.org)
 - [MVN Repository](https://mvnrepository.com)
