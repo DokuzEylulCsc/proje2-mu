@@ -1,7 +1,5 @@
 ## References
 
-##### Hotels
-- [Trivago](https://trivago.com)
 ##### Maven
 - [Apache](https://maven.apache.org)
 - [MVN Repository](https://mvnrepository.com)
@@ -19,10 +17,12 @@
 ##### Regex
 - [RFC5322](https://emailregex.com)
 
+##### Hotels
+- [Trivago](https://trivago.com)
+
 ##### UML 2
 - [IBM](https://www.ibm.com/developerworks/rational/library/content/RationalEdge/sep04/bell/index.html)
 - [UMLet](https://umlet.com)
 
 ##### Database Diagram
 - [dbdiagram.io](https://dbdiagram.io)
-

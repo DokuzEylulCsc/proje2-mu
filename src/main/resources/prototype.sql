@@ -612,7 +612,7 @@ VALUES (24, (SELECT id FROM accounts WHERE email='cumali@hotmail.com'), 1, '2019
 INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
 VALUES (25, (SELECT id FROM accounts WHERE email='cumali@hotmail.com'), 1, '2019-01-12', '2019-01-14');
 INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
-VALUES (29, (SELECT id FROM accounts WHERE email='remzi@gmail.com'), 1, '2019-08-12', '2019-01-13');
+VALUES (29, (SELECT id FROM accounts WHERE email='remzi@gmail.com'), 1, '2019-01-12', '2019-01-13');
 INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
 VALUES (28, (SELECT id FROM accounts WHERE email='remzi@gmail.com'), 1, '2019-05-12', '2019-06-13');
 INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
