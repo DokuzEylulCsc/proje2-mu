@@ -20,11 +20,11 @@ public class Account implements Model {
     private String name;
     private final Integer admin;
 
-    private static String insertQuery = "INSERT INTO accounts (email, password_hash, name, admin)" +
+    private static String insertQuery = "INSERT INTO accounts (email, password_hash, name, admin) " +
             "VALUES (?, ?, ?, ?)";
 
     private static String updateQuery = "UPDATE accounts " +
-            "SET email = ?, password_hash = ?,  name = ? " +
+            "SET password_hash = ?,  name = ? " +
             "WHERE email = ? ";
 
     private static String deleteQuery = "DELETE FROM accounts " +
@@ -51,7 +51,7 @@ public class Account implements Model {
             throw new InvalidPasswordException();
         }
 
-        PreparedStatement preparedStatement = Connector.getInstance().getConnection().prepareStatement(emailQuery);
+        PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(emailQuery);
         preparedStatement.setString(1, email);
         ResultSet rs = preparedStatement.executeQuery();
         rs.next();
@@ -106,7 +106,7 @@ public class Account implements Model {
      */
     private static void createAccount(String email, Integer password_hash, String name, Integer admin) {
 
-        try (PreparedStatement preparedStatement = Connector.getInstance().getConnection().prepareStatement(insertQuery)) {
+        try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(insertQuery)) {
             preparedStatement.setString(1, email);
             preparedStatement.setInt(2, password_hash);
             preparedStatement.setString(3, name);
@@ -127,13 +127,15 @@ public class Account implements Model {
      */
     public static Boolean isExists(String email) {
 
-        try (PreparedStatement preparedStatement = Connector.getInstance().getConnection().prepareStatement(emailQuery)){
+        try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(emailQuery)){
             preparedStatement.setString(1, email);
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
 
             // if ResultSet is closed, query is empty
-            return !rs.isClosed();
+            Boolean result = !rs.isClosed();
+            if (result) rs.close();
+            return result;
 
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
@@ -153,6 +155,8 @@ public class Account implements Model {
             String query = "SELECT email, password_hash, name, admin FROM accounts";
 
             ResultSet rs = statement.executeQuery(query);
+            statement.close();
+
             while (rs.next()) {
                 result.add(
                         new Account(
@@ -163,6 +167,8 @@ public class Account implements Model {
                         )
                 );
             }
+            rs.close();
+
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
         }
@@ -190,11 +196,10 @@ public class Account implements Model {
             throw new NoSuchAccountException(getEmail());
         }
 
-        try (PreparedStatement preparedStatement = Connector.getInstance().getConnection().prepareStatement(updateQuery)) {
-            preparedStatement.setString(1, getEmail());
-            preparedStatement.setInt(2, getPassword_hash());
-            preparedStatement.setString(3, getName());
-            preparedStatement.setInt(4, isAdmin() ? 1 : 0 );
+        try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(updateQuery)) {
+            preparedStatement.setInt(1, getPassword_hash());
+            preparedStatement.setString(2, getName());
+            preparedStatement.setString(3, getEmail());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -206,12 +211,46 @@ public class Account implements Model {
      * Delete object in database.
      */
     public void delete() {
-        try (PreparedStatement preparedStatement = Connector.getInstance().getConnection().prepareStatement(deleteQuery)) {
+        try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(deleteQuery)) {
             preparedStatement.setString(1, getEmail());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
+        }
+    }
+
+    /**
+     * Try to update name, both in object and database.
+     *
+     * @param newName String
+     * @throws NoSuchAccountException if database update failed
+     */
+    public void setNewName(String newName) throws NoSuchAccountException {
+        if (getName() == null || !getName().equals(newName)) {
+            String oldName = getName();
+            this.name = newName;
+
+            update();
+            Logger.getInstance().addLog(
+                    String.format("Name changed %s to %s: %s", oldName, newName, getEmail())
+            );
+        }
+    }
+
+    /**
+     * Try to update password, both in object and database.
+     *
+     * @param password String, length >= 8
+     * @throws InvalidPasswordException if password length less than 8
+     * @throws NoSuchAccountException if database update failed
+     */
+    public void setNewPassword(String password) throws InvalidPasswordException, NoSuchAccountException {
+        if (password.length() < 8) {
+            throw new InvalidPasswordException();
+        } else {
+            this.password_hash = hashPassword(password);
+            update();
         }
     }
 

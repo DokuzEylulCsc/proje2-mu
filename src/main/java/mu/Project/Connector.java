@@ -36,6 +36,20 @@ public class Connector {
         }
     }
 
+    /**
+     * Set closeOnCompletion and return a PreparedStatement.
+     *
+     * @param SQL String
+     * @return Empty statement, set to close on completion
+     * @see PreparedStatement
+     * @throws SQLException if connection isn't set
+     */
+    public PreparedStatement prepareStatement(String SQL) throws SQLException {
+        PreparedStatement preparedStatement = getInstance().getConnection().prepareStatement(SQL);
+        preparedStatement.closeOnCompletion();
+        return preparedStatement;
+    }
+
     public void executeResource(InputStream stream) {
         assert stream != null;
 
