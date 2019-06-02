@@ -50,6 +50,7 @@ CREATE TABLE reservations (
     -- format is ISO8601, ex. '2019-06-06', thus length should be 10
     start_date TEXT NOT NULL CHECK( length(start_date) ==  10 ),
     end_date TEXT NOT NULL CHECK( length(end_date) ==  10 ),
+    CHECK( start_date < end_date ),
 
     FOREIGN KEY (room_id) REFERENCES rooms (id)
         ON DELETE CASCADE
