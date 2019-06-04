@@ -32,11 +32,15 @@ public class CustomerView extends Frame {
     private JFormattedTextField budgetField;
     private JLabel personCountLabel;
     private JLabel budgetLabel;
-    private JFormattedTextField personCountField;
     private JButton logoutButton;
     private JButton searchButton;
     private JPanel reservePanel;
     private JTable reservationTable;
+    private JSpinner personCountSpinner;
+    private JSpinner starCountSpinner;
+    private JLabel cityLabel;
+    private JLabel starCountLabel;
+    private JComboBox citiesComboBox;
     public static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public CustomerView(CustomerController controller) {
@@ -87,9 +91,18 @@ public class CustomerView extends Frame {
         dispose();
     }
 
-    public void showInvalidDateAlert() {
+    public void showInvalidDateFormatAlert() {
         JOptionPane.showMessageDialog(this,
                 "Invalid date format!",
+                "Failed",
+                JOptionPane.WARNING_MESSAGE
+        );
+    }
+
+    public void showInvalidDateIntervalAlert() {
+        JOptionPane.showMessageDialog(this,
+                "Invalid date interval!" +
+                        "Start date should be in future and end date shouldn't be less than or equal to start date.",
                 "Failed",
                 JOptionPane.WARNING_MESSAGE
         );
@@ -127,6 +140,14 @@ public class CustomerView extends Frame {
         );
     }
 
+    public void showGeneralInternalErrorAlert() {
+        JOptionPane.showMessageDialog(this,
+                "An exception occurred. Contact to support.",
+                "Failed",
+                JOptionPane.WARNING_MESSAGE
+        );
+    }
+
     @Override
     public CustomerController getController() {
         return (CustomerController) super.getController();
@@ -156,8 +177,8 @@ public class CustomerView extends Frame {
         return seaViewCheckBox;
     }
 
-    public JFormattedTextField getPersonCountField() {
-        return personCountField;
+    public JSpinner getPersonCountSpinner() {
+        return personCountSpinner;
     }
 
     public JFormattedTextField getEndDateField() {
@@ -172,13 +193,30 @@ public class CustomerView extends Frame {
         return budgetField;
     }
 
+    public JComboBox getCitiesComboBox() {
+        return citiesComboBox;
+    }
+
+    public JSpinner getStarCountSpinner() {
+        return starCountSpinner;
+    }
+
+    public JTable getReservationTable() {
+        return reservationTable;
+    }
+
     private void createUIComponents() {
         // TODO: place custom component creation code here
-
         startDateField = new JDateField();
         endDateField = new JDateField();
         budgetField = new JDecimalField();
-        personCountField = new JDecimalField();
 
+        // maximum of 6 people
+        SpinnerModel spinnerModel = new SpinnerNumberModel(1, 1, 6, 1);
+        personCountSpinner = new JSpinner(spinnerModel);
+
+        // maximum of 7 stars
+        spinnerModel = new SpinnerNumberModel(0, 0, 7, 1);
+        starCountSpinner = new JSpinner(spinnerModel);
     }
 }
