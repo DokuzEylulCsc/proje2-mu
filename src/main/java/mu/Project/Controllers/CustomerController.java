@@ -2,27 +2,38 @@ package mu.Project.Controllers;
 
 import mu.Project.Connector;
 import mu.Project.Logger;
-import mu.Project.Models.Account;
-import mu.Project.Models.InvalidPasswordException;
-import mu.Project.Models.NoSuchAccountException;
+import mu.Project.Models.*;
 import mu.Project.Views.CustomerView;
-import mu.Project.Views.JDateField;
 
-import javax.swing.text.DateFormatter;
+import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 public class CustomerController extends AccountController {
-    private final static DateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
+    private final static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public CustomerController(Account model, MainController parent) {
         setModel(model);
         setParent(parent);
+        initializeFrame();
+    }
+
+    private void initializeFrame() {
         setFrame(new CustomerView(this));
         getFrame().setEmailFixedField(getModel().getEmail());
         getFrame().setNameField(getModel().getName());
+
+        // add cities to reservationTab.citiesComboBox
+        List<String> cities = Hotel.getDistinctCities();
+        getFrame().getCitiesComboBox().addItem("All");
+        for (String city : cities) {
+            getFrame().getCitiesComboBox().addItem(city);
+        }
+
         getFrame().setVisible(true);
     }
 
@@ -38,14 +49,34 @@ public class CustomerController extends AccountController {
     }
 
     public void searchButtonClicked() {
-        System.out.println(getFrame().getStartDateField().getValue());
-        System.out.println(getFrame().getEndDateField().getValue());
-        System.out.println("safe " + getFrame().getSafeCheckBox().isSelected());
-        System.out.println("seaview " + getFrame().getSeaViewCheckBox().isSelected());
-        System.out.println(getFrame().getBudgetField().getValue());
-        System.out.println(getFrame().getPersonCountField().getValue());
+        try {
+            Date startDate = dateFormat.parse((String) getFrame().getStartDateField().getValue());
+            Date endDate = dateFormat.parse((String) getFrame().getEndDateField().getValue());
+            String city = (String) getFrame().getCitiesComboBox().getSelectedItem();
+            Boolean seaView = getFrame().getSeaViewCheckBox().isSelected();
+            Boolean safe = getFrame().getSafeCheckBox().isSelected();
+            Integer maxBudget = ((Long) getFrame().getBudgetField().getValue()).intValue();
+            Integer starCount = (Integer) getFrame().getStarCountSpinner().getValue();
+            Integer personCount = (Integer) getFrame().getPersonCountSpinner().getValue();
+
+            DefaultTableModel tableModel = Room.getAvailableRoomsAsTableModel(maxBudget, personCount, seaView, safe, city,
+                    starCount, startDate, endDate);
+
+            getFrame().getReservationTable().setModel(tableModel);
+            getFrame().getReservationTable().updateUI();
+
+        } catch (ParseException e) {
+            Logger.getInstance().addLog(e);
+            getFrame().showInvalidDateFormatAlert();
+
+        } catch (InvalidDateIntervalException e) {
+            Logger.getInstance().addLog(e);
+            getFrame().showInvalidDateIntervalAlert();
+        }
 
     }
+
+
 
     public void updateNameButtonClicked() {
         String newName = getFrame().getNameField();
