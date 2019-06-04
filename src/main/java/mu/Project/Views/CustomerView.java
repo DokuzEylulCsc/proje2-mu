@@ -44,19 +44,19 @@ public class CustomerView extends Frame {
         setContentPane(outerPanel);
         pack();
         centerFrame();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                getController().windowClosing();
+                close();
             }
         });
 
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                getController().windowClosing();
+                close();
             }
         });
 
@@ -80,6 +80,11 @@ public class CustomerView extends Frame {
                 getController().searchButtonClicked();
             }
         });
+    }
+
+    public void close() {
+        getController().windowClosing();
+        dispose();
     }
 
     public void showInvalidDateAlert() {
@@ -120,10 +125,6 @@ public class CustomerView extends Frame {
                 "Failed",
                 JOptionPane.WARNING_MESSAGE
         );
-    }
-
-    public void close() {
-        getDefaultCloseOperation();
     }
 
     @Override

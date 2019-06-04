@@ -30,7 +30,6 @@ public class CustomerController extends AccountController {
         Logger.getInstance().addLog("Trying to close JDBC...");
 
         try {
-            System.out.println(Connector.getInstance().getConnection().getAutoCommit());
             Connector.getInstance().getConnection().close();
             Logger.getInstance().addLog("Closed JDBC successfully.");
         } catch (SQLException e) {
