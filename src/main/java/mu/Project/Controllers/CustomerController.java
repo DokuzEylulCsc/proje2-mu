@@ -6,10 +6,16 @@ import mu.Project.Models.Account;
 import mu.Project.Models.InvalidPasswordException;
 import mu.Project.Models.NoSuchAccountException;
 import mu.Project.Views.CustomerView;
+import mu.Project.Views.JDateField;
 
+import javax.swing.text.DateFormatter;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class CustomerController extends AccountController {
+    private final static DateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
 
     public CustomerController(Account model, MainController parent) {
         setModel(model);
@@ -30,6 +36,16 @@ public class CustomerController extends AccountController {
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
         }
+    }
+
+    public void searchButtonClicked() {
+        System.out.println(getFrame().getStartDateField().getValue());
+        System.out.println(getFrame().getEndDateField().getValue());
+        System.out.println("safe " + getFrame().getSafeCheckBox().isSelected());
+        System.out.println("seaview " + getFrame().getSeaViewCheckBox().isSelected());
+        System.out.println(getFrame().getBudgetField().getValue());
+        System.out.println(getFrame().getPersonCountField().getValue());
+
     }
 
     public void updateNameButtonClicked() {

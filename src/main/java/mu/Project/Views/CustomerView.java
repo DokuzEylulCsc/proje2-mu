@@ -46,6 +46,20 @@ public class CustomerView extends Frame {
         centerFrame();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                getController().windowClosing();
+            }
+        });
+
+        logoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getController().windowClosing();
+            }
+        });
+
         updateNameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,14 +72,6 @@ public class CustomerView extends Frame {
             public void actionPerformed(ActionEvent e) {
                 getController().updatePasswordButtonClicked();
             }
-        });
-
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                getController().windowClosing();
-            }
-
         });
 
         searchButton.addActionListener(new ActionListener() {
@@ -174,5 +180,4 @@ public class CustomerView extends Frame {
         personCountField = new JDecimalField();
 
     }
-
 }
