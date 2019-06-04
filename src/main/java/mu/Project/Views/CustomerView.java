@@ -15,7 +15,6 @@ public class CustomerView extends Frame {
     private JPanel outerPanel;
     private JPanel accountTab;
     private JPanel reserveTab;
-    private JPanel reservedTab;
     private JButton updatePasswordButton;
     private JTextField nameField;
     private JButton updateNameButton;
@@ -44,6 +43,7 @@ public class CustomerView extends Frame {
     private JLabel starCountLabel;
     private JComboBox citiesComboBox;
     private JButton reserveButton;
+    private JPanel reservedTab;
     public static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public CustomerView(CustomerController controller) {

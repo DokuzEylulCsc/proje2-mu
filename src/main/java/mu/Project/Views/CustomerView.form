@@ -131,21 +131,13 @@
             <children>
               <splitpane id="67c8d">
                 <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
                     <preferred-size width="200" height="200"/>
                   </grid>
                 </constraints>
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="a34b2" class="javax.swing.JTable" binding="reservationTable">
-                    <constraints>
-                      <splitpane position="right"/>
-                    </constraints>
-                    <properties>
-                      <autoResizeMode value="0"/>
-                    </properties>
-                  </component>
                   <grid id="8c167" binding="reservePanel" layout-manager="GridBagLayout">
                     <constraints>
                       <splitpane position="left"/>
@@ -303,30 +295,32 @@
                       </hspacer>
                     </children>
                   </grid>
+                  <scrollpane id="8732e">
+                    <constraints>
+                      <splitpane position="right"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="73b41" class="javax.swing.JTable" binding="reservationTable">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
                 </children>
               </splitpane>
             </children>
           </grid>
-          <grid id="d9ada" binding="reservedTab" layout-manager="BorderLayout" hgap="0" vgap="0">
+          <grid id="8516a" binding="reservedTab" layout-manager="GridBagLayout">
             <constraints>
               <tabbedpane title="Reserved"/>
             </constraints>
             <properties>
-              <name value=""/>
-              <opaque value="true"/>
+              <name value="Reserved"/>
             </properties>
             <border type="none"/>
-            <children>
-              <splitpane id="9fa5c">
-                <constraints border-constraint="Center"/>
-                <properties>
-                  <resizeWeight value="0.66"/>
-                  <visible value="true"/>
-                </properties>
-                <border type="none"/>
-                <children/>
-              </splitpane>
-            </children>
+            <children/>
           </grid>
         </children>
       </tabbedpane>

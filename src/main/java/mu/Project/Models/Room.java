@@ -101,7 +101,7 @@ public class Room implements  Model{
             rows.add(row);
         }
 
-        return new DefaultTableModel(rows, columnNames);
+        return new ReservationTableModel(rows, columnNames);
     }
 
     public void save() {

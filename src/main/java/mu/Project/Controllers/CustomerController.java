@@ -5,6 +5,7 @@ import mu.Project.Logger;
 import mu.Project.Models.*;
 import mu.Project.Views.CustomerView;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.SQLException;
@@ -68,6 +69,7 @@ public class CustomerController extends AccountController {
 
             getFrame().getReservationTable().setModel(tableModel);
             getFrame().getReservationTable().updateUI();
+
 
         } catch (ParseException e) {
             Logger.getInstance().addLog(e);
