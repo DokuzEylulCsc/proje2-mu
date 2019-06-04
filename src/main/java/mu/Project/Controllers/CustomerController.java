@@ -6,6 +6,7 @@ import mu.Project.Models.*;
 import mu.Project.Views.CustomerView;
 
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,6 +23,9 @@ public class CustomerController extends AccountController {
         initializeFrame();
     }
 
+    /**
+     * Set visible after all components initialized from database.
+     */
     private void initializeFrame() {
         setFrame(new CustomerView(this));
         getFrame().setEmailFixedField(getModel().getEmail());
@@ -37,7 +41,7 @@ public class CustomerController extends AccountController {
         getFrame().setVisible(true);
     }
 
-    public void windowClosing() {
+    public void closeProgram() {
         Logger.getInstance().addLog("Trying to close JDBC...");
 
         try {
@@ -72,11 +76,13 @@ public class CustomerController extends AccountController {
         } catch (InvalidDateIntervalException e) {
             Logger.getInstance().addLog(e);
             getFrame().showInvalidDateIntervalAlert();
+
+        } catch (NullPointerException e) {
+            Logger.getInstance().addLog("Search button at CustomerView.reserveTab clicked with an null value.");
+            getFrame().showEmptyRequiredFieldAlert();
         }
 
     }
-
-
 
     public void updateNameButtonClicked() {
         String newName = getFrame().getNameField();

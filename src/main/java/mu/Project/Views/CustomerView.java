@@ -48,6 +48,7 @@ public class CustomerView extends Frame {
         setContentPane(outerPanel);
         pack();
         centerFrame();
+        setMinimumSize(new Dimension(775, 420));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         addWindowListener(new WindowAdapter() {
@@ -87,8 +88,16 @@ public class CustomerView extends Frame {
     }
 
     public void close() {
-        getController().windowClosing();
+        getController().closeProgram();
         dispose();
+    }
+
+    public void showEmptyRequiredFieldAlert() {
+        JOptionPane.showMessageDialog(this,
+                "Please fill in all required fields to search!",
+                "Empty field",
+                JOptionPane.WARNING_MESSAGE
+        );
     }
 
     public void showInvalidDateFormatAlert() {
@@ -218,5 +227,6 @@ public class CustomerView extends Frame {
         // maximum of 7 stars
         spinnerModel = new SpinnerNumberModel(0, 0, 7, 1);
         starCountSpinner = new JSpinner(spinnerModel);
+
     }
 }
