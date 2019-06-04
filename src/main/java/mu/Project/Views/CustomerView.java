@@ -1,8 +1,12 @@
 package mu.Project.Views;
 
 import mu.Project.Controllers.CustomerController;
+
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class CustomerView extends Frame {
     private JTabbedPane tabbedPane;
@@ -19,9 +23,21 @@ public class CustomerView extends Frame {
     private JLabel passwordLabel;
     private JPanel accountPanel;
     private JLabel emailFixedField;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JCheckBox checkBox1;
+    private JCheckBox seaViewCheckBox;
+    private JCheckBox safeCheckBox;
+    private JFormattedTextField startDateField;
+    private JFormattedTextField endDateField;
+    private JLabel startDateLabel;
+    private JLabel endDateLabel;
+    private JFormattedTextField budgetField;
+    private JLabel personCountLabel;
+    private JLabel budgetLabel;
+    private JFormattedTextField personCountField;
+    private JButton logoutButton;
+    private JButton searchButton;
+    private JPanel reservePanel;
+    private JTable reservationTable;
+    public static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public CustomerView(CustomerController controller) {
         setController(controller);
@@ -51,6 +67,21 @@ public class CustomerView extends Frame {
             }
 
         });
+
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getController().searchButtonClicked();
+            }
+        });
+    }
+
+    public void showInvalidDateAlert() {
+        JOptionPane.showMessageDialog(this,
+                "Invalid date format!",
+                "Failed",
+                JOptionPane.WARNING_MESSAGE
+        );
     }
 
     public void showInvalidPasswordAlert() {
@@ -89,7 +120,8 @@ public class CustomerView extends Frame {
         getDefaultCloseOperation();
     }
 
-    @Override public CustomerController getController() {
+    @Override
+    public CustomerController getController() {
         return (CustomerController) super.getController();
     }
 
@@ -108,4 +140,39 @@ public class CustomerView extends Frame {
     public void setEmailFixedField(String email) {
         this.emailFixedField.setText(email);
     }
+
+    public JCheckBox getSafeCheckBox() {
+        return safeCheckBox;
+    }
+
+    public JCheckBox getSeaViewCheckBox() {
+        return seaViewCheckBox;
+    }
+
+    public JFormattedTextField getPersonCountField() {
+        return personCountField;
+    }
+
+    public JFormattedTextField getEndDateField() {
+        return endDateField;
+    }
+
+    public JFormattedTextField getStartDateField() {
+        return startDateField;
+    }
+
+    public JFormattedTextField getBudgetField() {
+        return budgetField;
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+
+        startDateField = new JDateField();
+        endDateField = new JDateField();
+        budgetField = new JDecimalField();
+        personCountField = new JDecimalField();
+
+    }
+
 }
