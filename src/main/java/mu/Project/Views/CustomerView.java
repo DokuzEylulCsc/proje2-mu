@@ -3,6 +3,8 @@ package mu.Project.Views;
 import mu.Project.Controllers.CustomerController;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.DateFormat;
@@ -41,6 +43,7 @@ public class CustomerView extends Frame {
     private JLabel cityLabel;
     private JLabel starCountLabel;
     private JComboBox citiesComboBox;
+    private JButton reserveButton;
     public static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public CustomerView(CustomerController controller) {
@@ -83,6 +86,15 @@ public class CustomerView extends Frame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 getController().searchButtonClicked();
+            }
+        });
+
+        // make full screen when clicked to other tabs
+        // which requires larger space
+        tabbedPane.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                CustomerView.super.makeFullScreen();
             }
         });
     }

@@ -20,6 +20,14 @@ public abstract class Frame extends JFrame {
         setLocation(dx, dy);
     }
 
+    void makeFullScreen() {
+        Dimension windowSize = getSize();
+        GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        Rectangle maximumWindowBounds = graphicsEnvironment.getMaximumWindowBounds();
+        setSize(maximumWindowBounds.width, maximumWindowBounds.height);
+        centerFrame();
+    }
+
     public Controller getController() {
         return controller;
     }
