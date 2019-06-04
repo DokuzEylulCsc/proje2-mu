@@ -2,16 +2,15 @@ package mu.Project.Views;
 
 import mu.Project.Logger;
 
-import javax.swing.*;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
-import java.awt.event.FocusEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-class JDateField extends JFormattedTextField {
-    private final static DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+public class JDateField extends JCustomField {
+
+    public final static DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
     JDateField() {
         super(format);
@@ -27,18 +26,5 @@ class JDateField extends JFormattedTextField {
         }
 
         setFormatterFactory(formatterFactory);
-    }
-
-    protected void processFocusEvent(FocusEvent e) {
-        super.processFocusEvent(e);
-
-        if (!e.isTemporary()) {
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    selectAll();
-                }
-            });
-        }
     }
 }
