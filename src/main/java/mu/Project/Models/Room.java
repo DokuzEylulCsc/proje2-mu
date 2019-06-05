@@ -52,7 +52,7 @@ public class Room implements Model{
      * @see ReservationTableModel
      * @throws InvalidDateIntervalException if startDate <= now or startDate >= endDate
      */
-    public static DefaultTableModel getAvailableRoomsAsTableModel(Integer maxBudget, Integer personCount, Boolean seaView, Boolean safe,
+    public static ReservationTableModel getAvailableRoomsAsTableModel(Integer maxBudget, Integer personCount, Boolean seaView, Boolean safe,
                                                                   String city, Integer starCount, Date startDate, Date endDate)
             throws InvalidDateIntervalException {
 
@@ -60,7 +60,7 @@ public class Room implements Model{
             throw new InvalidDateIntervalException(startDate, endDate);
         }
 
-        DefaultTableModel tableModel = null;
+        ReservationTableModel tableModel = null;
         try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(allAvailableFilteredQuery)) {
             preparedStatement.setInt(1, maxBudget);
             preparedStatement.setInt(2, personCount);
@@ -76,7 +76,7 @@ public class Room implements Model{
             preparedStatement.setString(9, startDateString);
             preparedStatement.setString(10, endDateString);
 
-            tableModel = buildTableModel(preparedStatement.executeQuery());
+            tableModel = new ReservationTableModel(buildTableModelData(preparedStatement.executeQuery()));
 
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
@@ -85,7 +85,13 @@ public class Room implements Model{
         return tableModel;
     }
 
-    public static DefaultTableModel buildTableModel(ResultSet resultSet) throws SQLException {
+    /**
+     *
+     * @param resultSet
+     * @return
+     * @throws SQLException
+     */
+    public static Vector<Vector<Object>> buildTableModelData(ResultSet resultSet) throws SQLException {
         ResultSetMetaData metaData = resultSet.getMetaData();
 
         Vector<Vector<Object>> rows = new Vector<Vector<Object>>();
@@ -97,7 +103,7 @@ public class Room implements Model{
             rows.add(row);
         }
 
-        return new ReservationTableModel(rows);
+        return rows;
     }
 
     public void save() {

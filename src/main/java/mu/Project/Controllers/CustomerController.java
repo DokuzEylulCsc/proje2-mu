@@ -103,6 +103,7 @@ public class CustomerController extends AccountController {
             Reservation.reserveRoom(getModel(), hotel_name, room_number, person_count, startDate, endDate);
             getFrame().showReservationSuccessfulAlert(hotel_name, room_number, startDateString, endDateString);
             searchButtonClicked();
+            refreshReservedTableButtonClicked();
 
         } catch (ParseException e) {
             Logger.getInstance().addLog(e);
@@ -116,12 +117,23 @@ public class CustomerController extends AccountController {
     public void cancelReservationButtonClicked() {
         int row = getFrame().getReservedTable().getSelectedRow();
 
-    }
+        String startDate = (String) getFrame().getReservedTable().getValueAt(row, 0);
+        String hotel_name = (String) getFrame().getReservedTable().getValueAt(row, 2);
+        Integer room_number = (Integer) getFrame().getReservedTable().getValueAt(row, 5);
 
+        try {
+            Reservation.removeReservation(getModel(), startDate, hotel_name, room_number);
+            refreshReservedTableButtonClicked();
+        } catch (SQLException e) {
+            Logger.getInstance().addLog(e);
+            getFrame().showGeneralInternalErrorAlert();
+        }
+    }
 
     public void refreshReservedTableButtonClicked() {
         String email = getModel().getEmail();
-        DefaultTableModel tableModel = Reservation.getReservedRoomsAsTableModel(email);
+        DefaultTableModel tableModel = Reservation.getReservedRoomsAsTableModel(email, dateFormat);
+
         getFrame().getReservedTable().setModel(tableModel);
         getFrame().getReservedTable().updateUI();
     }
