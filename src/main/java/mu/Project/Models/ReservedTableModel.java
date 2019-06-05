@@ -3,8 +3,10 @@ package mu.Project.Models;
 import javax.swing.table.DefaultTableModel;
 import java.util.Vector;
 
-public class ReservationTableModel extends DefaultTableModel {
+public class ReservedTableModel extends DefaultTableModel {
     private static Vector<String> columnNames = new Vector<>() {{
+        add("Start Date");
+        add("End Date");
         add("Hotel Name");
         add("Stars");
         add("Room Type");
@@ -19,7 +21,7 @@ public class ReservationTableModel extends DefaultTableModel {
         add("Extra Services");
     }};
 
-    public ReservationTableModel(Vector<Vector<Object>> data) {
+    public ReservedTableModel(Vector<Vector<Object>> data) {
         super(data, columnNames);
     }
 
