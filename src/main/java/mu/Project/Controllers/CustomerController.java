@@ -1,6 +1,5 @@
 package mu.Project.Controllers;
 
-import mu.Project.Connector;
 import mu.Project.Logger;
 import mu.Project.Models.*;
 import mu.Project.Views.CustomerView;
@@ -120,32 +119,43 @@ public class CustomerController extends AccountController {
     public void cancelReservationButtonClicked() {
         int row = getFrame().getReservedTable().getSelectedRow();
 
-        String startDate = (String) getFrame().getReservedTable().getValueAt(row, 0);
-        String hotel_name = (String) getFrame().getReservedTable().getValueAt(row, 2);
-        Integer room_number = (Integer) getFrame().getReservedTable().getValueAt(row, 5);
-
-        int confirmation = getFrame().showYesNoOptionPane(
-                String.format("Are you sure you want cancel your reservation for room number %d at %s?",
-                        room_number, hotel_name)
-        );
-
-        if (confirmation == JOptionPane.NO_OPTION || confirmation == JOptionPane.CLOSED_OPTION) {
-            Logger.getInstance().addLog(String.format("Aborting reservation canceling request of %s for room %d at %s",
-                    getModel().getEmail(), room_number, hotel_name));
-            return;
-        }
+        String startDateString = (String) getFrame().getReservedTable().getValueAt(row, 0);
+        String hotel_name = (String) getFrame().getReservedTable().getValueAt(row, 3);
+        Integer room_number = (Integer) getFrame().getReservedTable().getValueAt(row, 6);
 
         try {
-            Reservation.removeReservation(getModel(), dateFormat.parse(startDate), hotel_name, room_number);
-            getFrame().showReservationCancelationSuccessfulAlert(hotel_name, room_number, startDate);
+            Date startDate = dateFormat.parse(startDateString);
+
+            // compare to now, if reservation is in past, don't perform deletion
+            if (new Date().compareTo(startDate) >= 0) {
+                getFrame().showPastReservationCancelRequestAlert();
+                return;
+            }
+
+            int confirmation = getFrame().showYesNoOptionPane(
+                    String.format("Are you sure you want cancel your reservation for room number %d at %s?",
+                            room_number, hotel_name)
+            );
+
+            if (confirmation == JOptionPane.NO_OPTION || confirmation == JOptionPane.CLOSED_OPTION) {
+                Logger.getInstance().addLog(String.format("Aborting reservation canceling request of %s for room %d at %s",
+                        getModel().getEmail(), room_number, hotel_name));
+                return;
+            }
+
+            Reservation.removeReservation(getModel(), startDate, hotel_name, room_number);
+            getFrame().showReservationCancelationSuccessfulAlert(hotel_name, room_number, startDateString);
             refreshReservedTableButtonClicked();
+
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
             getFrame().showGeneralInternalErrorAlert();
+
         } catch (ParseException e) {
             Logger.getInstance().addLog("Couldn't parse date from reservedTable!");
             Logger.getInstance().addLog(e);
             getFrame().showGeneralInternalErrorAlert();
+            return;
         }
     }
 

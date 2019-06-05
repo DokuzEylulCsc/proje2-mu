@@ -136,6 +136,14 @@ public class CustomerView extends Frame {
         );
     }
 
+    public void showPastReservationCancelRequestAlert() {
+        JOptionPane.showMessageDialog(this,
+                "We can't cancel a past reservation!",
+                "Failed",
+                JOptionPane.WARNING_MESSAGE
+        );
+    }
+
     public void showReservationCancelationSuccessfulAlert(String hotel_name, Integer room_number, String startDate) {
         JOptionPane.showMessageDialog(this,
                 String.format("Your reservation at %s for room number %d at %s successfully cancelled.",
