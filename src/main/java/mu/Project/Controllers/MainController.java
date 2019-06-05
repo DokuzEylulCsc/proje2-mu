@@ -1,7 +1,10 @@
 package mu.Project.Controllers;
 
+import mu.Project.Connector;
 import mu.Project.Logger;
 import mu.Project.Models.Account;
+
+import java.sql.SQLException;
 
 public class MainController extends Controller {
 
@@ -10,6 +13,17 @@ public class MainController extends Controller {
 
     public void runApp() {
         setLoginController(new LoginController(this));
+    }
+
+    public void closeProgram() {
+        Logger.getInstance().addLog("Trying to close JDBC...");
+
+        try {
+            Connector.getInstance().getConnection().close();
+            Logger.getInstance().addLog("Closed JDBC successfully.");
+        } catch (SQLException e) {
+            Logger.getInstance().addLog(e);
+        }
     }
 
     public void loginWindowClosed() {

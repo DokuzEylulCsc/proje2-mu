@@ -1,10 +1,11 @@
 package mu.Project.Views;
 
+import mu.Project.Controllers.AdminController;
 import mu.Project.NotImplementedException;
 
 public class AdminView extends Frame {
 
-    public AdminView() {
+    public AdminView(AdminController controller) {
         throw new NotImplementedException();
     }
 

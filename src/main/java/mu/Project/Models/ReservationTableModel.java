@@ -9,7 +9,7 @@ public class ReservationTableModel extends DefaultTableModel {
         add("Stars");
         add("Room Type");
         add("Room Number");
-        add("Price");
+        add("Daily Price");
         add("Bed Space");
         add("Sea View");
         add("Safe");

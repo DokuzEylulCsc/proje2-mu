@@ -23,7 +23,7 @@ public class Reservation implements Model {
             "(SELECT id FROM accounts WHERE email = ?), ?, ?, ?)";
 
     private final static String getReservedRoomsSQL = "SELECT reservations.start_date, reservations.end_date,\n" +
-            "hotels.name, hotels.stars, room_type.type_name, rooms.room_number, room_type.price,\n" +
+            "reservations.person_count, hotels.name, hotels.stars, room_type.type_name, rooms.room_number, room_type.price,\n" +
             "room_type.double_bed * 2 + room_type.single_bed, room_type.sea_view, room_type.safe, room_type.air_conditioner_count,\n" +
             "room_type.television_count, room_type.minibar_count, room_type.extra_services_description FROM reservations\n" +
             "INNER JOIN rooms ON (rooms.id = reservations.room_id)\n" +
@@ -70,11 +70,11 @@ public class Reservation implements Model {
      * @param room_number
      * @throws SQLException
      */
-    public static void removeReservation(Account account, String startDate, String hotel_name, Integer room_number)
+    public static void removeReservation(Account account, Date startDate, String hotel_name, Integer room_number)
             throws SQLException {
         PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(deleteReservationSQL);
         preparedStatement.setString(1, account.getEmail());
-        preparedStatement.setString(2, startDate);
+        preparedStatement.setString(2, dateFormat.format(startDate));
         preparedStatement.setString(3, hotel_name);
         preparedStatement.setInt(4, room_number);
 

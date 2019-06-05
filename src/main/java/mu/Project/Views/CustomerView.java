@@ -3,8 +3,6 @@ package mu.Project.Views;
 import mu.Project.Controllers.CustomerController;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.DateFormat;
@@ -116,20 +114,16 @@ public class CustomerView extends Frame {
                 getController().refreshReservedTableButtonClicked();
             }
         });
-
-        // make full screen when clicked to other tabs
-        // which requires larger space
-        tabbedPane.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                CustomerView.super.makeFullScreen();
-            }
-        });
     }
 
     public void close() {
-        getController().closeProgram();
+        getController().windowClosing();
         dispose();
+    }
+
+    public int showYesNoOptionPane(String questionMessage) {
+        return JOptionPane.showConfirmDialog(this, questionMessage, "Confirm",
+                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
     }
 
     public void showReservationSuccessfulAlert(String hotel_name, Integer room_number, String startDate, String endDate) {
@@ -140,6 +134,14 @@ public class CustomerView extends Frame {
                 "Reservation Successful",
                 JOptionPane.PLAIN_MESSAGE
         );
+    }
+
+    public void showReservationCancelationSuccessfulAlert(String hotel_name, Integer room_number, String startDate) {
+        JOptionPane.showMessageDialog(this,
+                String.format("Your reservation at %s for room number %d at %s successfully cancelled.",
+                        startDate, room_number, hotel_name),
+                "Reservation Canceled",
+                JOptionPane.PLAIN_MESSAGE);
     }
 
     public void showEmptyRequiredFieldAlert() {
@@ -160,8 +162,8 @@ public class CustomerView extends Frame {
 
     public void showInvalidDateIntervalAlert() {
         JOptionPane.showMessageDialog(this,
-                "Invalid date interval!" +
-                        "Start date should be in future and end date shouldn't be less than or equal to start date.",
+                String.format("Invalid date interval!%n" +
+                        "Start date should be in future and end date shouldn't be less than or equal to start date."),
                 "Failed",
                 JOptionPane.WARNING_MESSAGE
         );

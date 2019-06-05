@@ -7,4 +7,8 @@ public class AdminController extends AccountController {
     public AdminController(Account model, MainController parent) {
         throw new NotImplementedException();
     }
+
+    public void windowClosing() {
+        throw new NotImplementedException();
+    }
 }

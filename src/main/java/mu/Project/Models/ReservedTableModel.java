@@ -7,11 +7,12 @@ public class ReservedTableModel extends DefaultTableModel {
     private static Vector<String> columnNames = new Vector<>() {{
         add("Start Date");
         add("End Date");
+        add("Person Count");
         add("Hotel Name");
         add("Stars");
         add("Room Type");
         add("Room Number");
-        add("Price");
+        add("Daily Price");
         add("Bed Space");
         add("Sea View");
         add("Safe");
