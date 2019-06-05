@@ -4,7 +4,6 @@ import mu.Project.Connector;
 import mu.Project.Logger;
 import mu.Project.NotImplementedException;
 
-import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -12,13 +11,14 @@ import java.util.Date;
 import java.util.Vector;
 
 
-public class Room implements  Model{
+public class Room implements Model{
 
     private final static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    private final static String queryAllFiltered = "SELECT hotels.name, hotels.stars, room_type.type_name, " +
-            "rooms.room_number, room_type.price, room_type.double_bed * 2 + " +
-            "room_type.single_bed, room_type.safe, room_type.sea_view FROM rooms\n" +
+    private final static String allAvailableFilteredQuery = "SELECT hotels.name, hotels.stars, room_type.type_name,\n" +
+            "rooms.room_number, room_type.price, room_type.double_bed * 2 +\n" +
+            "room_type.single_bed, room_type.sea_view, room_type.safe, room_type.air_conditioner_count,\n" +
+            "room_type.television_count, room_type.minibar_count, room_type.extra_services_description FROM rooms\n" +
             "INNER JOIN hotels ON (rooms.hotel_id = hotels.id)\n" +
             "INNER JOIN room_type ON (room_type.id = rooms.room_type_id)\n" +
             "WHERE room_type.price  <= ? AND\n" +
@@ -47,10 +47,10 @@ public class Room implements  Model{
      * @param startDate Date object
      * @param endDate Date object
      * @return Correspondent table model.
-     * @see DefaultTableModel
+     * @see ReservationTableModel
      * @throws InvalidDateIntervalException if startDate <= now or startDate >= endDate
      */
-    public static DefaultTableModel getAvailableRoomsAsTableModel(Integer maxBudget, Integer personCount, Boolean seaView, Boolean safe,
+    public static ReservationTableModel getAvailableRoomsAsTableModel(Integer maxBudget, Integer personCount, Boolean seaView, Boolean safe,
                                                                   String city, Integer starCount, Date startDate, Date endDate)
             throws InvalidDateIntervalException {
 
@@ -58,8 +58,8 @@ public class Room implements  Model{
             throw new InvalidDateIntervalException(startDate, endDate);
         }
 
-        DefaultTableModel tableModel = null;
-        try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(queryAllFiltered)) {
+        ReservationTableModel tableModel = null;
+        try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(allAvailableFilteredQuery)) {
             preparedStatement.setInt(1, maxBudget);
             preparedStatement.setInt(2, personCount);
             preparedStatement.setInt(3, (seaView) ? 1 : 0);
@@ -84,13 +84,8 @@ public class Room implements  Model{
     }
 
 
-    public static DefaultTableModel buildTableModel(ResultSet resultSet) throws SQLException {
+    public static ReservationTableModel buildTableModel(ResultSet resultSet) throws SQLException {
         ResultSetMetaData metaData = resultSet.getMetaData();
-
-        Vector<String> columnNames = new Vector<>();
-        for (int i = 1; i <= metaData.getColumnCount(); i++) {
-            columnNames.add(metaData.getColumnName(i));
-        }
 
         Vector<Vector<Object>> rows = new Vector<Vector<Object>>();
         while (resultSet.next()) {
@@ -101,7 +96,7 @@ public class Room implements  Model{
             rows.add(row);
         }
 
-        return new ReservationTableModel(rows, columnNames);
+        return new ReservationTableModel(rows);
     }
 
     public void save() {
