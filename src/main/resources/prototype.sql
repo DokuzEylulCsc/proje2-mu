@@ -1,390 +1,373 @@
-INSERT INTO hotels (name, stars, city, type)
-VALUES
-('Hotel Hilton', 5, 'İzmir', 'Hotel'),
-('Hotel Swissotel', 5, 'İzmir', 'Hotel'),
-('Ramada Plaza', 4, 'Antalya', 'Hotel'),
-('Park Inn', 4, 'İzmir', 'Hotel'),
-('ibis Hotel', 3, 'İzmir', 'Hotel'),
-('Sc Inn Butik', 3, 'İstanbul', 'Hotel'),
-('Konak Saray Agora', 2, 'İzmir', 'Hotel'),
-('Ege Güneş', 2, 'İzmir', 'Hotel'),
-('Perla Arya', 1, 'İstanbul', 'Hotel'),
-('Vita Park', 1, 'Balıkesir', 'Hotel'),
-('Key Hotel', 0, 'Ankara', 'Hotel'),
-('Hotel Apart', 0, 'Muğla', 'Hotel');
-
-INSERT INTO room_type (hotel_id, type_name, price, sea_view, double_bed, single_bed, safe, air_conditioner_count, minibar_count, television_count, extra_services_description)
-VALUES
-((SELECT id from hotels where name = 'Hotel Hilton'), 'Visitor Room 1', 550, 1, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Hilton'), 'Visitor Room 2', 500, 0, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Hilton'), 'Visitor Room 3', 550, 1, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Hilton'), 'Visitor Room 4', 500, 0, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Hilton'), 'Family Room 1', 600, 0, 1, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Hilton'), 'Family Room 2', 550, 0, 1, 1, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Hilton'), 'Single Bed Room', 475, 1, 0, 1, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Hilton'), 'Executive Suit', 2820, 1, 0, 2, 1, 2, 2, 2, null),
-((SELECT id from hotels where name = 'Hotel Hilton'), 'Presidential Suit', 4250, 1, 1, 0, 1, 3, 3, 3, null),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 'Visitor Room 1', 600, 1, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 'Visitor Room 2', 520, 0, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 'Visitor Room 3', 590, 1, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 'Visitor Room 4', 530, 0, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 'Family Room 1', 610, 0, 1, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 'Family Room 2', 540, 0, 1, 1, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 'Single Bed Room', 580, 1, 0, 1, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 'Executive Suit', 2850, 1, 0, 2, 1, 2, 2, 2, null),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 'Presidential Suit', 4500, 1, 1, 0, 1, 3, 3, 3, null),
-((SELECT id from hotels where name = 'Ramada Plaza'), 'Visitor Room 1', 500, 1, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Ramada Plaza'), 'Visitor Room 2', 450, 0, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Ramada Plaza'), 'Visitor Room 3', 500, 1, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Ramada Plaza'), 'Visitor Room 4', 450, 0, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Ramada Plaza'), 'Family Room 1', 550, 0, 1, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Ramada Plaza'), 'Family Room 2', 475, 0, 1, 1, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Ramada Plaza'), 'Single Bed Room', 510, 1, 0, 1, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Ramada Plaza'), 'Junior Suit', 1500, 1, 1, 0, 1, 2, 1, 1, null),
-((SELECT id from hotels where name = 'Park Inn'), 'Visitor Room 1', 500, 1, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Park Inn'), 'Visitor Room 2', 450, 0, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Park Inn'), 'Visitor Room 3', 500, 1, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Park Inn'), 'Visitor Room 4', 450, 0, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Park Inn'), 'Family Room 1', 525, 0, 1, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Park Inn'), 'Family Room 2', 470, 0, 1, 1, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Park Inn'), 'Single Bed Room', 510, 1, 0, 1, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Park Inn'), 'Junior Suit', 1500, 1, 1, 0, 1, 2, 1, 1, null),
-((SELECT id from hotels where name = 'ibis Hotel'), 'Standard Room 1', 475, 1, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'ibis Hotel'), 'Standard Room 2', 425, 0, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'ibis Hotel'), 'Standard Room 4', 425, 1, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'ibis Hotel'), 'Standard Room 3', 475, 0, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'ibis Hotel'), 'Family Room 1', 500, 0, 1, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'ibis Hotel'), 'Family Room 2', 450, 0, 1, 1, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 'Standard Room 1', 475, 1, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 'Standard Room 2', 425, 0, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 'Standard Room 4', 425, 1, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 'Standard Room 3', 475, 0, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 'Family Room 1', 510, 0, 1, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 'Family Room 2', 440, 0, 1, 1, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 'Standard Room 1', 435, 1, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 'Standard Room 2', 425, 0, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 'Standard Room 3', 435, 1, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 'Standard Room 4', 400, 0, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 'Family Room 1', 450, 0, 1, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 'Family Room 2', 400, 0, 1, 1, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Ege Güneş'), 'Standard Room 3', 375, 1, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Ege Güneş'), 'Standard Room 2', 350, 0, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Ege Güneş'), 'Standard Room 1', 375, 1, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Ege Güneş'), 'Standard Room 4', 350, 0, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Ege Güneş'), 'Family Room 1', 425, 0, 1, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Ege Güneş'), 'Family Room 2', 375, 0, 1, 1, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Perla Arya'), 'Standard Room 3', 175, 1, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Perla Arya'), 'Standard Room 4', 150, 0, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Perla Arya'), 'Standard Room 2', 152, 1, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Perla Arya'), 'Standard Room 1', 175, 0, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Perla Arya'), 'Family Room 1', 200, 0, 1, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Perla Arya'), 'Family Room 2', 170, 0, 1, 1, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Vita Park'), 'Standard Room 3', 125, 0, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Vita Park'), 'Standard Room 2', 100, 0, 1, 0, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Vita Park'), 'Standard Room 1', 125, 0, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Vita Park'), 'Standard Room 4', 100, 0, 0, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Vita Park'), 'Family Room 1', 150, 0, 1, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Vita Park'), 'Family Room 2', 115, 0, 1, 1, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Key Hotel'), 'Standard Room 3', 100, 0, 1, 0, 0, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Key Hotel'), 'Standard Room 2', 90, 0, 1, 0, 0, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Key Hotel'), 'Standard Room 1', 100, 0, 0, 2, 0, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Key Hotel'), 'Standard Room 4', 90, 0, 0, 2, 0, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Key Hotel'), 'Family Room 1', 115, 0, 1, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Key Hotel'), 'Family Room 2', 100, 0, 1, 1, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Apart'), 'Standard Room 3', 90, 0, 1, 0, 0, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Apart'), 'Standard Room 2', 75, 0, 1, 0, 0, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Apart'), 'Standard Room 1', 90, 0, 0, 2, 0, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Apart'), 'Standard Room 4', 75, 0, 0, 2, 0, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Apart'), 'Family Room 1', 95, 0, 1, 2, 1, 1, 1, 1, null),
-((SELECT id from hotels where name = 'Hotel Apart'), 'Family Room 2', 85, 0, 1, 1, 1,1, 1, 1, null);
-
-INSERT INTO rooms (hotel_id, room_number, room_type_id)
-VALUES
-((SELECT id from hotels where name = 'Hotel Hilton'), 001, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 002, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 003, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 004, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 005, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 006, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 007, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 008, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 009, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 010, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 101, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 102, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 103, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 104, (SELECT id FROM room_type WHERE type_name = 'Single Bed Room' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 105, (SELECT id FROM room_type WHERE type_name = 'Single Bed Room' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 106, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 107, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 108, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 109, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 110, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 201, (SELECT id FROM room_type WHERE type_name = 'Executive Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 202, (SELECT id FROM room_type WHERE type_name = 'Executive Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 203, (SELECT id FROM room_type WHERE type_name = 'Executive Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 301, (SELECT id FROM room_type WHERE type_name = 'Presidential Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Hilton'), 302, (SELECT id FROM room_type WHERE type_name = 'Presidential Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Hilton'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 001, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 002, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 003, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 004, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 005, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 006, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 007, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 008, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 009, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 010, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 101, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 102, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 103, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 104, (SELECT id FROM room_type WHERE type_name = 'Single Bed Room' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 105, (SELECT id FROM room_type WHERE type_name = 'Single Bed Room' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 106, (SELECT id FROM room_type WHERE type_name = 'Single Bed Room' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 107, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 108, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 109, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 110, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 201, (SELECT id FROM room_type WHERE type_name = 'Executive Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 202, (SELECT id FROM room_type WHERE type_name = 'Executive Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 203, (SELECT id FROM room_type WHERE type_name = 'Executive Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 301, (SELECT id FROM room_type WHERE type_name = 'Presidential Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Hotel Swissotel'), 302, (SELECT id FROM room_type WHERE type_name = 'Presidential Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Swissotel'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 001, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 002, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 003, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 004, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 005, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 006, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 007, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 008, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 009, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 010, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 101, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 102, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 103, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 104, (SELECT id FROM room_type WHERE type_name = 'Single Bed Room' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 105, (SELECT id FROM room_type WHERE type_name = 'Single Bed Room' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 106, (SELECT id FROM room_type WHERE type_name = 'Single Bed Room' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 107, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 108, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 109, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 110, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 201, (SELECT id FROM room_type WHERE type_name = 'Junior Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 202, (SELECT id FROM room_type WHERE type_name = 'Junior Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Ramada Plaza'), 203, (SELECT id FROM room_type WHERE type_name = 'Junior Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ramada Plaza'))),
-((SELECT id from hotels where name = 'Park Inn'), 001, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 002, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 003, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 004, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 005, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 006, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 007, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 008, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 009, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 010, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 101, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 102, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 103, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 104, (SELECT id FROM room_type WHERE type_name = 'Single Bed Room' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 105, (SELECT id FROM room_type WHERE type_name = 'Single Bed Room' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 106, (SELECT id FROM room_type WHERE type_name = 'Single Bed Room' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 107, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 108, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 109, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 110, (SELECT id FROM room_type WHERE type_name = 'Visitor Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 201, (SELECT id FROM room_type WHERE type_name = 'Junior Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 202, (SELECT id FROM room_type WHERE type_name = 'Junior Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'Park Inn'), 203, (SELECT id FROM room_type WHERE type_name = 'Junior Suit' AND room_type.hotel_id = (SELECT id from hotels where name = 'Park Inn'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 001, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 002, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 003, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 004, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 005, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 006, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 007, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 008, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 009, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 010, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 101, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 102, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 103, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 104, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 105, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 106, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 107, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 108, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 109, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'ibis Hotel'), 110, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'ibis Hotel'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 001, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 002, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 003, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 004, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 005, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 006, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 007, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 008, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 009, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 010, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 101, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 102, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 103, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 104, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 105, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 106, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 107, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 108, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 109, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Sc Inn Butik'), 110, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Sc Inn Butik'))),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 001, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Konak Saray Agora'))),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 002, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Konak Saray Agora'))),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 003, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Konak Saray Agora'))),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 004, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Konak Saray Agora'))),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 005, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Konak Saray Agora'))),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 006, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Konak Saray Agora'))),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 007, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Konak Saray Agora'))),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 008, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Konak Saray Agora'))),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 009, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Konak Saray Agora'))),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 010, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Konak Saray Agora'))),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 101, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Konak Saray Agora'))),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 102, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Konak Saray Agora'))),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 103, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Konak Saray Agora'))),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 104, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Konak Saray Agora'))),
-((SELECT id from hotels where name = 'Konak Saray Agora'), 105, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Konak Saray Agora'))),
-((SELECT id from hotels where name = 'Ege Güneş'), 001, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ege Güneş'))),
-((SELECT id from hotels where name = 'Ege Güneş'), 002, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ege Güneş'))),
-((SELECT id from hotels where name = 'Ege Güneş'), 003, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ege Güneş'))),
-((SELECT id from hotels where name = 'Ege Güneş'), 004, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ege Güneş'))),
-((SELECT id from hotels where name = 'Ege Güneş'), 005, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ege Güneş'))),
-((SELECT id from hotels where name = 'Ege Güneş'), 006, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ege Güneş'))),
-((SELECT id from hotels where name = 'Ege Güneş'), 007, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ege Güneş'))),
-((SELECT id from hotels where name = 'Ege Güneş'), 008, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ege Güneş'))),
-((SELECT id from hotels where name = 'Ege Güneş'), 009, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ege Güneş'))),
-((SELECT id from hotels where name = 'Ege Güneş'), 010, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ege Güneş'))),
-((SELECT id from hotels where name = 'Ege Güneş'), 101, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ege Güneş'))),
-((SELECT id from hotels where name = 'Ege Güneş'), 102, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ege Güneş'))),
-((SELECT id from hotels where name = 'Ege Güneş'), 103, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ege Güneş'))),
-((SELECT id from hotels where name = 'Ege Güneş'), 104, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ege Güneş'))),
-((SELECT id from hotels where name = 'Ege Güneş'), 105, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Ege Güneş'))),
-((SELECT id from hotels where name = 'Perla Arya'), 001, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Perla Arya'))),
-((SELECT id from hotels where name = 'Perla Arya'), 002, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Perla Arya'))),
-((SELECT id from hotels where name = 'Perla Arya'), 003, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Perla Arya'))),
-((SELECT id from hotels where name = 'Perla Arya'), 004, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Perla Arya'))),
-((SELECT id from hotels where name = 'Perla Arya'), 005, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Perla Arya'))),
-((SELECT id from hotels where name = 'Perla Arya'), 006, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Perla Arya'))),
-((SELECT id from hotels where name = 'Perla Arya'), 007, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Perla Arya'))),
-((SELECT id from hotels where name = 'Perla Arya'), 008, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Perla Arya'))),
-((SELECT id from hotels where name = 'Perla Arya'), 009, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Perla Arya'))),
-((SELECT id from hotels where name = 'Perla Arya'), 010, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Perla Arya'))),
-((SELECT id from hotels where name = 'Perla Arya'), 101, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Perla Arya'))),
-((SELECT id from hotels where name = 'Perla Arya'), 102, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Perla Arya'))),
-((SELECT id from hotels where name = 'Perla Arya'), 103, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Perla Arya'))),
-((SELECT id from hotels where name = 'Perla Arya'), 104, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Perla Arya'))),
-((SELECT id from hotels where name = 'Perla Arya'), 105, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Perla Arya'))),
-((SELECT id from hotels where name = 'Vita Park'), 001, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Vita Park'))),
-((SELECT id from hotels where name = 'Vita Park'), 002, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Vita Park'))),
-((SELECT id from hotels where name = 'Vita Park'), 003, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Vita Park'))),
-((SELECT id from hotels where name = 'Vita Park'), 004, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Vita Park'))),
-((SELECT id from hotels where name = 'Vita Park'), 005, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Vita Park'))),
-((SELECT id from hotels where name = 'Vita Park'), 006, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Vita Park'))),
-((SELECT id from hotels where name = 'Vita Park'), 007, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Vita Park'))),
-((SELECT id from hotels where name = 'Vita Park'), 008, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Vita Park'))),
-((SELECT id from hotels where name = 'Vita Park'), 009, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Vita Park'))),
-((SELECT id from hotels where name = 'Vita Park'), 010, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Vita Park'))),
-((SELECT id from hotels where name = 'Vita Park'), 101, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Vita Park'))),
-((SELECT id from hotels where name = 'Vita Park'), 102, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Vita Park'))),
-((SELECT id from hotels where name = 'Vita Park'), 103, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Vita Park'))),
-((SELECT id from hotels where name = 'Vita Park'), 104, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Vita Park'))),
-((SELECT id from hotels where name = 'Vita Park'), 105, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Vita Park'))),
-((SELECT id from hotels where name = 'Key Hotel'), 001, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Key Hotel'))),
-((SELECT id from hotels where name = 'Key Hotel'), 002, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Key Hotel'))),
-((SELECT id from hotels where name = 'Key Hotel'), 003, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Key Hotel'))),
-((SELECT id from hotels where name = 'Key Hotel'), 004, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Key Hotel'))),
-((SELECT id from hotels where name = 'Key Hotel'), 005, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Key Hotel'))),
-((SELECT id from hotels where name = 'Key Hotel'), 006, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Key Hotel'))),
-((SELECT id from hotels where name = 'Key Hotel'), 010, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Key Hotel'))),
-((SELECT id from hotels where name = 'Key Hotel'), 101, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Key Hotel'))),
-((SELECT id from hotels where name = 'Key Hotel'), 102, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Key Hotel'))),
-((SELECT id from hotels where name = 'Key Hotel'), 103, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Key Hotel'))),
-((SELECT id from hotels where name = 'Key Hotel'), 104, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Key Hotel'))),
-((SELECT id from hotels where name = 'Key Hotel'), 105, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Key Hotel'))),
-((SELECT id from hotels where name = 'Hotel Apart'), 001, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Apart'))),
-((SELECT id from hotels where name = 'Hotel Apart'), 002, (SELECT id FROM room_type WHERE type_name = 'Standard Room 3' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Apart'))),
-((SELECT id from hotels where name = 'Hotel Apart'), 003, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Apart'))),
-((SELECT id from hotels where name = 'Hotel Apart'), 004, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Apart'))),
-((SELECT id from hotels where name = 'Hotel Apart'), 005, (SELECT id FROM room_type WHERE type_name = 'Standard Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Apart'))),
-((SELECT id from hotels where name = 'Hotel Apart'), 006, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Apart'))),
-((SELECT id from hotels where name = 'Hotel Apart'), 010, (SELECT id FROM room_type WHERE type_name = 'Family Room 2' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Apart'))),
-((SELECT id from hotels where name = 'Hotel Apart'), 101, (SELECT id FROM room_type WHERE type_name = 'Family Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Apart'))),
-((SELECT id from hotels where name = 'Hotel Apart'), 102, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Apart'))),
-((SELECT id from hotels where name = 'Hotel Apart'), 103, (SELECT id FROM room_type WHERE type_name = 'Standard Room 1' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Apart'))),
-((SELECT id from hotels where name = 'Hotel Apart'), 104, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Apart'))),
-((SELECT id from hotels where name = 'Hotel Apart'), 105, (SELECT id FROM room_type WHERE type_name = 'Standard Room 4' AND room_type.hotel_id = (SELECT id from hotels where name = 'Hotel Apart')));
-
-
-INSERT INTO accounts (email, password_hash, name, admin)
-VALUES
-('egiman@catmail.com', 1216985755, 'Egi', 0),
-('mertdede@protonmail.com', 1216985755, 'Mert', 1),
-('ulugbey@hotmail.com', 1216985755, 'Ulugbey', 1),
-('kestos@catmail.com', 1216985755, 'Kestane', 0),
-('cumali@hotmail.com', 1216985755, 'Cumali', 0),
-('remzi@gmail.com', 1216985755, 'Remziye', 0),
-('kuzukuzu@yahoo.com', 1216985755, 'Tarkan', 0),
-('miya@catmail.com', 1216985755, 'Miya', 0),
-('chuck@protonmail.com', 1216985755, 'Chuck', 0),
-('billgates@hotmail.com', 1216985755, 'Bill', 0),
-('ugureliiyi@deu.edu.tr', 1216985755, 'Uğur', 0),
-('remziye@gmail.com', 1216985755, 'Remziye', 0),
-('minnos@catmail.com', 1216985755, 'Minnos', 0),
-('chimney@protonmail.com', 1216985755, 'Chimney', 0),
-('stevenojobs@icloud.com', 1216985755, 'Steve', 0),
-('bahar@yahoo.com', 1216985755, 'Bahar', 0),
-('koyimda@gmail.com', 1216985755, 'Murat', 0),
--- default tester accounts below
-('customer@tester.com', 1216985755, 'TestUser', 0),
-('admin@tester.com', 1216985755, 'TestUser', 1);
-
-
-INSERT INTO reservations (room_id, account_id, person_count, start_date, end_date)
-VALUES
-(1, (SELECT id FROM accounts WHERE email = 'egiman@catmail.com'), 1, '2019-06-04', '2019-06-09'),
-(2, (SELECT id FROM accounts WHERE email = 'egiman@catmail.com'), 2, '2019-12-04', '2019-12-06'),
-(3, (SELECT id FROM accounts WHERE email = 'kestos@catmail.com'), 2, '2019-07-15', '2019-07-17'),
-(4, (SELECT id FROM accounts WHERE email = 'kestos@catmail.com'), 1, '2019-11-02', '2019-11-05'),
-(24, (SELECT id FROM accounts WHERE email = 'cumali@hotmail.com'), 1, '2019-01-12', '2019-01-14'),
-(25, (SELECT id FROM accounts WHERE email = 'cumali@hotmail.com'), 1, '2019-01-12', '2019-01-14'),
-(29, (SELECT id FROM accounts WHERE email = 'remzi@gmail.com'), 1, '2019-01-12', '2019-01-13'),
-(28, (SELECT id FROM accounts WHERE email = 'remzi@gmail.com'), 1, '2019-05-12', '2019-06-13'),
-(51, (SELECT id FROM accounts WHERE email = 'kuzukuzu@yahoo.com'), 1, '2019-09-21', '2019-09-25'),
-(36, (SELECT id FROM accounts WHERE email = 'kuzukuzu@yahoo.com'), 1, '2019-04-27', '2019-05-02'),
-(48, (SELECT id FROM accounts WHERE email = 'egiman@catmail.com'), 1, '2019-06-04', '2019-06-09'),
-(9, (SELECT id FROM accounts WHERE email = 'egiman@catmail.com'), 2, '2019-12-04', '2019-12-06'),
-(56, (SELECT id FROM accounts WHERE email = 'kestos@catmail.com'), 2, '2019-07-15', '2019-07-17'),
-(43, (SELECT id FROM accounts WHERE email = 'kestos@catmail.com'), 1, '2019-11-02', '2019-11-05'),
-(78, (SELECT id FROM accounts WHERE email = 'cumali@hotmail.com'), 1, '2019-01-12', '2019-01-14'),
-(60, (SELECT id FROM accounts WHERE email = 'cumali@hotmail.com'), 1, '2019-01-12', '2019-01-14'),
-(141, (SELECT id FROM accounts WHERE email = 'remzi@gmail.com'), 1, '2019-01-12', '2019-01-13'),
-(39, (SELECT id FROM accounts WHERE email = 'remzi@gmail.com'), 1, '2019-05-12', '2019-06-13'),
-(65, (SELECT id FROM accounts WHERE email = 'kuzukuzu@yahoo.com'), 1, '2019-09-21', '2019-09-25'),
-(71, (SELECT id FROM accounts WHERE email = 'kuzukuzu@yahoo.com'), 1, '2019-04-27', '2019-05-02'),
-(90, (SELECT id FROM accounts WHERE email = 'miya@catmail.com'), 1, '2019-06-04', '2019-06-09'),
-(88, (SELECT id FROM accounts WHERE email = 'miya@catmail.com'), 2, '2019-12-04', '2019-12-06'),
-(75, (SELECT id FROM accounts WHERE email = 'chuck@protonmail.com'), 2, '2019-06-15', '2019-06-19'),
-(76, (SELECT id FROM accounts WHERE email = 'chuck@protonmail.com'), 1, '2019-11-02', '2019-11-09'),
-(219, (SELECT id FROM accounts WHERE email = 'billgates@hotmail.com'), 1, '2019-02-12', '2019-02-25'),
-(205, (SELECT id FROM accounts WHERE email = 'billgates@hotmail.com'), 1, '2019-01-12', '2019-01-18'),
-(152, (SELECT id FROM accounts WHERE email = 'ugureliiyi@deu.edu.tr'), 1, '2019-01-12', '2019-01-24'),
-(155, (SELECT id FROM accounts WHERE email = 'ugureliiyi@deu.edu.tr'), 1, '2019-05-28', '2019-06-13'),
-(183, (SELECT id FROM accounts WHERE email = 'remziye@gmail.com'), 1, '2019-09-15', '2019-09-20'),
-(105, (SELECT id FROM accounts WHERE email = 'remziye@gmail.com'), 1, '2019-03-27', '2019-04-02'),
-(50, (SELECT id FROM accounts WHERE email = 'minnos@catmail.com'), 1, '2019-12-29', '2020-01-05'),
-(37, (SELECT id FROM accounts WHERE email = 'minnos@catmail.com'), 2, '2020-01-11', '2020-01-15'),
-(100, (SELECT id FROM accounts WHERE email = 'chimney@protonmail.com'), 2, '2019-08-09', '2019-08-12'),
-(122, (SELECT id FROM accounts WHERE email = 'chimney@protonmail.com'), 1, '2020-11-03', '2020-11-08'),
-(170, (SELECT id FROM accounts WHERE email = 'stevenojobs@icloud.com'), 1, '2019-01-12', '2019-01-14'),
-(150, (SELECT id FROM accounts WHERE email = 'stevenojobs@icloud.com'), 1, '2020-01-12', '2020-01-13'),
-(20, (SELECT id FROM accounts WHERE email = 'bahar@yahoo.com'), 1, '2019-01-12', '2019-01-13'),
-(30, (SELECT id FROM accounts WHERE email = 'bahar@yahoo.com'), 1, '2020-05-02', '2020-05-13'),
-(130, (SELECT id FROM accounts WHERE email = 'koyimda@gmail.com'), 1, '2019-09-21', '2019-09-25'),
-(127, (SELECT id FROM accounts WHERE email = 'koyimda@gmail.com'), 1, '2020-04-23', '2020-05-01');
+INSERT INTO hotels VALUES(1,'Hotel Hilton','İzmir','Hotel',5);
+INSERT INTO hotels VALUES(2,'Hotel Swissotel','İzmir','Hotel',5);
+INSERT INTO hotels VALUES(3,'Ramada Plaza','Antalya','Hotel',4);
+INSERT INTO hotels VALUES(4,'Park Inn','İzmir','Hotel',4);
+INSERT INTO hotels VALUES(5,'ibis Hotel','İzmir','Hotel',3);
+INSERT INTO hotels VALUES(6,'Sc Inn Butik','İstanbul','Butik',3);
+INSERT INTO hotels VALUES(7,'Konak Saray Agora','İzmir','Hotel',2);
+INSERT INTO hotels VALUES(8,'Ege Güneş','İzmir','Hotel',2);
+INSERT INTO hotels VALUES(9,'Perla Arya','İstanbul','Hotel',1);
+INSERT INTO hotels VALUES(10,'Vita Park','Balıkesir','Hotel',1);
+INSERT INTO hotels VALUES(11,'Key Hotel','Ankara','Hotel',0);
+INSERT INTO hotels VALUES(12,'Hotel Apart','Muğla','Hotel',0);
+INSERT INTO room_type VALUES(1,1,'Visitor Room 1',550,1,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(2,1,'Visitor Room 2',500,0,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(3,1,'Visitor Room 3',550,1,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(4,1,'Visitor Room 4',500,0,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(5,1,'Family Room 1',600,0,1,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(6,1,'Family Room 2',550,0,1,1,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(7,1,'Single Bed Room',475,1,0,1,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(8,1,'Executive Suit',2820,1,0,2,1,2,2,2,NULL);
+INSERT INTO room_type VALUES(9,1,'Presidential Suit',4250,1,1,0,1,3,3,3,NULL);
+INSERT INTO room_type VALUES(10,2,'Visitor Room 1',600,1,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(11,2,'Visitor Room 2',520,0,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(12,2,'Visitor Room 3',590,1,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(13,2,'Visitor Room 4',530,0,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(14,2,'Family Room 1',610,0,1,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(15,2,'Family Room 2',540,0,1,1,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(16,2,'Single Bed Room',580,1,0,1,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(17,2,'Executive Suit',2850,1,0,2,1,2,2,2,NULL);
+INSERT INTO room_type VALUES(18,2,'Presidential Suit',4500,1,1,0,1,3,3,3,NULL);
+INSERT INTO room_type VALUES(19,3,'Visitor Room 1',500,1,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(20,3,'Visitor Room 2',450,0,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(21,3,'Visitor Room 3',500,1,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(22,3,'Visitor Room 4',450,0,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(23,3,'Family Room 1',550,0,1,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(24,3,'Family Room 2',475,0,1,1,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(25,3,'Single Bed Room',510,1,0,1,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(26,3,'Junior Suit',1500,1,1,0,1,2,1,1,NULL);
+INSERT INTO room_type VALUES(27,4,'Visitor Room 1',500,1,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(28,4,'Visitor Room 2',450,0,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(29,4,'Visitor Room 3',500,1,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(30,4,'Visitor Room 4',450,0,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(31,4,'Family Room 1',525,0,1,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(32,4,'Family Room 2',470,0,1,1,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(33,4,'Single Bed Room',510,1,0,1,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(34,4,'Junior Suit',1500,1,1,0,1,2,1,1,NULL);
+INSERT INTO room_type VALUES(35,5,'Standard Room 1',475,1,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(36,5,'Standard Room 2',425,0,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(37,5,'Standard Room 4',425,1,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(38,5,'Standard Room 3',475,0,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(39,5,'Family Room 1',500,0,1,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(40,5,'Family Room 2',450,0,1,1,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(41,6,'Standard Room 1',475,1,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(42,6,'Standard Room 2',425,0,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(43,6,'Standard Room 4',425,1,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(44,6,'Standard Room 3',475,0,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(45,6,'Family Room 1',510,0,1,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(46,6,'Family Room 2',440,0,1,1,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(47,7,'Standard Room 1',435,1,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(48,7,'Standard Room 2',425,0,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(49,7,'Standard Room 3',435,1,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(50,7,'Standard Room 4',400,0,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(51,7,'Family Room 1',450,0,1,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(52,7,'Family Room 2',400,0,1,1,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(53,8,'Standard Room 3',375,1,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(54,8,'Standard Room 2',350,0,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(55,8,'Standard Room 1',375,1,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(56,8,'Standard Room 4',350,0,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(57,8,'Family Room 1',425,0,1,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(58,8,'Family Room 2',375,0,1,1,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(59,9,'Standard Room 3',175,1,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(60,9,'Standard Room 4',150,0,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(61,9,'Standard Room 2',152,1,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(62,9,'Standard Room 1',175,0,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(63,9,'Family Room 1',200,0,1,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(64,9,'Family Room 2',170,0,1,1,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(65,10,'Standard Room 3',125,0,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(66,10,'Standard Room 2',100,0,1,0,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(67,10,'Standard Room 1',125,0,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(68,10,'Standard Room 4',100,0,0,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(69,10,'Family Room 1',150,0,1,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(70,10,'Family Room 2',115,0,1,1,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(71,11,'Standard Room 3',100,0,1,0,0,1,1,1,NULL);
+INSERT INTO room_type VALUES(72,11,'Standard Room 2',90,0,1,0,0,1,1,1,NULL);
+INSERT INTO room_type VALUES(73,11,'Standard Room 1',100,0,0,2,0,1,1,1,NULL);
+INSERT INTO room_type VALUES(74,11,'Standard Room 4',90,0,0,2,0,1,1,1,NULL);
+INSERT INTO room_type VALUES(75,11,'Family Room 1',115,0,1,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(76,11,'Family Room 2',100,0,1,1,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(77,12,'Standard Room 3',90,0,1,0,0,1,1,1,NULL);
+INSERT INTO room_type VALUES(78,12,'Standard Room 2',75,0,1,0,0,1,1,1,NULL);
+INSERT INTO room_type VALUES(79,12,'Standard Room 1',90,0,0,2,0,1,1,1,NULL);
+INSERT INTO room_type VALUES(80,12,'Standard Room 4',75,0,0,2,0,1,1,1,NULL);
+INSERT INTO room_type VALUES(81,12,'Family Room 1',95,0,1,2,1,1,1,1,NULL);
+INSERT INTO room_type VALUES(82,12,'Family Room 2',85,0,1,1,1,1,1,1,NULL);
+INSERT INTO rooms VALUES(1,1,1,1);
+INSERT INTO rooms VALUES(2,1,2,1);
+INSERT INTO rooms VALUES(3,1,3,1);
+INSERT INTO rooms VALUES(4,1,4,1);
+INSERT INTO rooms VALUES(5,1,5,2);
+INSERT INTO rooms VALUES(6,1,6,2);
+INSERT INTO rooms VALUES(7,1,7,2);
+INSERT INTO rooms VALUES(8,1,8,2);
+INSERT INTO rooms VALUES(9,1,9,3);
+INSERT INTO rooms VALUES(10,1,10,3);
+INSERT INTO rooms VALUES(11,1,101,3);
+INSERT INTO rooms VALUES(12,1,102,5);
+INSERT INTO rooms VALUES(13,1,103,5);
+INSERT INTO rooms VALUES(14,1,104,7);
+INSERT INTO rooms VALUES(15,1,105,7);
+INSERT INTO rooms VALUES(16,1,106,6);
+INSERT INTO rooms VALUES(17,1,107,6);
+INSERT INTO rooms VALUES(18,1,108,1);
+INSERT INTO rooms VALUES(19,1,109,2);
+INSERT INTO rooms VALUES(20,1,110,2);
+INSERT INTO rooms VALUES(21,1,201,8);
+INSERT INTO rooms VALUES(22,1,202,8);
+INSERT INTO rooms VALUES(23,1,203,8);
+INSERT INTO rooms VALUES(24,1,301,9);
+INSERT INTO rooms VALUES(25,1,302,9);
+INSERT INTO rooms VALUES(26,2,1,10);
+INSERT INTO rooms VALUES(27,2,2,10);
+INSERT INTO rooms VALUES(28,2,3,10);
+INSERT INTO rooms VALUES(29,2,4,10);
+INSERT INTO rooms VALUES(30,2,5,11);
+INSERT INTO rooms VALUES(31,2,6,11);
+INSERT INTO rooms VALUES(32,2,7,11);
+INSERT INTO rooms VALUES(33,2,8,12);
+INSERT INTO rooms VALUES(34,2,9,12);
+INSERT INTO rooms VALUES(35,2,10,12);
+INSERT INTO rooms VALUES(36,2,101,12);
+INSERT INTO rooms VALUES(37,2,102,14);
+INSERT INTO rooms VALUES(38,2,103,14);
+INSERT INTO rooms VALUES(39,2,104,16);
+INSERT INTO rooms VALUES(40,2,105,16);
+INSERT INTO rooms VALUES(41,2,106,16);
+INSERT INTO rooms VALUES(42,2,107,15);
+INSERT INTO rooms VALUES(43,2,108,15);
+INSERT INTO rooms VALUES(44,2,109,11);
+INSERT INTO rooms VALUES(45,2,110,11);
+INSERT INTO rooms VALUES(46,2,201,17);
+INSERT INTO rooms VALUES(47,2,202,17);
+INSERT INTO rooms VALUES(48,2,203,17);
+INSERT INTO rooms VALUES(49,2,301,18);
+INSERT INTO rooms VALUES(50,2,302,18);
+INSERT INTO rooms VALUES(51,3,1,19);
+INSERT INTO rooms VALUES(52,3,2,19);
+INSERT INTO rooms VALUES(53,3,3,19);
+INSERT INTO rooms VALUES(54,3,4,19);
+INSERT INTO rooms VALUES(55,3,5,20);
+INSERT INTO rooms VALUES(56,3,6,20);
+INSERT INTO rooms VALUES(57,3,7,20);
+INSERT INTO rooms VALUES(58,3,8,21);
+INSERT INTO rooms VALUES(59,3,9,21);
+INSERT INTO rooms VALUES(60,3,10,21);
+INSERT INTO rooms VALUES(61,3,101,22);
+INSERT INTO rooms VALUES(62,3,102,23);
+INSERT INTO rooms VALUES(63,3,103,23);
+INSERT INTO rooms VALUES(64,3,104,25);
+INSERT INTO rooms VALUES(65,3,105,25);
+INSERT INTO rooms VALUES(66,3,106,25);
+INSERT INTO rooms VALUES(67,3,107,24);
+INSERT INTO rooms VALUES(68,3,108,24);
+INSERT INTO rooms VALUES(69,3,109,20);
+INSERT INTO rooms VALUES(70,3,110,20);
+INSERT INTO rooms VALUES(71,3,201,26);
+INSERT INTO rooms VALUES(72,3,202,26);
+INSERT INTO rooms VALUES(73,3,203,26);
+INSERT INTO rooms VALUES(74,4,1,27);
+INSERT INTO rooms VALUES(75,4,2,27);
+INSERT INTO rooms VALUES(76,4,3,27);
+INSERT INTO rooms VALUES(77,4,4,27);
+INSERT INTO rooms VALUES(78,4,5,28);
+INSERT INTO rooms VALUES(79,4,6,28);
+INSERT INTO rooms VALUES(80,4,7,28);
+INSERT INTO rooms VALUES(81,4,8,29);
+INSERT INTO rooms VALUES(82,4,9,29);
+INSERT INTO rooms VALUES(83,4,10,31);
+INSERT INTO rooms VALUES(84,4,101,31);
+INSERT INTO rooms VALUES(85,4,102,30);
+INSERT INTO rooms VALUES(86,4,103,30);
+INSERT INTO rooms VALUES(87,4,104,33);
+INSERT INTO rooms VALUES(88,4,105,33);
+INSERT INTO rooms VALUES(89,4,106,33);
+INSERT INTO rooms VALUES(90,4,107,29);
+INSERT INTO rooms VALUES(91,4,108,28);
+INSERT INTO rooms VALUES(92,4,109,28);
+INSERT INTO rooms VALUES(93,4,110,28);
+INSERT INTO rooms VALUES(94,4,201,34);
+INSERT INTO rooms VALUES(95,4,202,34);
+INSERT INTO rooms VALUES(96,4,203,34);
+INSERT INTO rooms VALUES(97,5,1,35);
+INSERT INTO rooms VALUES(98,5,2,35);
+INSERT INTO rooms VALUES(99,5,3,35);
+INSERT INTO rooms VALUES(100,5,4,36);
+INSERT INTO rooms VALUES(101,5,5,36);
+INSERT INTO rooms VALUES(102,5,6,36);
+INSERT INTO rooms VALUES(103,5,7,36);
+INSERT INTO rooms VALUES(104,5,8,36);
+INSERT INTO rooms VALUES(105,5,9,35);
+INSERT INTO rooms VALUES(106,5,10,37);
+INSERT INTO rooms VALUES(107,5,101,37);
+INSERT INTO rooms VALUES(108,5,102,37);
+INSERT INTO rooms VALUES(109,5,103,39);
+INSERT INTO rooms VALUES(110,5,104,39);
+INSERT INTO rooms VALUES(111,5,105,38);
+INSERT INTO rooms VALUES(112,5,106,38);
+INSERT INTO rooms VALUES(113,5,107,38);
+INSERT INTO rooms VALUES(114,5,108,35);
+INSERT INTO rooms VALUES(115,5,109,40);
+INSERT INTO rooms VALUES(116,5,110,40);
+INSERT INTO rooms VALUES(117,6,1,41);
+INSERT INTO rooms VALUES(118,6,2,41);
+INSERT INTO rooms VALUES(119,6,3,41);
+INSERT INTO rooms VALUES(120,6,4,41);
+INSERT INTO rooms VALUES(121,6,5,42);
+INSERT INTO rooms VALUES(122,6,6,42);
+INSERT INTO rooms VALUES(123,6,7,42);
+INSERT INTO rooms VALUES(124,6,8,42);
+INSERT INTO rooms VALUES(125,6,9,43);
+INSERT INTO rooms VALUES(126,6,10,43);
+INSERT INTO rooms VALUES(127,6,101,43);
+INSERT INTO rooms VALUES(128,6,102,43);
+INSERT INTO rooms VALUES(129,6,103,44);
+INSERT INTO rooms VALUES(130,6,104,44);
+INSERT INTO rooms VALUES(131,6,105,44);
+INSERT INTO rooms VALUES(132,6,106,44);
+INSERT INTO rooms VALUES(133,6,107,45);
+INSERT INTO rooms VALUES(134,6,108,45);
+INSERT INTO rooms VALUES(135,6,109,46);
+INSERT INTO rooms VALUES(136,6,110,46);
+INSERT INTO rooms VALUES(137,7,1,47);
+INSERT INTO rooms VALUES(138,7,2,47);
+INSERT INTO rooms VALUES(139,7,3,47);
+INSERT INTO rooms VALUES(140,7,4,48);
+INSERT INTO rooms VALUES(141,7,5,48);
+INSERT INTO rooms VALUES(142,7,6,48);
+INSERT INTO rooms VALUES(143,7,7,49);
+INSERT INTO rooms VALUES(144,7,8,49);
+INSERT INTO rooms VALUES(145,7,9,49);
+INSERT INTO rooms VALUES(146,7,10,50);
+INSERT INTO rooms VALUES(147,7,101,50);
+INSERT INTO rooms VALUES(148,7,102,51);
+INSERT INTO rooms VALUES(149,7,103,52);
+INSERT INTO rooms VALUES(150,7,104,51);
+INSERT INTO rooms VALUES(151,7,105,52);
+INSERT INTO rooms VALUES(152,8,1,53);
+INSERT INTO rooms VALUES(153,8,2,53);
+INSERT INTO rooms VALUES(154,8,3,53);
+INSERT INTO rooms VALUES(155,8,4,53);
+INSERT INTO rooms VALUES(156,8,5,54);
+INSERT INTO rooms VALUES(157,8,6,54);
+INSERT INTO rooms VALUES(158,8,7,54);
+INSERT INTO rooms VALUES(159,8,8,54);
+INSERT INTO rooms VALUES(160,8,9,56);
+INSERT INTO rooms VALUES(161,8,10,56);
+INSERT INTO rooms VALUES(162,8,101,56);
+INSERT INTO rooms VALUES(163,8,102,58);
+INSERT INTO rooms VALUES(164,8,103,58);
+INSERT INTO rooms VALUES(165,8,104,57);
+INSERT INTO rooms VALUES(166,8,105,57);
+INSERT INTO rooms VALUES(167,9,1,59);
+INSERT INTO rooms VALUES(168,9,2,59);
+INSERT INTO rooms VALUES(169,9,3,59);
+INSERT INTO rooms VALUES(170,9,4,59);
+INSERT INTO rooms VALUES(171,9,5,59);
+INSERT INTO rooms VALUES(172,9,6,60);
+INSERT INTO rooms VALUES(173,9,7,60);
+INSERT INTO rooms VALUES(174,9,8,60);
+INSERT INTO rooms VALUES(175,9,9,60);
+INSERT INTO rooms VALUES(176,9,10,62);
+INSERT INTO rooms VALUES(177,9,101,62);
+INSERT INTO rooms VALUES(178,9,102,63);
+INSERT INTO rooms VALUES(179,9,103,63);
+INSERT INTO rooms VALUES(180,9,104,64);
+INSERT INTO rooms VALUES(181,9,105,64);
+INSERT INTO rooms VALUES(182,10,1,65);
+INSERT INTO rooms VALUES(183,10,2,65);
+INSERT INTO rooms VALUES(184,10,3,65);
+INSERT INTO rooms VALUES(185,10,4,65);
+INSERT INTO rooms VALUES(186,10,5,66);
+INSERT INTO rooms VALUES(187,10,6,66);
+INSERT INTO rooms VALUES(188,10,7,66);
+INSERT INTO rooms VALUES(189,10,8,66);
+INSERT INTO rooms VALUES(190,10,9,66);
+INSERT INTO rooms VALUES(191,10,10,69);
+INSERT INTO rooms VALUES(192,10,101,69);
+INSERT INTO rooms VALUES(193,10,102,70);
+INSERT INTO rooms VALUES(194,10,103,70);
+INSERT INTO rooms VALUES(195,10,104,68);
+INSERT INTO rooms VALUES(196,10,105,68);
+INSERT INTO rooms VALUES(197,11,1,71);
+INSERT INTO rooms VALUES(198,11,2,71);
+INSERT INTO rooms VALUES(199,11,3,76);
+INSERT INTO rooms VALUES(200,11,4,76);
+INSERT INTO rooms VALUES(201,11,5,75);
+INSERT INTO rooms VALUES(202,11,6,72);
+INSERT INTO rooms VALUES(203,11,10,72);
+INSERT INTO rooms VALUES(204,11,101,75);
+INSERT INTO rooms VALUES(205,11,102,73);
+INSERT INTO rooms VALUES(206,11,103,73);
+INSERT INTO rooms VALUES(207,11,104,74);
+INSERT INTO rooms VALUES(208,11,105,74);
+INSERT INTO rooms VALUES(209,12,1,77);
+INSERT INTO rooms VALUES(210,12,2,77);
+INSERT INTO rooms VALUES(211,12,3,81);
+INSERT INTO rooms VALUES(212,12,4,78);
+INSERT INTO rooms VALUES(213,12,5,78);
+INSERT INTO rooms VALUES(214,12,6,82);
+INSERT INTO rooms VALUES(215,12,10,82);
+INSERT INTO rooms VALUES(216,12,101,81);
+INSERT INTO rooms VALUES(217,12,102,79);
+INSERT INTO rooms VALUES(218,12,103,79);
+INSERT INTO rooms VALUES(219,12,104,80);
+INSERT INTO rooms VALUES(220,12,105,80);
+INSERT INTO reservations VALUES(1,1,1,1,'2019-06-04','2019-06-09');
+INSERT INTO reservations VALUES(2,2,1,2,'2019-12-04','2019-12-06');
+INSERT INTO reservations VALUES(3,3,4,2,'2019-07-15','2019-07-17');
+INSERT INTO reservations VALUES(4,4,4,1,'2019-11-02','2019-11-05');
+INSERT INTO reservations VALUES(5,24,5,1,'2019-01-12','2019-01-14');
+INSERT INTO reservations VALUES(6,25,5,1,'2019-01-12','2019-01-14');
+INSERT INTO reservations VALUES(7,29,6,1,'2019-01-12','2019-01-13');
+INSERT INTO reservations VALUES(8,28,6,1,'2019-05-12','2019-06-13');
+INSERT INTO reservations VALUES(9,51,7,1,'2019-09-21','2019-09-25');
+INSERT INTO reservations VALUES(10,36,7,1,'2019-04-27','2019-05-02');
+INSERT INTO reservations VALUES(11,48,1,1,'2019-06-04','2019-06-09');
+INSERT INTO reservations VALUES(12,9,1,2,'2019-12-04','2019-12-06');
+INSERT INTO reservations VALUES(13,56,4,2,'2019-07-15','2019-07-17');
+INSERT INTO reservations VALUES(14,43,4,1,'2019-11-02','2019-11-05');
+INSERT INTO reservations VALUES(15,78,5,1,'2019-01-12','2019-01-14');
+INSERT INTO reservations VALUES(16,60,5,1,'2019-01-12','2019-01-14');
+INSERT INTO reservations VALUES(17,141,6,1,'2019-01-12','2019-01-13');
+INSERT INTO reservations VALUES(18,39,6,1,'2019-05-12','2019-06-13');
+INSERT INTO reservations VALUES(19,65,7,1,'2019-09-21','2019-09-25');
+INSERT INTO reservations VALUES(20,71,7,1,'2019-04-27','2019-05-02');
+INSERT INTO reservations VALUES(21,90,8,1,'2019-06-04','2019-06-09');
+INSERT INTO reservations VALUES(22,88,8,2,'2019-12-04','2019-12-06');
+INSERT INTO reservations VALUES(23,75,9,2,'2019-06-15','2019-06-19');
+INSERT INTO reservations VALUES(24,76,9,1,'2019-11-02','2019-11-09');
+INSERT INTO reservations VALUES(25,219,10,1,'2019-02-12','2019-02-25');
+INSERT INTO reservations VALUES(26,205,10,1,'2019-01-12','2019-01-18');
+INSERT INTO reservations VALUES(27,152,11,1,'2019-01-12','2019-01-24');
+INSERT INTO reservations VALUES(28,155,11,1,'2019-05-28','2019-06-13');
+INSERT INTO reservations VALUES(29,183,12,1,'2019-09-15','2019-09-20');
+INSERT INTO reservations VALUES(30,105,12,1,'2019-03-27','2019-04-02');
+INSERT INTO reservations VALUES(31,50,13,1,'2019-12-29','2020-01-05');
+INSERT INTO reservations VALUES(32,37,13,2,'2020-01-11','2020-01-15');
+INSERT INTO reservations VALUES(33,100,14,2,'2019-08-09','2019-08-12');
+INSERT INTO reservations VALUES(34,122,14,1,'2020-11-03','2020-11-08');
+INSERT INTO reservations VALUES(35,170,15,1,'2019-01-12','2019-01-14');
+INSERT INTO reservations VALUES(36,150,15,1,'2020-01-12','2020-01-13');
+INSERT INTO reservations VALUES(37,20,16,1,'2019-01-12','2019-01-13');
+INSERT INTO reservations VALUES(38,30,16,1,'2020-05-02','2020-05-13');
+INSERT INTO reservations VALUES(39,130,17,1,'2019-09-21','2019-09-25');
+INSERT INTO reservations VALUES(40,127,17,1,'2020-04-23','2020-05-01');
+INSERT INTO accounts VALUES(1,'egiman@catmail.com',1216985755,'Egi',0);
+INSERT INTO accounts VALUES(2,'mertdede@protonmail.com',1216985755,'Mert',1);
+INSERT INTO accounts VALUES(3,'ulugbey@hotmail.com',1216985755,'Ulugbey',1);
+INSERT INTO accounts VALUES(4,'kestos@catmail.com',1216985755,'Kestane',0);
+INSERT INTO accounts VALUES(5,'cumali@hotmail.com',1216985755,'Cumali',0);
+INSERT INTO accounts VALUES(6,'remzi@gmail.com',1216985755,'Remziye',0);
+INSERT INTO accounts VALUES(7,'kuzukuzu@yahoo.com',1216985755,'Tarkan',0);
+INSERT INTO accounts VALUES(8,'miya@catmail.com',1216985755,'Miya',0);
+INSERT INTO accounts VALUES(9,'chuck@protonmail.com',1216985755,'Chuck',0);
+INSERT INTO accounts VALUES(10,'billgates@hotmail.com',1216985755,'Bill',0);
+INSERT INTO accounts VALUES(11,'ugureliiyi@deu.edu.tr',1216985755,'Uğur',0);
+INSERT INTO accounts VALUES(12,'remziye@gmail.com',1216985755,'Remziye',0);
+INSERT INTO accounts VALUES(13,'minnos@catmail.com',1216985755,'Minnos',0);
+INSERT INTO accounts VALUES(14,'chimney@protonmail.com',1216985755,'Chimney',0);
+INSERT INTO accounts VALUES(15,'stevenojobs@icloud.com',1216985755,'Steve',0);
+INSERT INTO accounts VALUES(16,'bahar@yahoo.com',1216985755,'Bahar',0);
+INSERT INTO accounts VALUES(17,'koyimda@gmail.com',1216985755,'Murat',0);
+INSERT INTO accounts VALUES(18,'customer@tester.com',1216985755,'TestUser',0);
+INSERT INTO accounts VALUES(19,'admin@tester.com',1216985755,'TestUser',1);
