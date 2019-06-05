@@ -56,7 +56,10 @@ public class CustomerView extends Frame {
         pack();
         centerFrame();
         setMinimumSize(new Dimension(775, 420));
+
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        getReservedTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        getReservationTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         addWindowListener(new WindowAdapter() {
             @Override

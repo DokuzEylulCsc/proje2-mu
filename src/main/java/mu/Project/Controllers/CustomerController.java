@@ -5,6 +5,7 @@ import mu.Project.Logger;
 import mu.Project.Models.*;
 import mu.Project.Views.CustomerView;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -13,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-// TODO: Make reservationTable select only one record at a time.
 public class CustomerController extends AccountController {
     private final static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -30,7 +30,6 @@ public class CustomerController extends AccountController {
         setFrame(new CustomerView(this));
         getFrame().setEmailFixedField(getModel().getEmail());
         getFrame().setNameField(getModel().getName());
-
 
         // add cities to reservationTab.citiesComboBox
         List<String> cities = Hotel.getDistinctCities();
