@@ -13,12 +13,14 @@ import java.util.Vector;
 
 public class Room implements Model{
 
-    private final static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    private final static String allAvailableFilteredQuery = "SELECT hotels.name, hotels.stars, room_type.type_name,\n" +
-            "rooms.room_number, room_type.price, room_type.double_bed * 2 +\n" +
-            "room_type.single_bed, room_type.sea_view, room_type.safe, room_type.air_conditioner_count,\n" +
-            "room_type.television_count, room_type.minibar_count, room_type.extra_services_description FROM rooms\n" +
+    private final static String allAvailableFilteredQuery = "SELECT hotels.name AS 'Hotel Name',\n" +
+            "hotels.stars AS 'Stars', room_type.type_name AS 'Room Type',\n" +
+            "rooms.room_number AS 'Room Number', room_type.price AS 'Daily Price', room_type.double_bed * 2 +\n" +
+            "room_type.single_bed AS 'Bed Space', room_type.sea_view AS 'Sea View', room_type.safe AS 'Safe',\n" +
+            "room_type.air_conditioner_count AS 'Air Conditioner', room_type.television_count AS 'Televisions',\n" +
+            "room_type.minibar_count AS 'Minibars', room_type.extra_services_description AS 'Extra Services'\n" +
+            "FROM rooms\n" +
             "INNER JOIN hotels ON (rooms.hotel_id = hotels.id)\n" +
             "INNER JOIN room_type ON (room_type.id = rooms.room_type_id)\n" +
             "WHERE room_type.price  <= ? AND\n" +
@@ -48,18 +50,18 @@ public class Room implements Model{
      * @param startDate Date object
      * @param endDate Date object
      * @return Correspondent table model.
-     * @see ReservationTableModel
+     * @see CustomTableModel
      * @throws InvalidDateIntervalException if startDate <= now or startDate >= endDate
      */
-    public static ReservationTableModel getAvailableRoomsAsTableModel(Integer maxBudget, Integer personCount, Boolean seaView, Boolean safe,
-                                                                  String city, Integer starCount, Date startDate, Date endDate)
+    public static CustomTableModel getAvailableRoomsAsTableModel(Integer maxBudget, Integer personCount, Boolean seaView, Boolean safe,
+                                                                 String city, Integer starCount, Date startDate, Date endDate)
             throws InvalidDateIntervalException {
 
         if (startDate.compareTo(endDate) >= 0 || startDate.compareTo(new Date()) <= 0) {
             throw new InvalidDateIntervalException(startDate, endDate);
         }
 
-        ReservationTableModel tableModel = null;
+        CustomTableModel tableModel = null;
         try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(allAvailableFilteredQuery)) {
             preparedStatement.setInt(1, maxBudget);
             preparedStatement.setInt(2, personCount);
@@ -68,14 +70,15 @@ public class Room implements Model{
             preparedStatement.setString(5, (city.equals("All")) ? "%" : city);
             preparedStatement.setInt(6, starCount);
 
-            String startDateString = dateFormat.format(startDate);
-            String endDateString = dateFormat.format(endDate);
+            String startDateString = TableUtility.dateFormat.format(startDate);
+            String endDateString = TableUtility.dateFormat.format(endDate);
             preparedStatement.setString(7, startDateString);
             preparedStatement.setString(8, endDateString);
             preparedStatement.setString(9, startDateString);
             preparedStatement.setString(10, endDateString);
 
-            tableModel = new ReservationTableModel(buildTableModelData(preparedStatement.executeQuery()));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            tableModel = TableUtility.buildTableModel(resultSet);
 
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
@@ -84,26 +87,7 @@ public class Room implements Model{
         return tableModel;
     }
 
-    /**
-     *
-     * @param resultSet
-     * @return
-     * @throws SQLException
-     */
-    public static Vector<Vector<Object>> buildTableModelData(ResultSet resultSet) throws SQLException {
-        ResultSetMetaData metaData = resultSet.getMetaData();
 
-        Vector<Vector<Object>> rows = new Vector<Vector<Object>>();
-        while (resultSet.next()) {
-            Vector<Object> row = new Vector<Object>();
-            for (int i = 1; i <= metaData.getColumnCount(); i++) {
-                row.add(resultSet.getObject(i));
-            }
-            rows.add(row);
-        }
-
-        return rows;
-    }
 
     public void save() {
         throw new NotImplementedException();

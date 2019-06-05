@@ -5,14 +5,12 @@ import mu.Project.Logger;
 import mu.Project.NotImplementedException;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Vector;
 
-// TODO: Complete javadocs
 public class Reservation implements Model {
 
     private final static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -22,10 +20,13 @@ public class Reservation implements Model {
             "VALUES ((SELECT id FROM rooms WHERE room_number = ? AND hotel_id = (SELECT id FROM hotels WHERE name = ?)),\n" +
             "(SELECT id FROM accounts WHERE email = ?), ?, ?, ?)";
 
-    private final static String getReservedRoomsSQL = "SELECT reservations.start_date, reservations.end_date,\n" +
-            "reservations.person_count, hotels.name, hotels.stars, room_type.type_name, rooms.room_number, room_type.price,\n" +
-            "room_type.double_bed * 2 + room_type.single_bed, room_type.sea_view, room_type.safe, room_type.air_conditioner_count,\n" +
-            "room_type.television_count, room_type.minibar_count, room_type.extra_services_description FROM reservations\n" +
+    private final static String getReservedRoomsSQL = "SELECT reservations.start_date AS 'Start Date',\n" +
+            "reservations.end_date AS 'End Date', reservations.person_count AS 'Person Count', hotels.name AS 'Facility Name',\n" +
+            "hotels.stars AS 'Stars', room_type.type_name AS 'Room Type', rooms.room_number AS 'Room Number',\n" +
+            "room_type.price AS 'Daily Price', room_type.double_bed * 2 + room_type.single_bed AS 'Bed Space',\n" +
+            "room_type.sea_view AS 'Sea View', room_type.safe AS 'Safe', room_type.air_conditioner_count AS 'Air Conditioner',\n" +
+            "room_type.television_count AS 'Televisions', room_type.minibar_count AS 'Minibars',\n" +
+            "room_type.extra_services_description AS 'Extra Services' FROM reservations\n" +
             "INNER JOIN rooms ON (rooms.id = reservations.room_id)\n" +
             "INNER JOIN hotels ON (hotels.id = rooms.hotel_id)\n" +
             "INNER JOIN room_type ON (room_type.id = rooms.room_type_id)\n" +
@@ -39,14 +40,15 @@ public class Reservation implements Model {
             "WHERE hotel_id = (SELECT id FROM hotels WHERE name = ?) AND room_number = ?)";
 
     /**
+     * Reserve a room with given parameters.
      *
-     * @param model
-     * @param hotel_name
-     * @param room_number
-     * @param person_count
-     * @param startDate
-     * @param endDate
-     * @throws SQLException
+     * @param model Account
+     * @param hotel_name String
+     * @param room_number Integer
+     * @param person_count Integer
+     * @param startDate Date
+     * @param endDate Date
+     * @throws SQLException from jdbc
      */
     public static void reserveRoom(Account model, String hotel_name, Integer room_number, Integer person_count,
                                    Date startDate, Date endDate) throws SQLException {
@@ -63,12 +65,13 @@ public class Reservation implements Model {
     }
 
     /**
+     * Delete a reservation from reservations table.
      *
-     * @param account
-     * @param startDate
-     * @param hotel_name
-     * @param room_number
-     * @throws SQLException
+     * @param account Account
+     * @param startDate Date
+     * @param hotel_name String
+     * @param room_number Integer
+     * @throws SQLException from jdbc
      */
     public static void removeReservation(Account account, Date startDate, String hotel_name, Integer room_number)
             throws SQLException {
@@ -88,26 +91,16 @@ public class Reservation implements Model {
      * @param email
      * @param newDateFormat
      * @return
-     * @see ReservedTableModel
+     * @see CustomTableModel
      */
-    public static ReservedTableModel getReservedRoomsAsTableModel(String email, DateFormat newDateFormat) {
-        ReservedTableModel tableModel = null;
+    public static CustomTableModel getReservedRoomsAsTableModel(String email, DateFormat newDateFormat) {
+        CustomTableModel tableModel = null;
         try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(getReservedRoomsSQL)) {
             preparedStatement.setString(1, email);
 
-            Vector<Vector<Object>> tableModelData = Room.buildTableModelData(preparedStatement.executeQuery());
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            try {
-                for (int i = 0; i < tableModelData.size(); i++) {
-                    tableModelData.get(i).set(0, newDateFormat.format(dateFormat.parse((String) tableModelData.get(i).get(0))));
-                    tableModelData.get(i).set(1, newDateFormat.format(dateFormat.parse((String) tableModelData.get(i).get(1))));
-                }
-            } catch (ParseException e) {
-                Logger.getInstance().addLog("Couldn't parse dates from database for reservedTable.");
-                Logger.getInstance().addLog(e);
-            }
-
-            tableModel = new ReservedTableModel(tableModelData);
+            tableModel = TableUtility.buildTableModelWithFormattedDates(resultSet, newDateFormat);
 
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
