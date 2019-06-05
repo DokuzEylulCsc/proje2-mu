@@ -14,9 +14,9 @@ public class Main {
 
 
         try {
-            new AdminView(new AdminController(new Account("mertdede@protonmail.com", "password"), mainController));
+            new AdminView(new AdminController(new Account("admin@tester.com", "password"), mainController));
         } catch (Exception e) {
-            Logger.getInstance().addLog("AdminView not initialized in Main .");
+            Logger.getInstance().addLog("AdminView not initialized in Main.");
             e.printStackTrace();
         }
     }

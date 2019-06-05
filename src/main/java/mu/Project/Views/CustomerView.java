@@ -46,6 +46,10 @@ public class CustomerView extends Frame {
     private JButton cancelReservationButton;
     private JPanel reservedOptionButtonsPanel;
     private JTable reservedTable;
+    private JSplitPane reserveSplitPane;
+    private JScrollPane reservationScrollPane;
+    private JSplitPane reservedSplitPane;
+    private JScrollPane reservedScrollPane;
     public static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public CustomerView(CustomerController controller) {

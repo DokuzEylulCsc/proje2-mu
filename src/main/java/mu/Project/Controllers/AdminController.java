@@ -1,14 +1,15 @@
 package mu.Project.Controllers;
 
 import mu.Project.Models.Account;
-import mu.Project.NotImplementedException;
 
 public class AdminController extends AccountController {
     public AdminController(Account model, MainController parent) {
-        throw new NotImplementedException();
+        setModel(model);
+        setParent(parent);
+
     }
 
     public void windowClosing() {
-        throw new NotImplementedException();
+        getParent().closeProgram();
     }
 }
