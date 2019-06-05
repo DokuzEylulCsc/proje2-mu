@@ -3,7 +3,8 @@ CREATE TABLE hotels (
     name TEXT NOT NULL,
     city TEXT NOT NULL,
     type TEXT NOT NULL,
-    stars INTEGER NOT NULL CHECK( stars >= 0 )
+    stars INTEGER NOT NULL CHECK( stars >= 0 ),
+    UNIQUE (city, name)
 );
 
 CREATE TABLE room_type (
@@ -40,7 +41,8 @@ CREATE TABLE rooms (
 
     FOREIGN KEY (room_type_id) REFERENCES room_type (id)
         ON DELETE CASCADE
-        ON UPDATE NO ACTION
+        ON UPDATE NO ACTION,
+    UNIQUE (hotel_id, room_number)
 );
 
 CREATE TABLE reservations (
@@ -49,7 +51,7 @@ CREATE TABLE reservations (
     account_id INTEGER NOT NULL,
     person_count INTEGER DEFAULT 1 NOT NULL CHECK( person_count > 0 ),
 
-    -- format is ISO8601, ex. '2019-06-06', thus length should be 10
+    -- format is ISO8601, ex. '2019-12-24', thus length should be 10
     start_date TEXT NOT NULL CHECK( length(start_date) ==  10 ),
     end_date TEXT NOT NULL CHECK( length(end_date) ==  10 ),
     CHECK( start_date < end_date ),
@@ -60,12 +62,14 @@ CREATE TABLE reservations (
 
     FOREIGN KEY (account_id) REFERENCES accounts (id)
         ON DELETE CASCADE
-        ON UPDATE NO ACTION
+        ON UPDATE NO ACTION,
+
+    UNIQUE (room_id, start_date)
 );
 
 CREATE TABLE accounts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email TEXT NOT NULL CHECK( email like '%_%@%_%.%_%' ),
+    email TEXT NOT NULL CHECK( email like '%_%@%_%.%_%' ) UNIQUE,
     password_hash INTEGER NOT NULL,
     name TEXT,
     admin INTEGER DEFAULT 0 NOT NULL CHECK( admin IN (0, 1) )
