@@ -312,7 +312,7 @@
               </splitpane>
             </children>
           </grid>
-          <grid id="8516a" binding="reservedTab" layout-manager="GridBagLayout">
+          <grid id="8516a" binding="reservedTab" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
               <tabbedpane title="Reserved"/>
             </constraints>
@@ -320,7 +320,55 @@
               <name value="Reserved"/>
             </properties>
             <border type="none"/>
-            <children/>
+            <children>
+              <splitpane id="f33cc">
+                <constraints border-constraint="Center"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <grid id="48c35" binding="reservedOptionButtonsPanel" layout-manager="GridBagLayout">
+                    <constraints>
+                      <splitpane position="left"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="c865b" class="javax.swing.JButton" binding="refreshReservedTableButton">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <gridbag weightx="0.0" weighty="0.0"/>
+                        </constraints>
+                        <properties>
+                          <text value="Refresh"/>
+                        </properties>
+                      </component>
+                      <component id="a81ca" class="javax.swing.JButton" binding="cancelReservationButton">
+                        <constraints>
+                          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                          <gridbag weightx="0.0" weighty="0.0"/>
+                        </constraints>
+                        <properties>
+                          <text value="Cancel Reservation"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <scrollpane id="3638a">
+                    <constraints>
+                      <splitpane position="right"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="4d8bd" class="javax.swing.JTable" binding="reservedTable">
+                        <constraints/>
+                        <properties/>
+                      </component>
+                    </children>
+                  </scrollpane>
+                </children>
+              </splitpane>
+            </children>
           </grid>
         </children>
       </tabbedpane>

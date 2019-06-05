@@ -44,6 +44,10 @@ public class CustomerView extends Frame {
     private JComboBox citiesComboBox;
     private JButton reserveButton;
     private JPanel reservedTab;
+    private JButton refreshReservedTableButton;
+    private JButton cancelReservationButton;
+    private JPanel reservedOptionButtonsPanel;
+    private JTable reservedTable;
     public static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public CustomerView(CustomerController controller) {
@@ -89,6 +93,27 @@ public class CustomerView extends Frame {
             }
         });
 
+        reserveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getController().reserveButtonClicked();
+            }
+        });
+
+        cancelReservationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getController().cancelReservationButtonClicked();
+            }
+        });
+
+        refreshReservedTableButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                getController().refreshReservedTableButtonClicked();
+            }
+        });
+
         // make full screen when clicked to other tabs
         // which requires larger space
         tabbedPane.addChangeListener(new ChangeListener() {
@@ -102,6 +127,16 @@ public class CustomerView extends Frame {
     public void close() {
         getController().closeProgram();
         dispose();
+    }
+
+    public void showReservationSuccessfulAlert(String hotel_name, Integer room_number, String startDate, String endDate) {
+        JOptionPane.showMessageDialog(this,
+                String.format("Your reservation at %s has been processed.%n" +
+                        "Room number %d starting from %s and ending at %s.",
+                        hotel_name, room_number, startDate, endDate),
+                "Reservation Successful",
+                JOptionPane.PLAIN_MESSAGE
+        );
     }
 
     public void showEmptyRequiredFieldAlert() {
@@ -224,6 +259,10 @@ public class CustomerView extends Frame {
 
     public JTable getReservationTable() {
         return reservationTable;
+    }
+
+    public JTable getReservedTable() {
+        return reservedTable;
     }
 
     private void createUIComponents() {
