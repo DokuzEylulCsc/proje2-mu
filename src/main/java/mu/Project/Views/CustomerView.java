@@ -283,7 +283,6 @@ public class CustomerView extends Frame {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         startDateField = new JDateField();
         endDateField = new JDateField();
         budgetField = new JDecimalField();

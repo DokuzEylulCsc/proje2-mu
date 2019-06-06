@@ -15,12 +15,12 @@ public class Reservation implements Model {
 
     private final static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    private final static String reserveRoomSQL = "INSERT INTO reservations (room_id, account_id, person_count,\n" +
+    private final static String reserveRoomStatement = "INSERT INTO reservations (room_id, account_id, person_count,\n" +
             "start_date, end_date)\n" +
             "VALUES ((SELECT id FROM rooms WHERE room_number = ? AND hotel_id = (SELECT id FROM hotels WHERE name = ?)),\n" +
             "(SELECT id FROM accounts WHERE email = ?), ?, ?, ?)";
 
-    private final static String getReservedRoomsSQL = "SELECT reservations.start_date AS 'Start Date',\n" +
+    private final static String getReservedRoomsQuery = "SELECT reservations.start_date AS 'Start Date',\n" +
             "reservations.end_date AS 'End Date', reservations.person_count AS 'Person Count', hotels.name AS 'Facility Name',\n" +
             "hotels.stars AS 'Stars', room_type.type_name AS 'Room Type', rooms.room_number AS 'Room Number',\n" +
             "room_type.price AS 'Daily Price', room_type.double_bed * 2 + room_type.single_bed AS 'Bed Space',\n" +
@@ -34,7 +34,7 @@ public class Reservation implements Model {
             "WHERE accounts.email = ?\n" +
             "ORDER BY reservations.start_date DESC";
 
-    private final static String deleteReservationSQL = "DELETE FROM reservations\n" +
+    private final static String deleteReservationStatement = "DELETE FROM reservations\n" +
             "WHERE account_id = (SELECT id FROM accounts WHERE email = ?) AND\n" +
             "start_date = ? AND room_id = (SELECT id FROM rooms \n" +
             "WHERE hotel_id = (SELECT id FROM hotels WHERE name = ?) AND room_number = ?)";
@@ -53,7 +53,7 @@ public class Reservation implements Model {
     public static void reserveRoom(Account model, String hotel_name, Integer room_number, Integer person_count,
                                    Date startDate, Date endDate) throws SQLException {
 
-        PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(reserveRoomSQL);
+        PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(reserveRoomStatement);
         preparedStatement.setInt(1, room_number);
         preparedStatement.setString(2, hotel_name);
         preparedStatement.setString(3, model.getEmail());
@@ -75,7 +75,7 @@ public class Reservation implements Model {
      */
     public static void removeReservation(Account account, Date startDate, String hotel_name, Integer room_number)
             throws SQLException {
-        PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(deleteReservationSQL);
+        PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(deleteReservationStatement);
         preparedStatement.setString(1, account.getEmail());
         preparedStatement.setString(2, dateFormat.format(startDate));
         preparedStatement.setString(3, hotel_name);
@@ -95,7 +95,8 @@ public class Reservation implements Model {
      */
     public static CustomTableModel getReservedRoomsAsTableModel(String email, DateFormat newDateFormat) {
         CustomTableModel tableModel = null;
-        try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(getReservedRoomsSQL)) {
+
+        try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(getReservedRoomsQuery)) {
             preparedStatement.setString(1, email);
 
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -105,6 +106,7 @@ public class Reservation implements Model {
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
         }
+
         return tableModel;
     }
 

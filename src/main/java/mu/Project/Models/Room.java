@@ -5,14 +5,10 @@ import mu.Project.Logger;
 import mu.Project.NotImplementedException;
 
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Vector;
 
 
-public class Room implements Model{
-
+public class Room implements Model {
 
     private final static String allAvailableFilteredQuery = "SELECT hotels.name AS 'Hotel Name',\n" +
             "hotels.stars AS 'Stars', room_type.type_name AS 'Room Type',\n" +
@@ -86,8 +82,6 @@ public class Room implements Model{
 
         return tableModel;
     }
-
-
 
     public void save() {
         throw new NotImplementedException();

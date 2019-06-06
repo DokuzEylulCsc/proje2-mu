@@ -11,11 +11,4 @@ public class RoomType implements Model {
     public void delete() {
         throw new NotImplementedException();
     }
-
-    @Override
-    public String toString() {
-        throw new NotImplementedException();
-
-        // return String.format("Price: %d, ")
-    }
 }

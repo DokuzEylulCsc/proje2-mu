@@ -1,8 +1,5 @@
 package mu.Project;
 
-import jdk.jfr.StackTrace;
-import org.sqlite.date.ExceptionUtils;
-
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -11,9 +8,9 @@ import java.util.LinkedHashMap;
 
 
 public class Logger {
+    private final static Logger instance = new Logger();
     private final static String defaultFileName = "Project.log";
-    private static Logger ourInstance = new Logger();
-    private static final DateFormat ISO8601 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    private final static DateFormat ISO8601 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private LinkedHashMap<Date, Object> Logs;
 
     private Logger() {
@@ -90,7 +87,7 @@ public class Logger {
         }
     }
 
-    public static Logger getInstance() { return ourInstance; }
+    public static Logger getInstance() { return instance; }
 
     public DateFormat getISO8601() {
         return ISO8601;

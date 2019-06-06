@@ -20,14 +20,14 @@ public class Account implements Model {
     private String name;
     private final Integer admin;
 
-    private static String insertQuery = "INSERT INTO accounts (email, password_hash, name, admin) " +
+    private static String insertStatement = "INSERT INTO accounts (email, password_hash, name, admin) " +
             "VALUES (?, ?, ?, ?)";
 
-    private static String updateQuery = "UPDATE accounts " +
+    private static String updateStatement = "UPDATE accounts " +
             "SET password_hash = ?,  name = ? " +
             "WHERE email = ? ";
 
-    private static String deleteQuery = "DELETE FROM accounts " +
+    private static String deleteStatement = "DELETE FROM accounts " +
             "WHERE email = ?";
 
     private static String emailQuery = "SELECT email, password_hash, name, admin FROM accounts " +
@@ -106,7 +106,7 @@ public class Account implements Model {
      */
     private static void createAccount(String email, Integer password_hash, String name, Integer admin) {
 
-        try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(insertQuery)) {
+        try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(insertStatement)) {
             preparedStatement.setString(1, email);
             preparedStatement.setInt(2, password_hash);
             preparedStatement.setString(3, name);
@@ -196,7 +196,7 @@ public class Account implements Model {
             throw new NoSuchAccountException(getEmail());
         }
 
-        try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(updateQuery)) {
+        try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(updateStatement)) {
             preparedStatement.setInt(1, getPassword_hash());
             preparedStatement.setString(2, getName());
             preparedStatement.setString(3, getEmail());
@@ -211,7 +211,7 @@ public class Account implements Model {
      * Delete object in database.
      */
     public void delete() {
-        try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(deleteQuery)) {
+        try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(deleteStatement)) {
             preparedStatement.setString(1, getEmail());
             preparedStatement.executeUpdate();
 
