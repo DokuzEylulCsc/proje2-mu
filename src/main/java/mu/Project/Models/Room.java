@@ -28,8 +28,7 @@ public class Room implements Model {
             "rooms.id NOT IN (SELECT room_id FROM reservations\n" +
             "WHERE ? <= start_date < ? AND\n" +
             "? < end_date <= ?)\n" +
-            "GROUP BY rooms.hotel_id, rooms.room_number";
-
+            "GROUP BY hotels.stars, rooms.hotel_id, rooms.room_number";
 
     /**
      * Return table model of available rooms within the bounds of given filters.

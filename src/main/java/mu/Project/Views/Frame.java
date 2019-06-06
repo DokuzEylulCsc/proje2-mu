@@ -8,8 +8,6 @@ import java.awt.*;
 public abstract class Frame extends JFrame {
     Controller controller;
 
-    public abstract void close();
-
     void centerFrame() {
         Dimension windowSize = getSize();
         GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();

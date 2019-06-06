@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 public class CustomerController extends AccountController {
-    private final static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    final static DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public CustomerController(Account model, MainController parent) {
         setModel(model);
@@ -40,10 +40,6 @@ public class CustomerController extends AccountController {
         refreshReservedTableButtonClicked();
         getFrame().makeFullScreen();
         getFrame().setVisible(true);
-    }
-
-    public void windowClosing() {
-        getParent().closeProgram();
     }
 
     public void searchButtonClicked() {

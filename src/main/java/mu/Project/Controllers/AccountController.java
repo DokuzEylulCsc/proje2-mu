@@ -9,5 +9,8 @@ public abstract class AccountController extends ChildController {
         return (Account) super.getModel();
     }
 
-    public abstract void windowClosing();
+    public void close() {
+        getFrame().dispose();
+        getParent().closeProgram();
+    }
 }

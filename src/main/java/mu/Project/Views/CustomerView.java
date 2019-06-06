@@ -50,7 +50,6 @@ public class CustomerView extends Frame {
     private JScrollPane reservationScrollPane;
     private JSplitPane reservedSplitPane;
     private JScrollPane reservedScrollPane;
-    public static final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public CustomerView(CustomerController controller) {
         setController(controller);
@@ -66,14 +65,14 @@ public class CustomerView extends Frame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                close();
+                getController().close();
             }
         });
 
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                close();
+                getController().close();
             }
         });
 
@@ -118,11 +117,6 @@ public class CustomerView extends Frame {
                 getController().refreshReservedTableButtonClicked();
             }
         });
-    }
-
-    public void close() {
-        getController().windowClosing();
-        dispose();
     }
 
     public void showNoRoomSelectedAlert() {

@@ -39,6 +39,21 @@ public class Reservation implements Model {
             "start_date = ? AND room_id = (SELECT id FROM rooms \n" +
             "WHERE hotel_id = (SELECT id FROM hotels WHERE name = ?) AND room_number = ?)";
 
+    private final static String allReservationsQuery = "SELECT reservations.start_date AS 'Start Date',\n" +
+            "reservations.end_date AS 'End Date', accounts.email AS 'Account', reservations.person_count AS 'Person Count', hotels.name AS 'Facility Name',\n" +
+            "hotels.type AS 'Facility Type', hotels.stars AS 'Stars', room_type.type_name AS 'Room Type', rooms.room_number AS 'Room Number',\n" +
+            "room_type.price AS 'Daily Price', room_type.double_bed * 2 + room_type.single_bed AS 'Bed Space',\n" +
+            "room_type.sea_view AS 'Sea View', room_type.safe AS 'Safe', room_type.air_conditioner_count AS 'Air Conditioner',\n" +
+            "room_type.television_count AS 'Televisions', room_type.minibar_count AS 'Minibars',\n" +
+            "room_type.extra_services_description AS 'Extra Services' FROM reservations\n" +
+            "INNER JOIN rooms ON (rooms.id = reservations.room_id)\n" +
+            "INNER JOIN hotels ON (hotels.id = rooms.hotel_id)\n" +
+            "INNER JOIN room_type ON (room_type.id = rooms.room_type_id)\n" +
+            "INNER JOIN accounts ON (reservations.account_id = accounts.id)\n" +
+            "WHERE ((? <= reservations.start_date  AND reservations.start_date < ?) OR\n" +
+            "(? <= reservations.end_date AND reservations.end_date < ?)) AND hotels.city LIKE ?\n" +
+            "ORDER BY reservations.start_date DESC";
+
     /**
      * Reserve a room with given parameters.
      *
@@ -85,6 +100,27 @@ public class Reservation implements Model {
     }
 
     /**
+     * Delete a reservation from reservations table.
+     * For admin accounts.
+     *
+     * @param email String
+     * @param startDate Date
+     * @param hotel_name String
+     * @param room_number Integer
+     * @throws SQLException from jdbc
+     */
+    public static void removeReservation(String email, Date startDate, String hotel_name, Integer room_number)
+            throws SQLException {
+        PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(deleteReservationStatement);
+        preparedStatement.setString(1, email);
+        preparedStatement.setString(2, dateFormat.format(startDate));
+        preparedStatement.setString(3, hotel_name);
+        preparedStatement.setInt(4, room_number);
+
+        preparedStatement.executeUpdate();
+    }
+
+    /**
      * Return reserved rooms from database with the email.
      * Assumes first 2 column of query are dates, and formats them with newDateFormat.
      *
@@ -101,6 +137,34 @@ public class Reservation implements Model {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
+            tableModel = TableUtility.buildTableModelWithFormattedDates(resultSet, newDateFormat);
+
+        } catch (SQLException e) {
+            Logger.getInstance().addLog(e);
+        }
+
+        return tableModel;
+    }
+
+    public static CustomTableModel getAllReservedRoomsAsTableModel(Date startDate, Date endDate, String city, DateFormat newDateFormat)
+            throws InvalidDateIntervalException {
+        CustomTableModel tableModel = null;
+
+        if (startDate.compareTo(endDate) >= 0) {
+            throw new InvalidDateIntervalException(startDate, endDate);
+        }
+
+        try (PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(allReservationsQuery)) {
+            String startDateString = TableUtility.dateFormat.format(startDate);
+            String endDateString = TableUtility.dateFormat.format(endDate);
+
+            preparedStatement.setString(1, startDateString);
+            preparedStatement.setString(2, endDateString);
+            preparedStatement.setString(3, startDateString);
+            preparedStatement.setString(4, endDateString);
+            preparedStatement.setString(5, (city.equals("All") ? "%" : city));
+
+            ResultSet resultSet = preparedStatement.executeQuery();
             tableModel = TableUtility.buildTableModelWithFormattedDates(resultSet, newDateFormat);
 
         } catch (SQLException e) {
