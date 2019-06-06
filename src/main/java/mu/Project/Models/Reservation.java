@@ -89,13 +89,7 @@ public class Reservation implements Model {
      */
     public static void removeReservation(Account account, Date startDate, String hotel_name, Integer room_number)
             throws SQLException {
-        PreparedStatement preparedStatement = Connector.getInstance().prepareStatement(deleteReservationStatement);
-        preparedStatement.setString(1, account.getEmail());
-        preparedStatement.setString(2, dateFormat.format(startDate));
-        preparedStatement.setString(3, hotel_name);
-        preparedStatement.setInt(4, room_number);
-
-        preparedStatement.executeUpdate();
+        removeReservation(account.getEmail(), startDate, hotel_name, room_number);
     }
 
     /**
