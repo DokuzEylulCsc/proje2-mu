@@ -5,10 +5,9 @@ import mu.Project.Controllers.CustomerController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 
 public class CustomerView extends Frame {
+
     private JTabbedPane tabbedPane;
     private JPanel outerPanel;
     private JPanel accountTab;
@@ -39,7 +38,7 @@ public class CustomerView extends Frame {
     private JSpinner starCountSpinner;
     private JLabel cityLabel;
     private JLabel starCountLabel;
-    private JComboBox citiesComboBox;
+    private JComboBox<String> citiesComboBox;
     private JButton reserveButton;
     private JPanel reservedTab;
     private JButton refreshReservedTableButton;
@@ -54,10 +53,11 @@ public class CustomerView extends Frame {
     public CustomerView(CustomerController controller) {
         setController(controller);
         setContentPane(outerPanel);
+        setMinimumSize(new Dimension(775, 420));
         pack();
         centerFrame();
-        setMinimumSize(new Dimension(775, 420));
 
+        setTitle("Dashboard");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getReservedTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         getReservationTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -121,7 +121,7 @@ public class CustomerView extends Frame {
 
     public void showNoRoomSelectedAlert() {
         JOptionPane.showMessageDialog(this,
-                "Please select a room in the table to reserve a room.",
+                "Please select a room in the table by clicking on it to reserve a room.",
                 "Failed",
                 JOptionPane.WARNING_MESSAGE
         );
@@ -129,7 +129,7 @@ public class CustomerView extends Frame {
 
     public void showNoReservationSelectedAlert() {
         JOptionPane.showMessageDialog(this,
-                "Please select reservation in the table to cancel a reserved room.",
+                "Please select reservation in the table by clicking on it to cancel a reservation.",
                 "Failed",
                 JOptionPane.WARNING_MESSAGE
         );
@@ -160,9 +160,9 @@ public class CustomerView extends Frame {
 
     public void showReservationCancellationSuccessfulAlert(String hotel_name, Integer room_number, String startDate) {
         JOptionPane.showMessageDialog(this,
-                String.format("Your reservation at %s for room number %d at %s successfully canceled.",
+                String.format("Your reservation at %s for room number %d at %s successfully cancelled.",
                         startDate, room_number, hotel_name),
-                "Reservation Canceled",
+                "Reservation Cancelled",
                 JOptionPane.PLAIN_MESSAGE);
     }
 
@@ -185,7 +185,7 @@ public class CustomerView extends Frame {
     public void showInvalidDateIntervalAlert() {
         JOptionPane.showMessageDialog(this,
                 String.format("Invalid date interval!%n" +
-                        "Start date should be in future and end date shouldn't be less than or equal to start date."),
+                        "Start date should be in future and before end date."),
                 "Failed",
                 JOptionPane.WARNING_MESSAGE
         );
@@ -231,11 +231,6 @@ public class CustomerView extends Frame {
         );
     }
 
-    @Override
-    public CustomerController getController() {
-        return (CustomerController) super.getController();
-    }
-
     public String getNameField() {
         return nameField.getText();
     }
@@ -276,7 +271,7 @@ public class CustomerView extends Frame {
         return budgetField;
     }
 
-    public JComboBox getCitiesComboBox() {
+    public JComboBox<String> getCitiesComboBox() {
         return citiesComboBox;
     }
 
@@ -292,6 +287,11 @@ public class CustomerView extends Frame {
         return reservedTable;
     }
 
+    @Override
+    public CustomerController getController() {
+        return (CustomerController) super.getController();
+    }
+
     private void createUIComponents() {
         startDateField = new JDateField();
         endDateField = new JDateField();
@@ -304,7 +304,6 @@ public class CustomerView extends Frame {
         // maximum of 7 stars
         spinnerModel = new SpinnerNumberModel(0, 0, 7, 1);
         starCountSpinner = new JSpinner(spinnerModel);
-
     }
 
 }

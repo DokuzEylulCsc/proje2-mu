@@ -23,7 +23,7 @@ public class AdminView extends Frame {
     private JLabel endDateLabel;
     private JButton searchButton;
     private JLabel cityLabel;
-    private JComboBox citiesComboBox;
+    private JComboBox<String> citiesComboBox;
     private JLabel passwordLabel;
     private JPasswordField passwordField;
     private JButton updatePasswordButton;
@@ -41,8 +41,13 @@ public class AdminView extends Frame {
     public AdminView(AdminController controller) {
         setController(controller);
         setContentPane(outerPanel);
+        setMinimumSize(new Dimension(775, 420));
         pack();
         centerFrame();
+
+        setTitle("Admin Dashboard");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        getSummaryTable().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -87,10 +92,9 @@ public class AdminView extends Frame {
         });
     }
 
-
     public void showNoReservationSelectedAlert() {
         JOptionPane.showMessageDialog(this,
-                "Please select reservation in the table to cancel a reserved room.",
+                "Please select reservation in the table by clicking on it to cancel a reservation.",
                 "Failed",
                 JOptionPane.WARNING_MESSAGE
         );
@@ -99,16 +103,6 @@ public class AdminView extends Frame {
     public int showYesNoOptionPane(String questionMessage) {
         return JOptionPane.showConfirmDialog(this, questionMessage, "Confirm",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-    }
-
-    public void showReservationSuccessfulAlert(String hotel_name, Integer room_number, String startDate, String endDate) {
-        JOptionPane.showMessageDialog(this,
-                String.format("Your reservation at %s has been processed.%n" +
-                                "Room number %d starting from %s and ending at %s.",
-                        hotel_name, room_number, startDate, endDate),
-                "Reservation Successful",
-                JOptionPane.PLAIN_MESSAGE
-        );
     }
 
     public void showPastReservationCancelRequestAlert() {
@@ -121,9 +115,9 @@ public class AdminView extends Frame {
 
     public void showReservationCancellationSuccessfulAlert(String hotel_name, Integer room_number, String startDate) {
         JOptionPane.showMessageDialog(this,
-                String.format("Your reservation at %s for room number %d at %s successfully canceled.",
+                String.format("Your reservation at %s for room number %d at %s successfully cancelled.",
                         startDate, room_number, hotel_name),
-                "Reservation Canceled",
+                "Reservation Cancelled",
                 JOptionPane.PLAIN_MESSAGE);
     }
 
@@ -146,7 +140,7 @@ public class AdminView extends Frame {
     public void showInvalidDateIntervalAlert() {
         JOptionPane.showMessageDialog(this,
                 String.format("Invalid date interval!%n" +
-                        "Start date should be in future and end date shouldn't be less than or equal to start date."),
+                        "Start date should be in future and before end date."),
                 "Failed",
                 JOptionPane.WARNING_MESSAGE
         );
@@ -216,7 +210,7 @@ public class AdminView extends Frame {
         return startDateField;
     }
 
-    public JComboBox getCitiesComboBox() {
+    public JComboBox<String> getCitiesComboBox() {
         return citiesComboBox;
     }
 

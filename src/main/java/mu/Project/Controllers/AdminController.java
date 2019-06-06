@@ -3,11 +3,9 @@ package mu.Project.Controllers;
 import mu.Project.Logger;
 import mu.Project.Models.*;
 import mu.Project.Views.AdminView;
-import org.w3c.dom.ls.LSProgressEvent;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Date;
@@ -34,7 +32,6 @@ public class AdminController extends AccountController {
 
         getFrame().makeFullScreen();
         getFrame().setVisible(true);
-
     }
 
     public void searchButtonClicked() {
@@ -49,14 +46,12 @@ public class AdminController extends AccountController {
             getFrame().getSummaryTable().updateUI();
 
         } catch (ParseException e) {
-            Logger.getInstance().addLog(e);
             getFrame().showInvalidDateFormatAlert();
 
         } catch (InvalidDateIntervalException e) {
-            Logger.getInstance().addLog(e);
             getFrame().showInvalidDateIntervalAlert();
+
         } catch (NullPointerException e) {
-            Logger.getInstance().addLog(e);
             getFrame().showEmptyRequiredFieldAlert();
         }
     }
@@ -98,13 +93,11 @@ public class AdminController extends AccountController {
             getFrame().showGeneralInternalErrorAlert();
 
         } catch (ParseException e) {
-            Logger.getInstance().addLog("Couldn't parse date from summaryTable!");
             Logger.getInstance().addLog(e);
             getFrame().showGeneralInternalErrorAlert();
+
         } catch (ArrayIndexOutOfBoundsException e) {
             // row number 0
-            Logger.getInstance().addLog("No room is selected at summaryTable to attempt reservation cancellation.");
-            Logger.getInstance().addLog(e);
             getFrame().showNoReservationSelectedAlert();
         }
     }

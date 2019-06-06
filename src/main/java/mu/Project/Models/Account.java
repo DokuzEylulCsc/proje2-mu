@@ -16,9 +16,9 @@ public class Account implements Model {
     private static String RFC5322 = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
     private static Pattern emailPattern = Pattern.compile(RFC5322);
     private final String email;
+    private final Integer admin;
     private Integer password_hash;
     private String name;
-    private final Integer admin;
 
     private static String insertStatement = "INSERT INTO accounts (email, password_hash, name, admin) " +
             "VALUES (?, ?, ?, ?)";
@@ -114,6 +114,7 @@ public class Account implements Model {
             preparedStatement.execute();
 
             Logger.getInstance().addLog(String.format("New account created: %s", email));
+
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
         }
@@ -253,6 +254,13 @@ public class Account implements Model {
             update();
         }
     }
+    public Boolean comparePassword(String password) {
+        return getPassword_hash().equals(hashPassword(password));
+    }
+
+    private static Integer hashPassword(String password) {
+        return password.hashCode();
+    }
 
     public Boolean isAdmin() {
         return admin == 1;
@@ -266,16 +274,9 @@ public class Account implements Model {
         return name;
     }
 
-    private static Integer hashPassword(String password) {
-        return password.hashCode();
-    }
 
     public Integer getPassword_hash() {
         return password_hash;
-    }
-
-    public Boolean comparePassword(String password) {
-        return getPassword_hash().equals(hashPassword(password));
     }
 
     @Override

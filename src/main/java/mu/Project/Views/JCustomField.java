@@ -25,4 +25,5 @@ public abstract class JCustomField extends JFormattedTextField {
             });
         }
     }
+
 }

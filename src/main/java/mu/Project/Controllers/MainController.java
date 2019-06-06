@@ -19,7 +19,6 @@ public class MainController extends Controller {
         Logger.getInstance().addLog("Closing program.");
 
         try {
-            Logger.getInstance().addLog("Closing JDBC...");
             Connector.getInstance().getConnection().close();
             Logger.getInstance().addLog("Closed JDBC successfully.");
         } catch (SQLException e) {

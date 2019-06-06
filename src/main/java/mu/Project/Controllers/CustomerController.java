@@ -59,20 +59,15 @@ public class CustomerController extends AccountController {
             getFrame().getReservationTable().setModel(tableModel);
             getFrame().getReservationTable().updateUI();
 
-
         } catch (ParseException e) {
-            Logger.getInstance().addLog(e);
             getFrame().showInvalidDateFormatAlert();
 
         } catch (InvalidDateIntervalException e) {
-            Logger.getInstance().addLog(e);
             getFrame().showInvalidDateIntervalAlert();
 
         } catch (NullPointerException e) {
-            Logger.getInstance().addLog("Search button at CustomerView.reserveTab clicked with an null value.");
             getFrame().showEmptyRequiredFieldAlert();
         }
-
     }
 
     public void reserveButtonClicked() {
@@ -104,8 +99,6 @@ public class CustomerController extends AccountController {
             refreshReservedTableButtonClicked();
 
         } catch (ParseException e) {
-            Logger.getInstance().addLog("Could not parse dates at reserveTable!");
-            Logger.getInstance().addLog(e);
             getFrame().showInvalidDateFormatAlert();
 
         } catch (SQLException e) {
@@ -114,8 +107,6 @@ public class CustomerController extends AccountController {
 
         } catch (ArrayIndexOutOfBoundsException e) {
             // row number 0
-            Logger.getInstance().addLog("No room is selected to attempt reservation!");
-            Logger.getInstance().addLog(e);
             getFrame().showNoReservationSelectedAlert();
         }
     }
@@ -156,13 +147,11 @@ public class CustomerController extends AccountController {
             getFrame().showGeneralInternalErrorAlert();
 
         } catch (ParseException e) {
-            Logger.getInstance().addLog("Couldn't parse date from reservedTable!");
             Logger.getInstance().addLog(e);
             getFrame().showGeneralInternalErrorAlert();
+
         } catch (ArrayIndexOutOfBoundsException e) {
             // row number 0
-            Logger.getInstance().addLog("No room is selected at reservedTable to attempt reservation cancellation.");
-            Logger.getInstance().addLog(e);
             getFrame().showNoRoomSelectedAlert();
         }
     }
@@ -196,7 +185,6 @@ public class CustomerController extends AccountController {
             getFrame().showPasswordUpdatedAlert();
 
         } catch (InvalidPasswordException e) {
-            Logger.getInstance().addLog(e);
             getFrame().showInvalidPasswordAlert();
 
         } catch (NoSuchAccountException e) {

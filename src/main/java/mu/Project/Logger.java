@@ -6,10 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
 
-
 public class Logger {
+
+    public final static String  defaultFileName = "Project.log";
     private final static Logger instance = new Logger();
-    public final static String defaultFileName = "Project.log";
     private final static DateFormat ISO8601 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private LinkedHashMap<Date, Object> Logs;
 
@@ -100,4 +100,5 @@ public class Logger {
     private void setLogs(LinkedHashMap<Date, Object> logs) {
         Logs = logs;
     }
+
 }

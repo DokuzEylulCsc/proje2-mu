@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public abstract class Frame extends JFrame {
+
     Controller controller;
 
     void centerFrame() {

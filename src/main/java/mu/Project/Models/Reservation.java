@@ -2,7 +2,6 @@ package mu.Project.Models;
 
 import mu.Project.Connector;
 import mu.Project.Logger;
-import mu.Project.NotImplementedException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -172,13 +171,5 @@ public class Reservation implements Model {
         }
 
         return tableModel;
-    }
-
-    public void save() {
-        throw new NotImplementedException();
-    }
-
-    public void delete() {
-        throw new NotImplementedException();
     }
 }

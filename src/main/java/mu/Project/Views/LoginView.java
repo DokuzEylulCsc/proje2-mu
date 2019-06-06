@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-
 public class LoginView extends Frame {
     private JPanel outerPanel;
     private JTextField emailField;
@@ -25,11 +24,11 @@ public class LoginView extends Frame {
         setController(controller);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        // Send signal to controller when window is closed
+        // send signal to controller when window is closed
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                close();
+                getController().loginWindowClosing();
             }
         });
 
@@ -45,11 +44,6 @@ public class LoginView extends Frame {
         pack();
         centerFrame();
         setVisible(true);
-    }
-
-    public void close() {
-        getController().loginWindowClosing();
-        dispose();
     }
 
     public void showLoginSuccessfulAlert() {
@@ -86,7 +80,7 @@ public class LoginView extends Frame {
 
     public void showInvalidEmailAddressAlert() {
         JOptionPane.showMessageDialog(this,
-                "Please type an email address.",
+                "Please type a valid email address.",
                 "Invalid email format",
                 JOptionPane.WARNING_MESSAGE
         );

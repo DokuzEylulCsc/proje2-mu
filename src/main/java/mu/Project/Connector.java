@@ -8,8 +8,9 @@ import java.sql.*;
  * Singleton class.
  */
 public class Connector {
+
     private final static File       dbFile = new File("./Project.db");
-    private final static Connector  ourInstance = new Connector();
+    private final static Connector  instance = new Connector();
     private Connection              connection;
 
     private Connector() { }
@@ -38,29 +39,15 @@ public class Connector {
         }
     }
 
-    /**
-     * Set closeOnCompletion and return a PreparedStatement.
-     *
-     * @param SQL String
-     * @return Empty statement, set to close on completion
-     * @see PreparedStatement
-     * @throws SQLException if connection isn't set
-     */
-    public PreparedStatement prepareStatement(String SQL) throws SQLException {
-        PreparedStatement preparedStatement = getInstance().getConnection().prepareStatement(SQL);
-        preparedStatement.closeOnCompletion();
-        return preparedStatement;
-    }
-
-    public void executeResource(InputStream stream) {
+    private void executeResource(InputStream stream) {
         assert stream != null;
 
         Logger.getInstance().addLog("Starting execution of sql script...");
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
             Statement statement;
-
             StringBuilder strStatement = new StringBuilder();
             String line;
+
             while ((line = reader.readLine()) != null) {
                 line = line.trim();
 
@@ -81,13 +68,28 @@ public class Connector {
 
         } catch (IOException | SQLException e) {
             Logger.getInstance().addLog(e);
+
         } finally {
             Logger.getInstance().addLog("Execution finished!");
         }
     }
 
+    /**
+     * Set closeOnCompletion and return a PreparedStatement.
+     *
+     * @param SQL String
+     * @return Empty statement, set to close on completion
+     * @see PreparedStatement
+     * @throws SQLException if connection isn't set
+     */
+    public PreparedStatement prepareStatement(String SQL) throws SQLException {
+        PreparedStatement preparedStatement = getInstance().getConnection().prepareStatement(SQL);
+        preparedStatement.closeOnCompletion();
+        return preparedStatement;
+    }
+
     public static Connector getInstance() {
-        return ourInstance;
+        return instance;
     }
 
     private void setConnection(Connection c) {

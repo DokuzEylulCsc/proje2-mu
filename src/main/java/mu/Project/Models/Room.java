@@ -2,11 +2,9 @@ package mu.Project.Models;
 
 import mu.Project.Connector;
 import mu.Project.Logger;
-import mu.Project.NotImplementedException;
 
 import java.sql.*;
 import java.util.Date;
-
 
 public class Room implements Model {
 
@@ -77,13 +75,5 @@ public class Room implements Model {
         }
 
         return tableModel;
-    }
-
-    public void save() {
-        throw new NotImplementedException();
-    }
-
-    public void delete() {
-        throw new NotImplementedException();
     }
 }

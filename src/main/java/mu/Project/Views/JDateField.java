@@ -27,4 +27,5 @@ public class JDateField extends JCustomField {
 
         setFormatterFactory(formatterFactory);
     }
+
 }
