@@ -8,10 +8,9 @@ import java.sql.*;
  * Singleton class.
  */
 public class Connector {
-    private static final File   dbFile = new File("./Project.db");
-
-    private static Connector    ourInstance = new Connector();
-    private Connection          connection;
+    private final static File       dbFile = new File("./Project.db");
+    private final static Connector  ourInstance = new Connector();
+    private Connection              connection;
 
     private Connector() { }
 
@@ -25,7 +24,9 @@ public class Connector {
             setConnection(DriverManager.getConnection("jdbc:sqlite:" + dbFile.getAbsolutePath()));
 
             if (dbDoesntExists) {
-                Logger.getInstance().addLog("DB file doesn't exists. Creating new table with default schema.");
+                Logger.getInstance().addLog("DB file doesn't exists. Creating new database with default schema " +
+                        "and dataset.");
+
                 executeResource(getClass().getResourceAsStream("/schema.sql"));
                 executeResource(getClass().getResourceAsStream("/prototype.sql"));
             }

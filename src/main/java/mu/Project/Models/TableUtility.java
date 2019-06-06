@@ -17,9 +17,8 @@ public class TableUtility {
      * Builds and returns a table model with buildTableModelData and getColumnNames.
      */
     public static CustomTableModel buildTableModel(ResultSet resultSet) throws SQLException {
-        Logger.getInstance().addLog(String.valueOf(resultSet.isClosed()));
 
-        // SQLite support only TYPE_FORWARD_ONLY pointer
+        // SQLite supports only TYPE_FORWARD_ONLY pointer
         // First look at column names to not get inconsistent internal state i.e SQLException
         Vector<String> columnNames = getColumnNames(resultSet);
         Vector<Vector<Object>> tableModelData = buildTableModelData(resultSet);

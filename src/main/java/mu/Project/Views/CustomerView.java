@@ -125,6 +125,22 @@ public class CustomerView extends Frame {
         dispose();
     }
 
+    public void showNoRoomSelectedAlert() {
+        JOptionPane.showMessageDialog(this,
+                "Please select a room in the table to reserve a room.",
+                "Failed",
+                JOptionPane.WARNING_MESSAGE
+        );
+    }
+
+    public void showNoReservationSelectedAlert() {
+        JOptionPane.showMessageDialog(this,
+                "Please select reservation in the table to cancel a reserved room.",
+                "Failed",
+                JOptionPane.WARNING_MESSAGE
+        );
+    }
+
     public int showYesNoOptionPane(String questionMessage) {
         return JOptionPane.showConfirmDialog(this, questionMessage, "Confirm",
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -148,9 +164,9 @@ public class CustomerView extends Frame {
         );
     }
 
-    public void showReservationCancelationSuccessfulAlert(String hotel_name, Integer room_number, String startDate) {
+    public void showReservationCancellationSuccessfulAlert(String hotel_name, Integer room_number, String startDate) {
         JOptionPane.showMessageDialog(this,
-                String.format("Your reservation at %s for room number %d at %s successfully cancelled.",
+                String.format("Your reservation at %s for room number %d at %s successfully canceled.",
                         startDate, room_number, hotel_name),
                 "Reservation Canceled",
                 JOptionPane.PLAIN_MESSAGE);

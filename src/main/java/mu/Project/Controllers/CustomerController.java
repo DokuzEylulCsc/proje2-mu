@@ -80,26 +80,26 @@ public class CustomerController extends AccountController {
     }
 
     public void reserveButtonClicked() {
-        int row = getFrame().getReservationTable().getSelectedRow();
-
-        String hotel_name = (String) getFrame().getReservationTable().getValueAt(row, 0);
-        Integer room_number = (Integer) getFrame().getReservationTable().getValueAt(row, 3);
-        Integer person_count = (Integer) getFrame().getPersonCountSpinner().getValue();
-        String startDateString = (String) getFrame().getStartDateField().getValue();
-        String endDateString = (String) getFrame().getEndDateField().getValue();
-
-        int confirmation = getFrame().showYesNoOptionPane(
-                String.format("Are you sure you want to reserve room number %d at %s?",
-                room_number, hotel_name)
-        );
-
-        if (confirmation == JOptionPane.NO_OPTION || confirmation == JOptionPane.CLOSED_OPTION) {
-            Logger.getInstance().addLog(String.format("Aborting reservation request of %s for room %d at %s!",
-                            getModel().getEmail(), room_number, hotel_name));
-            return;
-        }
-
         try {
+            int row = getFrame().getReservationTable().getSelectedRow();
+
+            String hotel_name = (String) getFrame().getReservationTable().getValueAt(row, 0);
+            Integer room_number = (Integer) getFrame().getReservationTable().getValueAt(row, 4);
+            Integer person_count = (Integer) getFrame().getPersonCountSpinner().getValue();
+            String startDateString = (String) getFrame().getStartDateField().getValue();
+            String endDateString = (String) getFrame().getEndDateField().getValue();
+
+            int confirmation = getFrame().showYesNoOptionPane(
+                    String.format("Are you sure you want to reserve room number %d at %s?",
+                            room_number, hotel_name)
+            );
+
+            if (confirmation == JOptionPane.NO_OPTION || confirmation == JOptionPane.CLOSED_OPTION) {
+                Logger.getInstance().addLog(String.format("Aborting reservation request of %s for room %d at %s!",
+                        getModel().getEmail(), room_number, hotel_name));
+                return;
+            }
+
             Date startDate = dateFormat.parse(startDateString);
             Date endDate = dateFormat.parse(endDateString);
             Reservation.reserveRoom(getModel(), hotel_name, room_number, person_count, startDate, endDate);
@@ -108,22 +108,30 @@ public class CustomerController extends AccountController {
             refreshReservedTableButtonClicked();
 
         } catch (ParseException e) {
+            Logger.getInstance().addLog("Could not parse dates at reserveTable!");
             Logger.getInstance().addLog(e);
             getFrame().showInvalidDateFormatAlert();
+
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
             getFrame().showGeneralInternalErrorAlert();
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // row number 0
+            Logger.getInstance().addLog("No room is selected to attempt reservation!");
+            Logger.getInstance().addLog(e);
+            getFrame().showNoReservationSelectedAlert();
         }
     }
 
     public void cancelReservationButtonClicked() {
-        int row = getFrame().getReservedTable().getSelectedRow();
-
-        String startDateString = (String) getFrame().getReservedTable().getValueAt(row, 0);
-        String hotel_name = (String) getFrame().getReservedTable().getValueAt(row, 3);
-        Integer room_number = (Integer) getFrame().getReservedTable().getValueAt(row, 6);
 
         try {
+            int row = getFrame().getReservedTable().getSelectedRow();
+
+            String startDateString = (String) getFrame().getReservedTable().getValueAt(row, 0);
+            String hotel_name = (String) getFrame().getReservedTable().getValueAt(row, 3);
+            Integer room_number = (Integer) getFrame().getReservedTable().getValueAt(row, 7);
             Date startDate = dateFormat.parse(startDateString);
 
             // compare to now, if reservation is in past, don't perform deletion
@@ -144,7 +152,7 @@ public class CustomerController extends AccountController {
             }
 
             Reservation.removeReservation(getModel(), startDate, hotel_name, room_number);
-            getFrame().showReservationCancelationSuccessfulAlert(hotel_name, room_number, startDateString);
+            getFrame().showReservationCancellationSuccessfulAlert(hotel_name, room_number, startDateString);
             refreshReservedTableButtonClicked();
 
         } catch (SQLException e) {
@@ -155,7 +163,11 @@ public class CustomerController extends AccountController {
             Logger.getInstance().addLog("Couldn't parse date from reservedTable!");
             Logger.getInstance().addLog(e);
             getFrame().showGeneralInternalErrorAlert();
-            return;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // row number 0
+            Logger.getInstance().addLog("No room is selected at reservedTable to attempt reservation cancellation.");
+            Logger.getInstance().addLog(e);
+            getFrame().showNoRoomSelectedAlert();
         }
     }
 
@@ -195,7 +207,6 @@ public class CustomerController extends AccountController {
             Logger.getInstance().addLog(e);
             getFrame().showInternalErrorWhileUpdatingAlert();
         }
-
     }
 
     @Override CustomerView getFrame() {

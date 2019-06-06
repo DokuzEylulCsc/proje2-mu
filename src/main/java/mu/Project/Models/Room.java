@@ -10,8 +10,8 @@ import java.util.Date;
 
 public class Room implements Model {
 
-    private final static String allAvailableFilteredQuery = "SELECT hotels.name AS 'Hotel Name',\n" +
-            "hotels.stars AS 'Stars', room_type.type_name AS 'Room Type',\n" +
+    private final static String allAvailableFilteredQuery = "SELECT hotels.name AS 'Facility Name',\n" +
+            "hotels.type AS 'Facility Type', hotels.stars AS 'Stars', room_type.type_name AS 'Room Type',\n" +
             "rooms.room_number AS 'Room Number', room_type.price AS 'Daily Price', room_type.double_bed * 2 +\n" +
             "room_type.single_bed AS 'Bed Space', room_type.sea_view AS 'Sea View', room_type.safe AS 'Safe',\n" +
             "room_type.air_conditioner_count AS 'Air Conditioner', room_type.television_count AS 'Televisions',\n" +
@@ -33,9 +33,6 @@ public class Room implements Model {
 
     /**
      * Return table model of available rooms within the bounds of given filters.
-     *
-     * ResultSet is closing automatically when returned to other modules.
-     * Therefore we must build table model in the same class while working with sqlite-jdbc.
      *
      * @param maxBudget Integer
      * @param personCount Integer

@@ -22,7 +22,7 @@ public class Reservation implements Model {
 
     private final static String getReservedRoomsQuery = "SELECT reservations.start_date AS 'Start Date',\n" +
             "reservations.end_date AS 'End Date', reservations.person_count AS 'Person Count', hotels.name AS 'Facility Name',\n" +
-            "hotels.stars AS 'Stars', room_type.type_name AS 'Room Type', rooms.room_number AS 'Room Number',\n" +
+            "hotels.type AS 'Facility Type', hotels.stars AS 'Stars', room_type.type_name AS 'Room Type', rooms.room_number AS 'Room Number',\n" +
             "room_type.price AS 'Daily Price', room_type.double_bed * 2 + room_type.single_bed AS 'Bed Space',\n" +
             "room_type.sea_view AS 'Sea View', room_type.safe AS 'Safe', room_type.air_conditioner_count AS 'Air Conditioner',\n" +
             "room_type.television_count AS 'Televisions', room_type.minibar_count AS 'Minibars',\n" +
