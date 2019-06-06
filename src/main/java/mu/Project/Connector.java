@@ -22,6 +22,7 @@ public class Connector {
         try {
             boolean dbDoesntExists = !dbFile.exists();
             setConnection(DriverManager.getConnection("jdbc:sqlite:" + dbFile.getAbsolutePath()));
+            getConnection().setAutoCommit(true);
 
             if (dbDoesntExists) {
                 Logger.getInstance().addLog("DB file doesn't exists. Creating new database with default schema " +

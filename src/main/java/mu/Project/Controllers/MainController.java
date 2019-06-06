@@ -16,17 +16,21 @@ public class MainController extends Controller {
     }
 
     public void closeProgram() {
-        Logger.getInstance().addLog("Trying to close JDBC...");
+        Logger.getInstance().addLog("Closing program.");
 
         try {
+            Logger.getInstance().addLog("Closing JDBC...");
             Connector.getInstance().getConnection().close();
             Logger.getInstance().addLog("Closed JDBC successfully.");
         } catch (SQLException e) {
             Logger.getInstance().addLog(e);
         }
+
+        Logger.getInstance().addLog(String.format("Writing logs to '%s'.", Logger.defaultFileName));
+        Logger.getInstance().writeToFile();
     }
 
-    public void loginWindowClosed() {
+    public void loginWindowClosing() {
         setModel(getLoginController().getModel());
 
         if (getModel() != null) {
@@ -38,8 +42,7 @@ public class MainController extends Controller {
                 setAccountController(new CustomerController(getModel(), this));
             }
         } else {
-            // Quit application
-            Logger.getInstance().writeToFile();
+            closeProgram();
         }
     }
 

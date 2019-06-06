@@ -3,6 +3,9 @@ package mu.Project.Views;
 import mu.Project.Controllers.AdminController;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 // TODO: Add GUI component bindings to controller
 public class AdminView extends Frame {
@@ -39,6 +42,12 @@ public class AdminView extends Frame {
         pack();
         centerFrame();
 
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                close();
+            }
+        });
     }
 
     public void close() {
@@ -55,4 +64,5 @@ public class AdminView extends Frame {
         startDateField = new JDateField();
         endDateField = new JDateField();
     }
+
 }

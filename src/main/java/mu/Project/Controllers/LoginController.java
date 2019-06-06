@@ -51,8 +51,8 @@ public class LoginController extends ChildController {
         }
     }
 
-    public void loginWindowClosed() {
-        getParent().loginWindowClosed();
+    public void loginWindowClosing() {
+        getParent().loginWindowClosing();
     }
 
     @Override LoginView getFrame() {

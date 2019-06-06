@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 
 public class Logger {
     private final static Logger instance = new Logger();
-    private final static String defaultFileName = "Project.log";
+    public final static String defaultFileName = "Project.log";
     private final static DateFormat ISO8601 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private LinkedHashMap<Date, Object> Logs;
 

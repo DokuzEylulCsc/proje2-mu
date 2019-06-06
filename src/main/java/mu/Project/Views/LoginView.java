@@ -29,8 +29,7 @@ public class LoginView extends Frame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                getDefaultCloseOperation();
-                getController().loginWindowClosed();
+                close();
             }
         });
 
@@ -49,7 +48,8 @@ public class LoginView extends Frame {
     }
 
     public void close() {
-        dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        getController().loginWindowClosing();
+        dispose();
     }
 
     public void showLoginSuccessfulAlert() {

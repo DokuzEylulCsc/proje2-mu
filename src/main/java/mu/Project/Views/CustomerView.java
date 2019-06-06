@@ -149,7 +149,7 @@ public class CustomerView extends Frame {
     public void showReservationSuccessfulAlert(String hotel_name, Integer room_number, String startDate, String endDate) {
         JOptionPane.showMessageDialog(this,
                 String.format("Your reservation at %s has been processed.%n" +
-                        "Room number %d starting from %s and ending at %s.",
+                                "Room number %d starting from %s and ending at %s.",
                         hotel_name, room_number, startDate, endDate),
                 "Reservation Successful",
                 JOptionPane.PLAIN_MESSAGE
@@ -312,4 +312,5 @@ public class CustomerView extends Frame {
         starCountSpinner = new JSpinner(spinnerModel);
 
     }
+
 }
