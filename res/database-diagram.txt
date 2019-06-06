@@ -1,6 +1,8 @@
 Table hotels {
   id autoincrement [pk]
   name text
+  city text
+  type text
   stars integer
 }
 
@@ -30,15 +32,15 @@ Table reservation {
   id autoincrement [pk]
   account_id integer [not null]
   room_id integer [not null]
-  person_count integer [not null]
   start_date text [not null]
   end_date text [not null]
+  person_count integer [not null]
 }
 
 Table accounts {
   id autoincrement [pk]
-  email text [not null]
-  password_hash integer [not null]
+  email text [not null,unique]
+  password_hash text [not null]
   name text [not null]
   admin boolean [not null]
 }
