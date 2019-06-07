@@ -76,10 +76,13 @@ CREATE TABLE accounts (
 );
 
 
-CREATE INDEX email_idx ON accounts (email);
-CREATE INDEX admin_idx ON accounts (admin);
+CREATE INDEX accounts_email_idx ON accounts (email);
+CREATE INDEX accounts_admin_idx ON accounts (admin);
+CREATE INDEX hotels_city_idx ON hotels (city);
 CREATE INDEX room_type_hotel_id_fkey_idx ON room_type (hotel_id);
-CREATE INDEX rooms_hotel_id_idx ON rooms (hotel_id);
+CREATE INDEX rooms_hotel_id_fkey_idx ON rooms (hotel_id);
+CREATE INDEX rooms_room_type_id_fkey_idx ON rooms (room_type_id);
+CREATE INDEX reservations_account_id_fkey_idx ON reservations (account_id);
 CREATE INDEX reservations_room_id_fkey_idx ON reservations (room_id);
 CREATE INDEX reservations_start_date_idx ON reservations (start_date);
 CREATE INDEX reservations_end_date_idx ON reservations (end_date);
