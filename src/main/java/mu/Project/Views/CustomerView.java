@@ -119,7 +119,7 @@ public class CustomerView extends Frame {
         });
     }
 
-    public void showNoRoomSelectedAlert() {
+    public void showNoRoomSelectedToReserveAlert() {
         JOptionPane.showMessageDialog(this,
                 "Please select a room in the table by clicking on it to reserve a room.",
                 "Failed",
@@ -127,9 +127,9 @@ public class CustomerView extends Frame {
         );
     }
 
-    public void showNoReservationSelectedAlert() {
+    public void showNoReservationSelectedToCancelAlert() {
         JOptionPane.showMessageDialog(this,
-                "Please select reservation in the table by clicking on it to cancel a reservation.",
+                "Please select a reservation in the table by clicking on it to cancel a reservation.",
                 "Failed",
                 JOptionPane.WARNING_MESSAGE
         );

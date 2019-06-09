@@ -107,7 +107,7 @@ public class CustomerController extends AccountController {
 
         } catch (ArrayIndexOutOfBoundsException e) {
             // row number 0
-            getFrame().showNoReservationSelectedAlert();
+            getFrame().showNoRoomSelectedToReserveAlert();
         }
     }
 
@@ -152,7 +152,7 @@ public class CustomerController extends AccountController {
 
         } catch (ArrayIndexOutOfBoundsException e) {
             // row number 0
-            getFrame().showNoRoomSelectedAlert();
+            getFrame().showNoReservationSelectedToCancelAlert();
         }
     }
 
