@@ -17,20 +17,59 @@
     
 Team name: `MU.` Stands for `M`ert and  `U`luğbey.
 
-## Usage
-#### Click to install: [Project-1.1.jar](./bin/Project-1.1.jar?raw=yes)
+
+## Project Structure
+
+```
+│   ├── src
+│   │   ├── main
+│   │   │   ├── java.mu.Project
+│   │   │   │   ├── Main [Manifest class]
+│   │   │   │   ├── Models
+│   │   │   │   ├── Controllers
+│   │   │   │   ├── Views
+│   │   │   │   ├── Logger
+│   │   │   │   ├── Connector
+│   │   │   ├── resources [SQL scripts]
+│   │   │   │   ├── schema.sql
+│   │   │   │   ├── prototype.sql
+│   ├── bin
+│   │   ├── Project-1.1.jar [Executable fat jar]
+│   │   │   ├── mu.Project [version 1.1]
+│   │   │   ├── resources
+│   │   │   ├── sqlite-jdbc [version 3.27.2.1]
+├── *.md
+│   ├── resources [for MarkDown files]
+├── pom.xml [Project Object Model]
+├── .gitignore
+```
+
+## Launching
+
+#### Click to install without cloning: [bin/Project-1.1.jar](./bin/Project-1.1.jar?raw=yes)
+
+This jar file is executable and contains dependencies and resources too, thus portable.
 
 
-Launch standalone jar on command line as below:
+You can take a look at what's inside by following command:
+
+```
+$ jar tf Project-1.1.jar
+```
+
+Launch portable jar on command line as below to run the program:
+
 ```
 $ java -jar Project-1.1.jar
 ```
 
-Tester accounts with default password `"password"`:
+**Note:** Java 11 or higher.
+
+## Usage
+Testing accounts with default password, `"password"`
+
 - Customer account: `customer@tester.com`
 - Admin account: `admin@tester.com`
+	
+**Note:** Trying to log in with a new email address and password will result on a new *customer* account.
 
-#### Notes
-- Trying to log in with a random email and password which isn't in database will result on a new *customer* account.
-- If you have a jar launcher installed, just click on it.
-- Java 11 and higher versions are supported.
