@@ -1,6 +1,7 @@
 ## Project 2
+[![java-version](https://img.shields.io/badge/Java-11-orange.svg?style=flat-square&logo=java)](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html)
+[![project-version](https://img.shields.io/badge/Version-v1.1-9cf.svg?style=flat-square)](./bin/Project-1.1.jar?raw=yes)
 
-- Using [`Java and JDK 11.`](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html)
 - [Description](./DESCRIPTION.md)
 - [References](./REFERENCES.md)
 - [Diagrams](./DIAGRAMS.md)
@@ -71,5 +72,6 @@ Testing accounts with default password, `"password"`
 - Customer account: `customer@tester.com`
 - Admin account: `admin@tester.com`
 	
-**Note:** Trying to log in with a new email address and password will result on a new *customer* account.
+Trying to log in with a new email address and password will result on a new *customer* account.
+
 
